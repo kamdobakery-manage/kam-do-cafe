@@ -1,5 +1,5 @@
 /* ============================================
-   Kam Do Cafe — 金都茶室
+   Kam Do Cafe — 金都茶餐廳
    Main Application Script
    ============================================ */
 
@@ -24,9 +24,22 @@
     cartCheckoutBtn: null,
     menuContainer: null,
     specialsContainer: null,
+    featuredContainer: null,
     footerInfo: null,
     toast: null,
     mobileToggle: null,
+  };
+
+  // --- Food emoji map by section for placeholders ---
+  const sectionEmoji = {
+    'breakfast': '🍳',
+    'noodles': '🍜',
+    'plates': '🍛',
+    'baked': '🧀',
+    'hk-authentic': '🥘',
+    'snacks': '🥐',
+    'drinks': '☕',
+    'party-tray': '🎉',
   };
 
   // --- Init ---
@@ -35,6 +48,7 @@
     bindEvents();
     await loadMenu();
     renderHero();
+    renderFeatured();
     renderMenu();
     renderSpecials();
     renderFooter();
@@ -52,6 +66,7 @@
     app.cartCheckoutBtn = document.getElementById('cart-checkout-btn');
     app.menuContainer = document.getElementById('menu-container');
     app.specialsContainer = document.getElementById('specials-container');
+    app.featuredContainer = document.getElementById('featured-container');
     app.footerInfo = document.getElementById('footer-info');
     app.toast = document.getElementById('toast');
     app.mobileToggle = document.getElementById('mobile-toggle');
@@ -84,10 +99,44 @@
     }
   }
 
+  // --- Helper: find item by code or name ---
+  function findItem(sectionId, code, name) {
+    const section = menuData.sections.find(s => s.id === sectionId);
+    if (!section) return null;
+
+    const searchItems = (items) => {
+      if (!items) return null;
+      if (code) return items.find(i => i.code === code);
+      if (name) return items.find(i => i.name_en === name);
+      return null;
+    };
+
+    if (section.items) return searchItems(section.items);
+    if (section.subsections) {
+      for (const sub of section.subsections) {
+        const found = searchItems(sub.items);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+
+  // --- Helper: image HTML with placeholder fallback ---
+  function imageHtml(src, alt, cssClass, placeholderClass, emoji) {
+    if (!src) {
+      return `<div class="${placeholderClass}">${emoji}</div>`;
+    }
+    return `<img src="${src}" alt="${escapeHtml(alt)}" class="${cssClass}" loading="lazy" onerror="this.outerHTML='<div class=&quot;${placeholderClass}&quot;>${emoji}</div>'">`;
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
   // --- Render Nav Links ---
   function renderNavLinks(sections) {
     const links = sections.map(s => {
-      return `<li><a href="#${s.id}" class="nav__link">${s.title_en.replace(/&/g, '&amp;')}</a></li>`;
+      return `<li><a href="#${s.id}" class="nav__link">${escapeHtml(s.title_en)}</a></li>`;
     });
     app.navLinks.innerHTML = links.join('');
   }
@@ -97,20 +146,76 @@
     if (!menuData) return;
     const r = menuData.restaurant;
     const hero = document.getElementById('hero');
+
+    const logoImg = r.logo
+      ? `<img src="${r.logo}" alt="${r.name_zh}" class="hero__logo" width="80" height="80">`
+      : '';
+
     hero.innerHTML = `
-      <div class="hero__badge">★ Authentic Hong Kong Café</div>
+      ${logoImg}
+      <div class="hero__badge">\u2605 Authentic Hong Kong Caf\u00e9</div>
       <h1 class="hero__title">${r.name_en}</h1>
       <p class="hero__title-zh">${r.name_zh}</p>
-      <p class="hero__description">${r.tagline_en}. Classic comfort food made fresh daily — from satay beef noodles to golden pineapple buns.</p>
+      <p class="hero__description">${r.tagline_en}. Classic comfort food made fresh daily \u2014 from satay beef noodles to golden pineapple buns.</p>
       <div class="hero__meta">
-        <span class="hero__meta-item">📍 ${r.address}</span>
-        <span class="hero__meta-item">🕐 ${r.hours.general}</span>
-        <span class="hero__meta-item">📞 <a href="tel:${r.phone}">${r.phone}</a></span>
+        <span class="hero__meta-item">\ud83d\udccd ${r.address}</span>
+        <span class="hero__meta-item">\ud83d\udd50 ${r.hours.general}</span>
+        <span class="hero__meta-item">\ud83d\udcde <a href="tel:${r.phone}">${r.phone}</a></span>
       </div>
       <div class="hero__cta-row">
         <a href="#breakfast" class="btn btn--primary">Browse Menu</a>
-        <button class="btn btn--secondary" onclick="document.getElementById('cart-btn').click()">🛒 View Cart</button>
+        <button class="btn btn--secondary" onclick="document.getElementById('cart-btn').click()">\ud83d\uded2 View Cart</button>
       </div>
+    `;
+  }
+
+  // --- Render Featured ---
+  function renderFeatured() {
+    if (!menuData || !menuData.featured || menuData.featured.length === 0) {
+      app.featuredContainer.style.display = 'none';
+      return;
+    }
+
+    let cards = '';
+    for (const feat of menuData.featured) {
+      const item = findItem(feat.section_id, feat.item_code, feat.item_name);
+      if (!item) continue;
+
+      const emoji = sectionEmoji[feat.section_id] || '🍽';
+      const imgHtml = imageHtml(
+        item.image,
+        item.name_en,
+        'featured__card-image',
+        'featured__card-placeholder',
+        emoji
+      );
+
+      cards += `
+        <div class="featured__card">
+          ${imgHtml}
+          <div class="featured__card-body">
+            <div class="featured__card-name">${item.name_zh}</div>
+            <div class="featured__card-name-en">${escapeHtml(item.name_en)}</div>
+            <div class="featured__card-footer">
+              <span class="featured__card-caption">${feat.caption_en} \u00b7 ${feat.caption_zh}</span>
+              <span class="featured__card-price">$${item.price.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    if (!cards) {
+      app.featuredContainer.style.display = 'none';
+      return;
+    }
+
+    app.featuredContainer.innerHTML = `
+      <div class="featured__header">
+        <h2 class="featured__title">Signature Dishes</h2>
+        <p class="featured__subtitle">\u62db\u724c\u63a8\u4ecb</p>
+      </div>
+      <div class="featured__grid">${cards}</div>
     `;
   }
 
@@ -157,14 +262,14 @@
         }
         itemsHtml += `<ul class="menu-list">`;
         for (const item of sub.items) {
-          itemsHtml += renderMenuItem(item);
+          itemsHtml += renderMenuItem(item, section.id);
         }
         itemsHtml += `</ul></div>`;
       }
     } else if (section.items) {
       itemsHtml += `<ul class="menu-list">`;
       for (const item of section.items) {
-        itemsHtml += renderMenuItem(item);
+        itemsHtml += renderMenuItem(item, section.id);
       }
       itemsHtml += `</ul>`;
     }
@@ -186,19 +291,28 @@
     `;
   }
 
-  function renderMenuItem(item) {
+  function renderMenuItem(item, sectionId) {
     const code = item.code ? `<span class="menu-item__code">${item.code}</span>` : '<span class="menu-item__code"></span>';
 
     let badges = '';
     if (item.badge) {
       const badgeClass = item.badge === 'New' ? 'new' : item.badge === 'Signature' ? 'signature' : 'award';
-      badges += `<span class="menu-item__badge menu-item__badge--${badgeClass}">★ ${item.badge}</span>`;
+      badges += `<span class="menu-item__badge menu-item__badge--${badgeClass}">\u2605 ${item.badge}</span>`;
     }
 
     let note = '';
     if (item.note_en) {
       note = `<div class="menu-item__note">${item.note_en}</div>`;
     }
+
+    // Image thumbnail
+    const emoji = sectionEmoji[sectionId] || '🍽';
+    const imgHtml = item.image
+      ? imageHtml(item.image, item.name_en, 'menu-item__image', 'menu-item__image-placeholder', emoji)
+      : '';
+
+    const hasImageClass = item.image ? ' menu-item--has-image' : '';
+    const signatureClass = item.badge === 'Signature' ? ' menu-item--signature' : '';
 
     const itemId = generateItemId(item);
     const itemData = encodeURIComponent(JSON.stringify({
@@ -210,11 +324,12 @@
     }));
 
     return `
-      <li class="menu-item">
+      <li class="menu-item${hasImageClass}${signatureClass}">
         ${code}
+        ${imgHtml}
         <div class="menu-item__info">
           <div class="menu-item__name-zh">${item.name_zh}</div>
-          <div class="menu-item__name-en">${item.name_en}</div>
+          <div class="menu-item__name-en">${escapeHtml(item.name_en)}</div>
           ${note}
           ${badges}
         </div>
@@ -229,12 +344,12 @@
   function renderDrinksSection(section, num) {
     let rows = '';
     for (const drink of section.items) {
-      const hotPrice = drink.price_hot !== null ? `$${drink.price_hot.toFixed(2)}` : '—';
-      const icedPrice = drink.price_iced !== null ? `$${drink.price_iced.toFixed(2)}` : '—';
+      const hotPrice = drink.price_hot !== null ? `$${drink.price_hot.toFixed(2)}` : '\u2014';
+      const icedPrice = drink.price_iced !== null ? `$${drink.price_iced.toFixed(2)}` : '\u2014';
 
       const hotData = drink.price_hot !== null ? encodeURIComponent(JSON.stringify({
         id: generateDrinkId(drink, 'hot'),
-        name_zh: drink.name_zh + '（熱）',
+        name_zh: drink.name_zh + '\uff08\u71b1\uff09',
         name_en: drink.name_en + ' (Hot)',
         price: drink.price_hot,
         code: ''
@@ -242,7 +357,7 @@
 
       const icedData = drink.price_iced !== null ? encodeURIComponent(JSON.stringify({
         id: generateDrinkId(drink, 'iced'),
-        name_zh: drink.name_zh + '（凍）',
+        name_zh: drink.name_zh + '\uff08\u51cd\uff09',
         name_en: drink.name_en + ' (Iced)',
         price: drink.price_iced,
         code: ''
@@ -252,7 +367,7 @@
         <tr>
           <td>
             <span>${drink.name_zh}</span>
-            <span class="drink-name-en"> ${drink.name_en}</span>
+            <span class="drink-name-en"> ${escapeHtml(drink.name_en)}</span>
           </td>
           <td>${hotPrice} ${hotData ? `<button class="menu-item__add-btn" data-add-drink="${hotData}" aria-label="Add hot drink" style="display:inline-flex;width:24px;height:24px;font-size:14px;margin-left:8px;vertical-align:middle;">+</button>` : ''}</td>
           <td>${icedPrice} ${icedData ? `<button class="menu-item__add-btn" data-add-drink="${icedData}" aria-label="Add iced drink" style="display:inline-flex;width:24px;height:24px;font-size:14px;margin-left:8px;vertical-align:middle;">+</button>` : ''}</td>
@@ -291,6 +406,10 @@
         `<li><strong>${i.en}</strong> ${i.zh}</li>`
       ).join('');
 
+      const visualHtml = special.image
+        ? `<div class="special-card__visual"><img src="${special.image}" alt="${escapeHtml(special.title_en)}" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('special-card__visual--placeholder')"></div>`
+        : `<div class="special-card__visual special-card__visual--placeholder"></div>`;
+
       html += `
         <div class="special-card">
           <div>
@@ -299,9 +418,9 @@
             <p class="special-card__title-zh">${special.title_zh}</p>
             <div class="special-card__price">$${special.price.toFixed(2)}</div>
             <ul class="special-card__includes">${includesHtml}</ul>
-            <p class="special-card__note">${special.note_en} · ${special.note_zh}</p>
+            <p class="special-card__note">${special.note_en} \u00b7 ${special.note_zh}</p>
           </div>
-          <div class="special-card__visual">Photo coming soon</div>
+          ${visualHtml}
         </div>
       `;
     }
@@ -312,12 +431,35 @@
   function renderFooter() {
     if (!menuData) return;
     const r = menuData.restaurant;
+
+    const logoHtml = r.logo
+      ? `<img src="${r.logo}" alt="${r.name_zh}" class="footer__logo">`
+      : '';
+
+    let socialHtml = '';
+    if (r.social) {
+      socialHtml = '<div class="footer__social">';
+      if (r.social.facebook) {
+        socialHtml += `<a href="${r.social.facebook}" class="footer__social-link" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>`;
+      }
+      if (r.social.instagram) {
+        socialHtml += `<a href="${r.social.instagram}" class="footer__social-link" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>`;
+      }
+      socialHtml += '</div>';
+    }
+
     app.footerInfo.innerHTML = `
       <div>
+        ${logoHtml}
         <div class="footer__brand-zh">${r.name_zh}</div>
         <div class="footer__brand-en">${r.name_en}</div>
-        <p class="footer__desc">${r.tagline_en}. ${r.tagline_zh}. From our signature satay beef to freshly baked pineapple buns — taste the real Hong Kong.</p>
-        <p class="footer__address">📍 ${r.address}</p>
+        <p class="footer__desc">${r.tagline_en}. ${r.tagline_zh}. From our signature satay beef to freshly baked pineapple buns \u2014 taste the real Hong Kong.</p>
+        <p class="footer__address">\ud83d\udccd ${r.address}</p>
+        ${socialHtml}
       </div>
       <div>
         <div class="footer__right-title">Hours</div>
@@ -395,7 +537,7 @@
     if (cart.length === 0) {
       app.cartItemsContainer.innerHTML = `
         <div class="cart-drawer__empty">
-          <div class="cart-drawer__empty-icon">🛒</div>
+          <div class="cart-drawer__empty-icon">\ud83d\uded2</div>
           <p>Your cart is empty</p>
           <p style="font-size:12px;margin-top:8px;">Browse the menu and add items</p>
         </div>
@@ -408,16 +550,16 @@
       html += `
         <div class="cart-item">
           <div class="cart-item__info">
-            <div class="cart-item__name">${item.code ? item.code + ' · ' : ''}${item.name_zh}</div>
-            <div class="cart-item__name-en">${item.name_en}</div>
+            <div class="cart-item__name">${item.code ? item.code + ' \u00b7 ' : ''}${item.name_zh}</div>
+            <div class="cart-item__name-en">${escapeHtml(item.name_en)}</div>
             <div class="cart-item__controls">
-              <button class="cart-item__qty-btn" onclick="window.__cartUpdateQty('${item.id}', -1)">−</button>
+              <button class="cart-item__qty-btn" onclick="window.__cartUpdateQty('${item.id}', -1)">\u2212</button>
               <span class="cart-item__qty">${item.qty}</span>
               <button class="cart-item__qty-btn" onclick="window.__cartUpdateQty('${item.id}', 1)">+</button>
             </div>
           </div>
           <span class="cart-item__price">$${(item.price * item.qty).toFixed(2)}</span>
-          <button class="cart-item__remove" onclick="window.__cartRemove('${item.id}')" aria-label="Remove">×</button>
+          <button class="cart-item__remove" onclick="window.__cartRemove('${item.id}')" aria-label="Remove">\u00d7</button>
         </div>
       `;
     }
@@ -452,8 +594,6 @@
   function handleCheckout() {
     if (cart.length === 0) return;
     const orderText = buildOrderText();
-    const phone = menuData.restaurant.phone.replace(/[^0-9]/g, '');
-    // Try phone call with order summary
     alert('Order Summary:\n\n' + orderText + '\n\nPlease call or WhatsApp us to place your order.');
   }
 
@@ -469,7 +609,7 @@
     let lines = [];
     for (const item of cart) {
       const code = item.code ? `[${item.code}] ` : '';
-      lines.push(`${code}${item.name_en} x${item.qty} — $${(item.price * item.qty).toFixed(2)}`);
+      lines.push(`${code}${item.name_en} x${item.qty} \u2014 $${(item.price * item.qty).toFixed(2)}`);
     }
     const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
     lines.push('');
@@ -481,7 +621,7 @@
   // --- Animations ---
   function animateAddButton(btn) {
     btn.classList.add('added');
-    btn.textContent = '✓';
+    btn.textContent = '\u2713';
     setTimeout(() => {
       btn.classList.remove('added');
       btn.textContent = '+';
