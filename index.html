@@ -15,10 +15,10 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Righteous&family=Noto+Sans+TC:wght@400;500;600;700;900&family=Noto+Serif+TC:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=8">
 
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="assets/logo/kam-do-logo.jpg">
@@ -58,6 +58,16 @@
       </button>
     </div>
   </nav>
+
+  <!-- Section Indicator Bar -->
+  <div class="section-indicator" id="section-indicator" aria-live="polite">
+    <div class="section-indicator__inner">
+      <span class="section-indicator__number" id="indicator-number"></span>
+      <span class="section-indicator__name-zh" id="indicator-name-zh"></span>
+      <span class="section-indicator__divider">|</span>
+      <span class="section-indicator__name-en" id="indicator-name-en"></span>
+    </div>
+  </div>
 
   <!-- Hero -->
   <header class="hero" id="hero">
@@ -123,7 +133,7 @@
   <div class="toast" id="toast"></div>
 
   <!-- App Script -->
-  <script src="app.js"></script>
+  <script src="app.js?v=5"></script>
 
 </body>
 </html>

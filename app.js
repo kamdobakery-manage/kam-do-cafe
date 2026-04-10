@@ -53,6 +53,129 @@
     renderSpecials();
     renderFooter();
     loadCartFromStorage();
+    initScrollSpy();
+  }
+
+  // --- Scroll Spy ---
+  function initScrollSpy() {
+    if (!menuData) return;
+
+    const indicator = document.getElementById('section-indicator');
+    const indicatorNumber = document.getElementById('indicator-number');
+    const indicatorNameZh = document.getElementById('indicator-name-zh');
+    const indicatorNameEn = document.getElementById('indicator-name-en');
+    const navLinksContainer = document.getElementById('nav-links');
+    const navLinks = document.querySelectorAll('.nav__link');
+    const sections = document.querySelectorAll('.section');
+    const menuContainer = document.getElementById('menu-container');
+
+    if (!menuContainer || sections.length === 0) return;
+
+    // Build section data map
+    const sectionMap = {};
+    let counter = 0;
+    for (const s of menuData.sections) {
+      counter++;
+      sectionMap[s.id] = {
+        num: String(counter).padStart(2, '0'),
+        title_en: s.title_en,
+        title_zh: s.title_zh
+      };
+    }
+
+    let currentSectionId = null;
+    let isVisible = false;
+
+    // Scroll nav link into view horizontally only (no window scroll)
+    function scrollNavLink(activeLink) {
+      if (!navLinksContainer || !activeLink) return;
+      const containerRect = navLinksContainer.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      const linkCenter = linkRect.left + linkRect.width / 2;
+      const containerCenter = containerRect.left + containerRect.width / 2;
+      const scrollDelta = linkCenter - containerCenter;
+      navLinksContainer.scrollBy({ left: scrollDelta, behavior: 'smooth' });
+    }
+
+    function show(sectionId) {
+      const info = sectionMap[sectionId];
+      if (!info) return;
+
+      if (sectionId !== currentSectionId) {
+        currentSectionId = sectionId;
+        indicatorNumber.textContent = info.num;
+        indicatorNameZh.textContent = info.title_zh;
+        indicatorNameEn.textContent = info.title_en;
+
+        // Text slide-in animation
+        indicator.classList.remove('entering');
+        void indicator.offsetWidth;
+        indicator.classList.add('entering');
+
+        // Highlight active nav link (horizontal scroll only, never window scroll)
+        navLinks.forEach(link => {
+          const isActive = link.getAttribute('href') === '#' + sectionId;
+          link.classList.toggle('active', isActive);
+          if (isActive) {
+            scrollNavLink(link);
+          }
+        });
+      }
+
+      if (!isVisible) {
+        indicator.classList.add('visible');
+        isVisible = true;
+      }
+    }
+
+    function hide() {
+      if (!isVisible) return;
+      indicator.classList.remove('visible');
+      isVisible = false;
+      currentSectionId = null;
+      navLinks.forEach(link => link.classList.remove('active'));
+    }
+
+    // Single scroll handler with debounce
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        // Detection line: below nav (64px on desktop, 56px on mobile)
+        const navHeight = document.querySelector('.nav').offsetHeight;
+        const offset = navHeight + 56;
+
+        const menuRect = menuContainer.getBoundingClientRect();
+        const inMenu = menuRect.top < offset && menuRect.bottom > offset;
+
+        if (!inMenu) {
+          hide();
+          ticking = false;
+          return;
+        }
+
+        // Walk sections top-down; last one whose top passed the offset wins
+        let found = null;
+        for (let i = 0; i < sections.length; i++) {
+          if (sections[i].getBoundingClientRect().top <= offset) {
+            found = sections[i].id;
+          }
+        }
+
+        if (found) {
+          show(found);
+        } else {
+          hide();
+        }
+
+        ticking = false;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Run once on init in case page is already scrolled
+    onScroll();
   }
 
   function cacheDOM() {
@@ -154,8 +277,8 @@
     hero.innerHTML = `
       ${logoImg}
       <div class="hero__badge">\u2605 Authentic Hong Kong Caf\u00e9</div>
-      <h1 class="hero__title">${r.name_en}</h1>
-      <p class="hero__title-zh">${r.name_zh}</p>
+      <h1 class="hero__title-zh">${r.name_zh}</h1>
+      <p class="hero__title">${r.name_en}</p>
       <p class="hero__description">${r.tagline_en}. Classic comfort food made fresh daily \u2014 from satay beef noodles to golden pineapple buns.</p>
       <div class="hero__meta">
         <span class="hero__meta-item">\ud83d\udccd ${r.address}</span>
