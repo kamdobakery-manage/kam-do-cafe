@@ -54,6 +54,7 @@
     renderFooter();
     loadCartFromStorage();
     initScrollSpy();
+    initLightbox();
   }
 
   // --- Scroll Spy ---
@@ -202,7 +203,6 @@
     app.cartCheckoutBtn.addEventListener('click', handleCheckout);
     document.getElementById('cart-whatsapp').addEventListener('click', handleWhatsApp);
     app.mobileToggle.addEventListener('click', toggleMobileMenu);
-
     // Close mobile menu on link click
     app.navLinks.addEventListener('click', (e) => {
       if (e.target.classList.contains('nav__link')) {
@@ -760,6 +760,45 @@
   // --- Mobile Menu ---
   function toggleMobileMenu() {
     app.navLinks.classList.toggle('mobile-open');
+  }
+
+  // --- Image Lightbox ---
+  function initLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    function open(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightboxCaption.textContent = alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Click on featured card images
+    document.addEventListener('click', function (e) {
+      const img = e.target.closest('.featured__card-image, .menu-item__image');
+      if (img) {
+        e.preventDefault();
+        open(img.src, img.alt);
+      }
+    });
+
+    // Close lightbox
+    lightboxClose.addEventListener('click', close);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) close();
+    });
   }
 
   // --- Persistence ---
