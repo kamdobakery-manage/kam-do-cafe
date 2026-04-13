@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — Kam Do Cafe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Righteous&family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" href="assets/logo/kam-do-logo.jpg">
+  <style>
+    :root {
+      --color-bg: #FFF8ED;
+      --color-text: #3A2518;
+      --color-text-secondary: #7A5C4A;
+      --color-success: #2E9E5A;
+      --color-border: #E8D8C8;
+      --color-brand-red: #B91C2E;
+      --font-display: 'Righteous', 'Noto Serif TC', sans-serif;
+      --font-body: 'DM Sans', 'Noto Sans TC', -apple-system, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .confirmation {
+      text-align: center;
+      max-width: 480px;
+    }
+
+    .confirmation__icon {
+      width: 80px;
+      height: 80px;
+      background: var(--color-success);
+      color: #fff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin-bottom: 24px;
+    }
+
+    .confirmation__title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .confirmation__subtitle {
+      font-size: 20px;
+      color: var(--color-text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .confirmation__message {
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .confirmation__link {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--color-brand-red);
+      color: #FFF8ED;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      transition: background 0.2s;
+    }
+
+    .confirmation__link:hover {
+      background: #D42B2B;
+    }
+  </style>
+</head>
+<body>
+  <div class="confirmation">
+    <div class="confirmation__icon">&#10003;</div>
+    <h1 class="confirmation__title">Order Confirmed!</h1>
+    <p class="confirmation__subtitle">訂單確認</p>
+    <p class="confirmation__message">
+      Thank you for your order! We've received your payment and will start preparing your food shortly.
+      You will receive a confirmation email from Stripe.
+    </p>
+    <a href="index.html" class="confirmation__link">Back to Menu</a>
+  </div>
+
+  <script>
+    // Clear the cart after successful payment
+    try { localStorage.removeItem('kamdo_cart'); } catch (e) {}
+  </script>
+</body>
+</html>

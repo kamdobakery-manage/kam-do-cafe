@@ -55,6 +55,12 @@
     loadCartFromStorage();
     initScrollSpy();
     initLightbox();
+
+    // Auto-open cart if returning from cancelled payment
+    if (window.location.hash === '#open-cart') {
+      openCart();
+      history.replaceState(null, '', window.location.pathname);
+    }
   }
 
   // --- Scroll Spy ---
@@ -714,11 +720,58 @@
     document.body.style.overflow = '';
   }
 
+  // Online payment disabled — Stripe not yet configured.
+  // To enable, replace this function with the Stripe checkout flow:
+  //   1. Set STRIPE_SECRET_KEY in Vercel environment variables
+  //   2. Uncomment the Stripe version below and remove the placeholder
   function handleCheckout() {
     if (cart.length === 0) return;
     const orderText = buildOrderText();
-    alert('Order Summary:\n\n' + orderText + '\n\nPlease call or WhatsApp us to place your order.');
+    alert('Online payment coming soon!\n\n' + orderText + '\n\nPlease use WhatsApp or call us to place your order.');
   }
+
+  /*  --- Stripe Checkout (enable when ready) ---
+  async function handleCheckout() {
+    if (cart.length === 0) return;
+
+    const btn = app.cartCheckoutBtn;
+    btn.disabled = true;
+    btn.textContent = 'Processing...';
+    btn.classList.add('loading');
+
+    try {
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart.map(item => ({
+            id: item.id,
+            code: item.code || null,
+            name_en: item.name_en,
+            name_zh: item.name_zh || null,
+            price: item.price,
+            qty: item.qty,
+          })),
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Checkout failed');
+      }
+
+      // Redirect to Stripe Checkout
+      window.location.href = data.url;
+    } catch (err) {
+      console.error('Checkout error:', err);
+      showToast('Something went wrong. Please try again or call us.');
+      btn.disabled = false;
+      btn.textContent = 'Place Order';
+      btn.classList.remove('loading');
+    }
+  }
+  */
 
   function handleWhatsApp() {
     if (cart.length === 0) return;
