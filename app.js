@@ -28,6 +28,10 @@
     footerInfo: null,
     toast: null,
     mobileToggle: null,
+    categoryDrawer: null,
+    categoryOverlay: null,
+    categoryFab: null,
+    categoryList: null,
   };
 
   // --- Food emoji map by section for placeholders ---
@@ -50,10 +54,13 @@
     renderHero();
     renderFeatured();
     renderMenu();
+    renderCategoryDrawer();
     renderSpecials();
     renderFooter();
     loadCartFromStorage();
     initScrollSpy();
+    initScrollAnimations();
+    initImageFallbacks();
     initLightbox();
 
     // Auto-open cart if returning from cancelled payment
@@ -127,6 +134,9 @@
             scrollNavLink(link);
           }
         });
+
+        // Sync category drawer active state
+        updateCategoryActive(sectionId);
       }
 
       if (!isVisible) {
@@ -200,6 +210,10 @@
     app.footerInfo = document.getElementById('footer-info');
     app.toast = document.getElementById('toast');
     app.mobileToggle = document.getElementById('mobile-toggle');
+    app.categoryDrawer = document.getElementById('category-drawer');
+    app.categoryOverlay = document.getElementById('category-overlay');
+    app.categoryFab = document.getElementById('category-fab');
+    app.categoryList = document.getElementById('category-list');
   }
 
   function bindEvents() {
@@ -215,6 +229,10 @@
         app.navLinks.classList.remove('mobile-open');
       }
     });
+    // Category drawer
+    app.categoryFab.addEventListener('click', openCategoryDrawer);
+    app.categoryOverlay.addEventListener('click', closeCategoryDrawer);
+    document.getElementById('category-close').addEventListener('click', closeCategoryDrawer);
   }
 
   // --- Data ---
@@ -250,12 +268,14 @@
     return null;
   }
 
-  // --- Helper: image HTML with placeholder fallback ---
-  function imageHtml(src, alt, cssClass, placeholderClass, emoji) {
+  // --- Helper: image HTML with elegant text placeholder fallback ---
+  function imageHtml(src, alt, cssClass, placeholderClass, placeholderText) {
+    const placeholder = `<div class="${placeholderClass}"><span class="placeholder__text">${placeholderText}</span></div>`;
     if (!src) {
-      return `<div class="${placeholderClass}">${emoji}</div>`;
+      return placeholder;
     }
-    return `<img src="${src}" alt="${escapeHtml(alt)}" class="${cssClass}" loading="lazy" onerror="this.outerHTML='<div class=&quot;${placeholderClass}&quot;>${emoji}</div>'">`;
+    // Use data attribute + global handler to avoid onerror escaping issues
+    return `<img src="${src}" alt="${escapeHtml(alt)}" class="${cssClass}" loading="lazy" data-placeholder="${escapeHtml(placeholderText)}" data-placeholder-class="${placeholderClass}">`;
   }
 
   function escapeHtml(str) {
@@ -276,24 +296,32 @@
     const r = menuData.restaurant;
     const hero = document.getElementById('hero');
 
-    const logoImg = r.logo
-      ? `<img src="${r.logo}" alt="${r.name_zh}" class="hero__logo" width="80" height="80">`
-      : '';
+    // Check if hero image exists
+    const heroImagePath = 'assets/hero/hero-main.jpg';
+    const img = new Image();
+    img.onload = function () {
+      hero.classList.remove('hero--no-image');
+      hero.querySelector('.hero__bg').style.backgroundImage = `url('${heroImagePath}')`;
+    };
+    img.onerror = function () {
+      hero.classList.add('hero--no-image');
+    };
+    img.src = heroImagePath;
+
+    // Default to no-image state
+    hero.classList.add('hero--no-image');
 
     hero.innerHTML = `
-      ${logoImg}
-      <div class="hero__badge">\u2605 Authentic Hong Kong Caf\u00e9</div>
-      <h1 class="hero__title-zh">${r.name_zh}</h1>
-      <p class="hero__title">${r.name_en}</p>
-      <p class="hero__description">${r.tagline_en}. Classic comfort food made fresh daily \u2014 from satay beef noodles to golden pineapple buns.</p>
-      <div class="hero__meta">
-        <span class="hero__meta-item">\ud83d\udccd ${r.address}</span>
-        <span class="hero__meta-item">\ud83d\udd50 ${r.hours.general}</span>
-        <span class="hero__meta-item">\ud83d\udcde <a href="tel:${r.phone}">${r.phone}</a></span>
-      </div>
-      <div class="hero__cta-row">
-        <a href="#breakfast" class="btn btn--primary">Browse Menu</a>
-        <button class="btn btn--secondary" onclick="document.getElementById('cart-btn').click()">\ud83d\uded2 View Cart</button>
+      <div class="hero__bg"></div>
+      <div class="hero__watermark">${r.name_zh.substring(0, 2)}</div>
+      <div class="hero__content">
+        <p class="hero__tagline">Authentic Hong Kong Caf\u00e9</p>
+        <h1 class="hero__title-zh">${r.name_zh}</h1>
+        <p class="hero__title">${r.name_en}</p>
+        <p class="hero__description">${r.tagline_en}. Classic comfort food made fresh daily.</p>
+        <div class="hero__cta-row">
+          <a href="#breakfast" class="btn btn--primary">Browse Menu</a>
+        </div>
       </div>
     `;
   }
@@ -310,13 +338,13 @@
       const item = findItem(feat.section_id, feat.item_code, feat.item_name);
       if (!item) continue;
 
-      const emoji = sectionEmoji[feat.section_id] || '🍽';
+      const placeholderText = item.name_zh.substring(0, 4);
       const imgHtml = imageHtml(
         item.image,
         item.name_en,
         'featured__card-image',
         'featured__card-placeholder',
-        emoji
+        placeholderText
       );
 
       cards += `
@@ -421,12 +449,10 @@
   }
 
   function renderMenuItem(item, sectionId) {
-    const code = item.code ? `<span class="menu-item__code">${item.code}</span>` : '<span class="menu-item__code"></span>';
-
     let badges = '';
     if (item.badge) {
       const badgeClass = item.badge === 'New' ? 'new' : item.badge === 'Signature' ? 'signature' : 'award';
-      badges += `<span class="menu-item__badge menu-item__badge--${badgeClass}">\u2605 ${item.badge}</span>`;
+      badges += `<span class="menu-item__badge menu-item__badge--${badgeClass}">${item.badge}</span>`;
     }
 
     let note = '';
@@ -434,14 +460,18 @@
       note = `<div class="menu-item__note">${item.note_en}</div>`;
     }
 
-    // Image thumbnail
-    const emoji = sectionEmoji[sectionId] || '🍽';
-    const imgHtml = item.image
-      ? imageHtml(item.image, item.name_en, 'menu-item__image', 'menu-item__image-placeholder', emoji)
-      : '';
+    // Code prefix for display in name
+    const codePrefix = item.code ? `<span class="menu-item__code-inline">${item.code}</span> ` : '';
 
-    const hasImageClass = item.image ? ' menu-item--has-image' : '';
-    const signatureClass = item.badge === 'Signature' ? ' menu-item--signature' : '';
+    // Image or elegant text placeholder
+    const placeholderText = item.name_zh.substring(0, 4);
+    const imgHtml = imageHtml(
+      item.image,
+      item.name_en,
+      'menu-item__image',
+      'menu-item__image-placeholder',
+      placeholderText
+    );
 
     const itemId = generateItemId(item);
     const itemData = encodeURIComponent(JSON.stringify({
@@ -453,18 +483,19 @@
     }));
 
     return `
-      <li class="menu-item${hasImageClass}${signatureClass}">
-        ${code}
+      <li class="menu-item">
         ${imgHtml}
         <div class="menu-item__info">
-          <div class="menu-item__name-zh">${item.name_zh}</div>
-          <div class="menu-item__name-en">${escapeHtml(item.name_en)}</div>
-          ${note}
-          ${badges}
-        </div>
-        <div class="menu-item__right">
-          <span class="menu-item__price">$${item.price.toFixed(2)}</span>
-          <button class="menu-item__add-btn" data-add-item="${itemData}" aria-label="Add to cart">+</button>
+          <div>
+            <div class="menu-item__name-zh">${codePrefix}${item.name_zh}</div>
+            <div class="menu-item__name-en">${escapeHtml(item.name_en)}</div>
+            ${note}
+            ${badges}
+          </div>
+          <div class="menu-item__right">
+            <span class="menu-item__price">$${item.price.toFixed(2)}</span>
+            <button class="menu-item__add-btn" data-add-item="${itemData}" aria-label="Add to cart">+</button>
+          </div>
         </div>
       </li>
     `;
@@ -582,15 +613,19 @@
     }
 
     app.footerInfo.innerHTML = `
-      <div>
+      <div class="footer__col">
         ${logoHtml}
         <div class="footer__brand-zh">${r.name_zh}</div>
         <div class="footer__brand-en">${r.name_en}</div>
-        <p class="footer__desc">${r.tagline_en}. ${r.tagline_zh}. From our signature satay beef to freshly baked pineapple buns \u2014 taste the real Hong Kong.</p>
-        <p class="footer__address">\ud83d\udccd ${r.address}</p>
+        <p class="footer__address">${r.address}</p>
         ${socialHtml}
       </div>
-      <div>
+      <div class="footer__col footer__col--story">
+        <div class="footer__story-title">Our Story</div>
+        <p class="footer__story">From our first cup of silky milk tea to today\u2019s signature satay beef noodles \u2014 Kam Do Cafe has been serving authentic Hong Kong comfort food to Richmond families. Every dish carries the warmth of a cha chaan teng, where the food is honest and the welcome is genuine.</p>
+        <p class="footer__story footer__story--zh">\u5f9e\u7b2c\u4e00\u676f\u7d72\u896a\u5976\u8336\u958b\u59cb\uff0c\u91d1\u90fd\u8336\u9910\u5ef3\u4e00\u76f4\u70ba\u5217\u6cbb\u6587\u8857\u574a\u5e36\u4f86\u6700\u6b63\u5b97\u7684\u6e2f\u5f0f\u98a8\u5473\u3002\u6bcf\u4e00\u789f\u90fd\u627f\u8f09\u8457\u8336\u9910\u5ef3\u7684\u4eba\u60c5\u6eab\u6696\u2014\u2014\u98df\u7269\u8e0f\u5be6\uff0c\u7b11\u5bb9\u771f\u646f\u3002</p>
+      </div>
+      <div class="footer__col">
         <div class="footer__right-title">Hours</div>
         <div class="footer__hours">
           <strong>${r.hours.general}</strong><br>
@@ -878,6 +913,93 @@
 
   function generateDrinkId(drink, temp) {
     return 'drink_' + temp + '_' + drink.name_en.replace(/\s+/g, '_').toLowerCase().substring(0, 20);
+  }
+
+  // --- Image Fallbacks ---
+  function initImageFallbacks() {
+    document.querySelectorAll('img[data-placeholder]').forEach(img => {
+      img.addEventListener('error', function () {
+        const text = this.dataset.placeholder;
+        const cls = this.dataset.placeholderClass;
+        const div = document.createElement('div');
+        div.className = cls;
+        div.innerHTML = `<span class="placeholder__text">${text}</span>`;
+        this.replaceWith(div);
+      }, { once: true });
+    });
+  }
+
+  // --- Category Drawer ---
+  function renderCategoryDrawer() {
+    if (!menuData) return;
+    let html = '';
+    let counter = 0;
+    for (const section of menuData.sections) {
+      counter++;
+      const num = String(counter).padStart(2, '0');
+      html += `
+        <li>
+          <a href="#${section.id}" class="category-drawer__item" data-section="${section.id}">
+            <span class="category-drawer__num">${num}</span>
+            <span class="category-drawer__names">
+              <span class="category-drawer__name-zh">${section.title_zh}</span>
+              <span class="category-drawer__name-en">${section.title_en}</span>
+            </span>
+          </a>
+        </li>
+      `;
+    }
+    app.categoryList.innerHTML = html;
+
+    // Bind clicks
+    app.categoryList.querySelectorAll('.category-drawer__item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = item.dataset.section;
+        const target = document.getElementById(targetId);
+        if (target) {
+          closeCategoryDrawer();
+          const navHeight = document.querySelector('.nav').offsetHeight;
+          const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 16;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
+  function openCategoryDrawer() {
+    app.categoryDrawer.classList.add('open');
+    app.categoryOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCategoryDrawer() {
+    app.categoryDrawer.classList.remove('open');
+    app.categoryOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function updateCategoryActive(sectionId) {
+    app.categoryList.querySelectorAll('.category-drawer__item').forEach(item => {
+      item.classList.toggle('active', item.dataset.section === sectionId);
+    });
+  }
+
+  // --- Scroll Animations ---
+  function initScrollAnimations() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.featured__card, .special-card, .section__header')
+      .forEach(el => observer.observe(el));
   }
 
   // --- Boot ---

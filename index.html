@@ -15,7 +15,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Righteous&family=Noto+Sans+TC:wght@400;500;600;700;900&family=Noto+Serif+TC:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+TC:wght@400;500;600;700;900&family=Noto+Serif+TC:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css?v=8">
@@ -79,6 +79,24 @@
   <section class="featured" id="featured-container">
     <!-- Populated by JS from menu.json -->
   </section>
+
+  <!-- Category Drawer (Mobile) -->
+  <div class="category-overlay" id="category-overlay"></div>
+  <aside class="category-drawer" id="category-drawer">
+    <div class="category-drawer__header">
+      <h3 class="category-drawer__title">分類 Categories</h3>
+      <button class="category-drawer__close" id="category-close" aria-label="Close">&times;</button>
+    </div>
+    <ul class="category-drawer__list" id="category-list">
+      <!-- Populated by JS -->
+    </ul>
+  </aside>
+  <button class="category-fab" id="category-fab" aria-label="Menu categories">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/>
+    </svg>
+    Menu
+  </button>
 
   <!-- Menu Sections -->
   <main id="menu-container">
