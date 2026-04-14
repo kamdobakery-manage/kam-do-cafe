@@ -10,6 +10,7 @@
   let menuData = null;
   let cart = [];
   let sectionCounter = 0;
+  let pendingComboItem = null;
 
   // --- DOM Cache ---
   const app = {
@@ -236,6 +237,14 @@
     app.categoryOverlay = document.getElementById('category-overlay');
     app.categoryFab = document.getElementById('category-fab');
     app.categoryList = document.getElementById('category-list');
+    app.cartFab = document.getElementById('cart-fab');
+    app.cartFabCount = document.getElementById('cart-fab-count');
+    app.comboModal = document.getElementById('combo-modal');
+    app.comboOverlay = document.getElementById('combo-modal-overlay');
+    app.comboTitle = document.getElementById('combo-modal-title');
+    app.comboBody = document.getElementById('combo-modal-body');
+    app.comboPrice = document.getElementById('combo-modal-price');
+    app.comboAddBtn = document.getElementById('combo-modal-add');
   }
 
   function bindEvents() {
@@ -267,6 +276,16 @@
     app.categoryFab.addEventListener('click', openCategoryDrawer);
     app.categoryOverlay.addEventListener('click', closeCategoryDrawer);
     document.getElementById('category-close').addEventListener('click', closeCategoryDrawer);
+    // Cart FAB (mobile)
+    app.cartFab.addEventListener('click', toggleCart);
+    // Combo modal
+    document.getElementById('combo-modal-close').addEventListener('click', closeComboModal);
+    app.comboOverlay.addEventListener('click', closeComboModal);
+    app.comboAddBtn.addEventListener('click', handleComboAdd);
+    app.comboBody.addEventListener('click', handleOptionSelect);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && app.comboModal.classList.contains('open')) closeComboModal();
+    });
   }
 
   // --- Data ---
@@ -429,6 +448,11 @@
       btn.addEventListener('click', handleAddItem);
     });
 
+    // Bind customize (combo) buttons
+    app.menuContainer.querySelectorAll('[data-customize-item]').forEach(btn => {
+      btn.addEventListener('click', handleCustomizeItem);
+    });
+
     // Bind drink add buttons
     app.menuContainer.querySelectorAll('[data-add-drink]').forEach(btn => {
       btn.addEventListener('click', handleAddDrink);
@@ -445,6 +469,7 @@
     let itemsHtml = '';
     if (section.subsections) {
       for (const sub of section.subsections) {
+        const customizations = sub.customizations || section.customizations || null;
         itemsHtml += `<div class="subsection">`;
         itemsHtml += `<h3 class="subsection__title">${sub.title_en}</h3>`;
         itemsHtml += `<p class="subsection__title-zh">${sub.title_zh}</p>`;
@@ -453,14 +478,15 @@
         }
         itemsHtml += `<ul class="menu-list">`;
         for (const item of sub.items) {
-          itemsHtml += renderMenuItem(item, section.id);
+          itemsHtml += renderMenuItem(item, section.id, customizations);
         }
         itemsHtml += `</ul></div>`;
       }
     } else if (section.items) {
+      const customizations = section.customizations || null;
       itemsHtml += `<ul class="menu-list">`;
       for (const item of section.items) {
-        itemsHtml += renderMenuItem(item, section.id);
+        itemsHtml += renderMenuItem(item, section.id, customizations);
       }
       itemsHtml += `</ul>`;
     }
@@ -482,7 +508,7 @@
     `;
   }
 
-  function renderMenuItem(item, sectionId) {
+  function renderMenuItem(item, sectionId, customizations) {
     let badges = '';
     if (item.badge) {
       const badgeClass = item.badge === 'New' ? 'new' : item.badge === 'Signature' ? 'signature' : 'award';
@@ -508,13 +534,21 @@
     );
 
     const itemId = generateItemId(item);
-    const itemData = encodeURIComponent(JSON.stringify({
+    const baseData = {
       id: itemId,
       name_zh: item.name_zh,
       name_en: item.name_en,
       price: item.price,
       code: item.code || ''
-    }));
+    };
+
+    let btnAttr;
+    if (customizations) {
+      const comboData = { ...baseData, customizations };
+      btnAttr = `data-customize-item="${encodeURIComponent(JSON.stringify(comboData))}"`;
+    } else {
+      btnAttr = `data-add-item="${encodeURIComponent(JSON.stringify(baseData))}"`;
+    }
 
     return `
       <li class="menu-item">
@@ -528,7 +562,7 @@
           </div>
           <div class="menu-item__right">
             <span class="menu-item__price">$${item.price.toFixed(2)}</span>
-            <button class="menu-item__add-btn" data-add-item="${itemData}" aria-label="Add to cart">+</button>
+            <button class="menu-item__add-btn" ${btnAttr} aria-label="Add to cart">+</button>
           </div>
         </div>
       </li>
@@ -687,6 +721,132 @@
     animateAddButton(e.currentTarget);
   }
 
+  // --- Combo Customization Modal ---
+  function handleCustomizeItem(e) {
+    pendingComboItem = JSON.parse(decodeURIComponent(e.currentTarget.dataset.customizeItem));
+    openComboModal();
+  }
+
+  function openComboModal() {
+    const item = pendingComboItem;
+    app.comboTitle.innerHTML = `${item.code ? '<span class="menu-item__code-inline">' + item.code + '</span> ' : ''}${item.name_zh}<br><span style="font-size:0.85rem;font-family:var(--font-body);color:var(--color-text-secondary);font-weight:400">${escapeHtml(item.name_en)}</span>`;
+
+    let html = '';
+    item.customizations.forEach((group, gi) => {
+      const reqLabel = group.required ? '' : ' <span>(Optional)</span>';
+      html += `<div class="combo-modal__group" data-group="${gi}" data-type="${group.type}" data-required="${group.required}">`;
+      html += `<div class="combo-modal__group-label">${group.label_en}${reqLabel}</div>`;
+      html += `<div class="combo-modal__options">`;
+      group.options.forEach((opt, oi) => {
+        const priceTag = opt.price > 0 ? `<span class="combo-modal__option-price">+$${opt.price.toFixed(2)}</span>` : '';
+        html += `<button class="combo-modal__option" data-group="${gi}" data-option="${oi}" type="button">${opt.name_en} ${priceTag}</button>`;
+      });
+      html += `</div></div>`;
+    });
+    app.comboBody.innerHTML = html;
+
+    updateComboPrice();
+    validateComboRequired();
+
+    app.comboModal.classList.add('open');
+    app.comboOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeComboModal() {
+    app.comboModal.classList.remove('open');
+    app.comboOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    pendingComboItem = null;
+  }
+
+  function handleOptionSelect(e) {
+    const btn = e.target.closest('.combo-modal__option');
+    if (!btn) return;
+
+    const gi = parseInt(btn.dataset.group);
+    const groupEl = app.comboBody.querySelector(`.combo-modal__group[data-group="${gi}"]`);
+    const type = groupEl.dataset.type;
+    const required = groupEl.dataset.required === 'true';
+
+    if (type === 'radio') {
+      const siblings = groupEl.querySelectorAll('.combo-modal__option');
+      if (btn.classList.contains('selected') && !required) {
+        btn.classList.remove('selected');
+      } else {
+        siblings.forEach(s => s.classList.remove('selected'));
+        btn.classList.add('selected');
+      }
+    } else {
+      btn.classList.toggle('selected');
+    }
+
+    updateComboPrice();
+    validateComboRequired();
+  }
+
+  function updateComboPrice() {
+    if (!pendingComboItem) return;
+    let addon = 0;
+    app.comboBody.querySelectorAll('.combo-modal__option.selected').forEach(btn => {
+      const gi = parseInt(btn.dataset.group);
+      const oi = parseInt(btn.dataset.option);
+      addon += pendingComboItem.customizations[gi].options[oi].price;
+    });
+    const total = pendingComboItem.price + addon;
+    app.comboPrice.textContent = `$${total.toFixed(2)}`;
+  }
+
+  function validateComboRequired() {
+    if (!pendingComboItem) return;
+    let valid = true;
+    pendingComboItem.customizations.forEach((group, gi) => {
+      if (group.required) {
+        const groupEl = app.comboBody.querySelector(`.combo-modal__group[data-group="${gi}"]`);
+        if (!groupEl.querySelector('.combo-modal__option.selected')) {
+          valid = false;
+        }
+      }
+    });
+    app.comboAddBtn.disabled = !valid;
+  }
+
+  function handleComboAdd() {
+    if (!pendingComboItem) return;
+    const item = pendingComboItem;
+    const selections = [];
+    let addonPrice = 0;
+
+    item.customizations.forEach((group, gi) => {
+      const selectedBtns = app.comboBody.querySelectorAll(`.combo-modal__option.selected[data-group="${gi}"]`);
+      const selected = [];
+      selectedBtns.forEach(btn => {
+        const oi = parseInt(btn.dataset.option);
+        const opt = group.options[oi];
+        selected.push({ name_en: opt.name_en, name_zh: opt.name_zh, price: opt.price });
+        addonPrice += opt.price;
+      });
+      if (selected.length > 0) {
+        selections.push({ group: group.label_en, selected });
+      }
+    });
+
+    const selKey = selections.map(s => s.selected.map(o => o.name_en.toLowerCase().replace(/[^a-z0-9]/g, '')).join('+')).join('_');
+    const customId = item.id + '__' + selKey;
+
+    addToCart({
+      id: customId,
+      name_zh: item.name_zh,
+      name_en: item.name_en,
+      price: item.price + addonPrice,
+      code: item.code,
+      qty: 1,
+      selections: selections
+    });
+
+    closeComboModal();
+  }
+
   function addToCart(item) {
     const existing = cart.find(c => c.id === item.id);
     if (existing) {
@@ -724,6 +884,8 @@
     // Update count badge
     app.cartCount.textContent = totalItems;
     app.cartCount.dataset.count = totalItems;
+    app.cartFabCount.textContent = totalItems;
+    app.cartFabCount.dataset.count = totalItems;
 
     // Update total
     app.cartTotalAmount.textContent = `$${totalPrice.toFixed(2)}`;
@@ -745,11 +907,17 @@
 
     let html = '';
     for (const item of cart) {
+      let customDetail = '';
+      if (item.selections && item.selections.length > 0) {
+        const details = item.selections.map(s => s.selected.map(o => o.name_en).join(', ')).join(' · ');
+        customDetail = `<div class="cart-item__custom">${escapeHtml(details)}</div>`;
+      }
       html += `
         <div class="cart-item">
           <div class="cart-item__info">
             <div class="cart-item__name">${item.code ? item.code + ' \u00b7 ' : ''}${item.name_zh}</div>
             <div class="cart-item__name-en">${escapeHtml(item.name_en)}</div>
+            ${customDetail}
             <div class="cart-item__controls">
               <button class="cart-item__qty-btn" onclick="window.__cartUpdateQty('${item.id}', -1)">\u2212</button>
               <span class="cart-item__qty">${item.qty}</span>
@@ -855,6 +1023,10 @@
     for (const item of cart) {
       const code = item.code ? `[${item.code}] ` : '';
       lines.push(`${code}${item.name_en} x${item.qty} \u2014 $${(item.price * item.qty).toFixed(2)}`);
+      if (item.selections && item.selections.length > 0) {
+        const details = item.selections.map(s => s.selected.map(o => o.name_en).join(', ')).join(' | ');
+        lines.push(`   \u21b3 ${details}`);
+      }
     }
     const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
     lines.push('');
