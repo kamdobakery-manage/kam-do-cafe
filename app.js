@@ -223,10 +223,22 @@
     app.cartCheckoutBtn.addEventListener('click', handleCheckout);
     document.getElementById('cart-whatsapp').addEventListener('click', handleWhatsApp);
     app.mobileToggle.addEventListener('click', toggleMobileMenu);
-    // Close mobile menu on link click
+    // Nav link clicks — custom scroll + close mobile menu
     app.navLinks.addEventListener('click', (e) => {
-      if (e.target.classList.contains('nav__link')) {
+      const link = e.target.closest('.nav__link');
+      if (link) {
+        e.preventDefault();
         app.navLinks.classList.remove('mobile-open');
+        const sectionId = link.getAttribute('href').replace('#', '');
+        scrollToSection(sectionId);
+      }
+    });
+    // Hero CTA — custom scroll
+    document.getElementById('hero').addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (link) {
+        e.preventDefault();
+        scrollToSection(link.getAttribute('href').replace('#', ''));
       }
     });
     // Category drawer
@@ -955,16 +967,19 @@
     app.categoryList.querySelectorAll('.category-drawer__item').forEach(item => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
-        const targetId = item.dataset.section;
-        const target = document.getElementById(targetId);
-        if (target) {
-          closeCategoryDrawer();
-          const navHeight = document.querySelector('.nav').offsetHeight;
-          const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 16;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
+        closeCategoryDrawer();
+        scrollToSection(item.dataset.section);
       });
     });
+  }
+
+  // Scroll to a section, positioning so header + description are visible
+  function scrollToSection(sectionId) {
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+    const navHeight = document.querySelector('.nav').offsetHeight;
+    const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 16;
+    window.scrollTo({ top: y, behavior: 'smooth' });
   }
 
   function openCategoryDrawer() {
@@ -998,7 +1013,7 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('.featured__card, .special-card, .section__header')
+    document.querySelectorAll('.featured__card, .special-card')
       .forEach(el => observer.observe(el));
   }
 
