@@ -478,7 +478,7 @@
         }
         itemsHtml += `<ul class="menu-list">`;
         for (const item of sub.items) {
-          itemsHtml += renderMenuItem(item, section.id, customizations);
+          itemsHtml += renderMenuItem(item, section.id, item.customizations || customizations);
         }
         itemsHtml += `</ul></div>`;
       }
@@ -486,7 +486,7 @@
       const customizations = section.customizations || null;
       itemsHtml += `<ul class="menu-list">`;
       for (const item of section.items) {
-        itemsHtml += renderMenuItem(item, section.id, customizations);
+        itemsHtml += renderMenuItem(item, section.id, item.customizations || customizations);
       }
       itemsHtml += `</ul>`;
     }
@@ -543,7 +543,7 @@
     };
 
     let btnAttr;
-    if (customizations) {
+    if (customizations && customizations.length) {
       const comboData = { ...baseData, customizations };
       btnAttr = `data-customize-item="${encodeURIComponent(JSON.stringify(comboData))}"`;
     } else {

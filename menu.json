@@ -66,18 +66,75 @@
             { "code": "A1", "name_zh": "金牌沙爹牛肉", "name_en": "Signature H.K. Satay Beef", "price": 13.50, "badge": "Signature", "image": "assets/menu/breakfast/a1-signature-satay-beef.jpg" },
             { "code": "A2", "name_zh": "秘制五香肉丁", "name_en": "Spicy Pork Cube", "price": 9.50, "image": "assets/menu/breakfast/a2-spicy-pork-cube.jpg" },
             { "code": "A3", "name_zh": "懷舊雪菜肉絲", "name_en": "Shredded Pork with Salted Vegetable", "price": 9.50, "image": "assets/menu/breakfast/a3-shredded-pork-salted-veg.jpg" },
-            { "code": "A5", "name_zh": "薑絲鮮豬潤/牛肉", "name_en": "Pork Liver or Beef with Ginger", "price": 10.00, "note_en": "Choice of two +$1.00", "note_zh": "雙拼加$1.00", "image": "assets/menu/breakfast/a5-pork-liver-beef-ginger.jpg" },
-            { "code": "A6", "name_zh": "孖寶雙拼", "name_en": "Two-In-One (Luncheon meat / Cheese sausage / Ham)", "price": 9.50, "image": "assets/menu/breakfast/a6-two-in-one.jpg" },
-            { "code": "A7", "name_zh": "蔥油雞扒/豬扒", "name_en": "Pan-fried Chicken/Pork Chop in Green Onion Sauce", "price": 11.00, "image": "assets/menu/breakfast/a7-green-onion-chop.jpg" }
+            { "code": "A5", "name_zh": "薑絲鮮豬潤/牛肉", "name_en": "Pork Liver or Beef with Ginger", "price": 10.00, "note_en": "Choice of two +$1.00", "note_zh": "雙拼加$1.00", "image": "assets/menu/breakfast/a5-pork-liver-beef-ginger.jpg",
+              "customizations": [
+                { "label_en": "Choose meat", "label_zh": "選擇肉類", "type": "radio", "required": true, "options": [
+                  { "name_en": "Pork Liver", "name_zh": "豬潤", "price": 0 },
+                  { "name_en": "Beef", "name_zh": "牛肉", "price": 0 }
+                ]},
+                { "label_en": "Choose noodle", "label_zh": "選擇粉麵", "type": "radio", "required": true, "options": [
+                  { "name_en": "Macaroni", "name_zh": "通粉", "price": 0 },
+                  { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 },
+                  { "name_en": "Vermicelli", "name_zh": "米粉", "price": 0 },
+                  { "name_en": "Rice noodle", "name_zh": "米線", "price": 0 },
+                  { "name_en": "Instant noodle", "name_zh": "出前一丁", "price": 0.50 }
+                ]},
+                { "label_en": "Choose drink", "label_zh": "選擇飲品", "type": "radio", "required": true, "options": [
+                  { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+                  { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+                ]}
+              ]
+            },
+            { "code": "A6", "name_zh": "孖寶雙拼", "name_en": "Two-In-One (Pick 2)", "price": 9.50, "image": "assets/menu/breakfast/a6-two-in-one.jpg",
+              "customizations": [
+                { "label_en": "Pick 2 meats", "label_zh": "選擇2款肉類", "type": "checkbox", "required": true, "options": [
+                  { "name_en": "Luncheon Meat", "name_zh": "午餐肉", "price": 0 },
+                  { "name_en": "Cheese Sausage", "name_zh": "脆脆芝士腸", "price": 0 },
+                  { "name_en": "Ham", "name_zh": "火腿", "price": 0 }
+                ]},
+                { "label_en": "Choose noodle", "label_zh": "選擇粉麵", "type": "radio", "required": true, "options": [
+                  { "name_en": "Macaroni", "name_zh": "通粉", "price": 0 },
+                  { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 },
+                  { "name_en": "Vermicelli", "name_zh": "米粉", "price": 0 },
+                  { "name_en": "Rice noodle", "name_zh": "米線", "price": 0 },
+                  { "name_en": "Instant noodle", "name_zh": "出前一丁", "price": 0.50 }
+                ]},
+                { "label_en": "Choose drink", "label_zh": "選擇飲品", "type": "radio", "required": true, "options": [
+                  { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+                  { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+                ]}
+              ]
+            },
+            { "code": "A7", "name_zh": "蔥油雞扒/豬扒", "name_en": "Pan-fried Chicken/Pork Chop in Green Onion Sauce", "price": 11.00, "image": "assets/menu/breakfast/a7-green-onion-chop.jpg",
+              "customizations": [
+                { "label_en": "Choose meat", "label_zh": "選擇肉類", "type": "radio", "required": true, "options": [
+                  { "name_en": "Chicken", "name_zh": "蔥油雞扒", "price": 0 },
+                  { "name_en": "Pork Chop", "name_zh": "蔥油豬扒", "price": 0 }
+                ]},
+                { "label_en": "Choose noodle", "label_zh": "選擇粉麵", "type": "radio", "required": true, "options": [
+                  { "name_en": "Macaroni", "name_zh": "通粉", "price": 0 },
+                  { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 },
+                  { "name_en": "Vermicelli", "name_zh": "米粉", "price": 0 },
+                  { "name_en": "Rice noodle", "name_zh": "米線", "price": 0 },
+                  { "name_en": "Instant noodle", "name_zh": "出前一丁", "price": 0.50 }
+                ]},
+                { "label_en": "Choose drink", "label_zh": "選擇飲品", "type": "radio", "required": true, "options": [
+                  { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+                  { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+                ]}
+              ]
+            }
           ]
         },
         {
           "title_en": "Tomato Soup Combo",
           "title_zh": "蕃茄濃湯",
+          "description_en": "Served with tomato soup. Choose noodle in soup.",
+          "description_zh": "附蕃茄濃湯，可選湯內粉麵。",
           "customizations": [
             {
-              "label_en": "Choose noodle",
-              "label_zh": "選擇粉麵",
+              "label_en": "Choose noodle in soup",
+              "label_zh": "選擇湯粉麵",
               "type": "radio",
               "required": true,
               "options": [
@@ -102,15 +159,33 @@
           "items": [
             { "code": "T1", "name_zh": "香煎牛肉", "name_en": "Pan-fried Beef", "price": 11.00, "image": "assets/menu/breakfast/t1-pan-fried-beef.jpg" },
             { "code": "T2", "name_zh": "香煎雞扒", "name_en": "Pan Fried Chicken Fillet", "price": 11.00, "image": "assets/menu/breakfast/t2-pan-fried-chicken.jpg" },
-            { "code": "T3", "name_zh": "吉列/香煎豬扒", "name_en": "Cutlet / Pan Fried Pork Chop", "price": 11.00, "image": "assets/menu/breakfast/t3-cutlet-pork-chop.jpg" },
+            { "code": "T3", "name_zh": "吉列/香煎豬扒", "name_en": "Cutlet / Pan Fried Pork Chop", "price": 11.00, "image": "assets/menu/breakfast/t3-cutlet-pork-chop.jpg",
+              "customizations": [
+                { "label_en": "Choose style", "label_zh": "選擇做法", "type": "radio", "required": true, "options": [
+                  { "name_en": "Cutlet", "name_zh": "吉列", "price": 0 },
+                  { "name_en": "Pan Fried", "name_zh": "香煎", "price": 0 }
+                ]},
+                { "label_en": "Choose noodle in soup", "label_zh": "選擇湯粉麵", "type": "radio", "required": true, "options": [
+                  { "name_en": "Macaroni", "name_zh": "通粉", "price": 0 },
+                  { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 },
+                  { "name_en": "Vermicelli", "name_zh": "米粉", "price": 0 },
+                  { "name_en": "Rice noodle", "name_zh": "米線", "price": 0 },
+                  { "name_en": "Instant noodle", "name_zh": "出前一丁", "price": 0.50 }
+                ]},
+                { "label_en": "Choose drink", "label_zh": "選擇飲品", "type": "radio", "required": true, "options": [
+                  { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+                  { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+                ]}
+              ]
+            },
             { "code": "T6", "name_zh": "香脆雞中翼", "name_en": "Deep Fried Chicken Wings (4 pcs)", "price": 11.00, "image": "assets/menu/breakfast/t6-chicken-wings.jpg" }
           ]
         },
         {
           "title_en": "Meat Lover Combo",
           "title_zh": "歐陸扒餐",
-          "description_en": "Comes with: Fried/Scrambled eggs + Salad / Toast / Hash brown / Bun. Upgrade: Pineapple Bun +$2.00 | Mini Ham Macaroni in Soup +$2.50.",
-          "description_zh": "配煎雙蛋/炒雙蛋 + 沙律/香草牛油厚多士/脆薯餅/牛油餐包。另加$2.00轉菠蘿包、加$2.50配迷你火腿通粉。",
+          "description_en": "Comes with: Fried/Scrambled eggs + Salad / Toast / Hash brown / Bun. Upgrade: Pineapple Bun +$2.00 | Salted Veg Pork Vermicelli +$2.50 | Mini Ham Macaroni in Soup +$2.50.",
+          "description_zh": "配煎雙蛋/炒雙蛋 + 沙律/香草牛油厚多士/脆薯餅/牛油餐包。另加$2.00轉菠蘿包、加$2.50配雪菜肉絲米粉/迷你火腿通粉。",
           "customizations": [
             {
               "label_en": "Choose egg style",
@@ -141,6 +216,7 @@
               "required": false,
               "options": [
                 { "name_en": "Pineapple Bun", "name_zh": "菠蘿包", "price": 2.00 },
+                { "name_en": "Salted Veg Pork Vermicelli", "name_zh": "雪菜肉絲米粉", "price": 2.50 },
                 { "name_en": "Mini Ham Macaroni in Soup", "name_zh": "迷你火腿通粉", "price": 2.50 }
               ]
             },
@@ -156,8 +232,63 @@
             }
           ],
           "items": [
-            { "code": "A9", "name_zh": "任選一款", "name_en": "Ham / Luncheon meat / Bacon / Cheese sausage (+$0.50)", "price": 9.00, "note_en": "Choice of Two +$1.50", "note_zh": "雙拼+$1.50", "image": "assets/menu/breakfast/a9-meat-lover-choice.jpg" },
-            { "code": "A11", "name_zh": "鐵板雞扒/豬扒", "name_en": "Pan Fried Chicken / Pork Chop", "price": 11.00, "image": "assets/menu/breakfast/a11-pan-fried-chop.jpg" },
+            { "code": "A9", "name_zh": "任選一款", "name_en": "Choose Meat Combo", "price": 9.00, "note_en": "Pick 1 or 2 (each +$0 except Cheese Sausage +$0.50)", "note_zh": "可選1-2款（脆脆芝士腸+$0.50）", "image": "assets/menu/breakfast/a9-meat-lover-choice.jpg",
+              "customizations": [
+                { "label_en": "Choose meat (pick 1-2)", "label_zh": "選擇肉類（可選1-2款）", "type": "checkbox", "required": true, "options": [
+                  { "name_en": "Ham", "name_zh": "火腿", "price": 0 },
+                  { "name_en": "Luncheon Meat", "name_zh": "午餐肉", "price": 0 },
+                  { "name_en": "Bacon", "name_zh": "煙肉", "price": 0 },
+                  { "name_en": "Cheese Sausage", "name_zh": "脆脆芝士腸", "price": 0.50 },
+                  { "name_en": "Fried Egg", "name_zh": "煎蛋", "price": 0 }
+                ]},
+                { "label_en": "Choose egg style", "label_zh": "選擇蛋款", "type": "radio", "required": true, "options": [
+                  { "name_en": "Fried Eggs", "name_zh": "煎雙蛋", "price": 0 },
+                  { "name_en": "Scrambled Eggs", "name_zh": "炒雙蛋", "price": 0 }
+                ]},
+                { "label_en": "Choose side", "label_zh": "選擇配菜", "type": "radio", "required": true, "options": [
+                  { "name_en": "Salad", "name_zh": "沙律", "price": 0 },
+                  { "name_en": "Toast", "name_zh": "香草牛油厚多士", "price": 0 },
+                  { "name_en": "Hash Brown", "name_zh": "脆薯餅", "price": 0 },
+                  { "name_en": "Bun", "name_zh": "牛油餐包", "price": 0 }
+                ]},
+                { "label_en": "Upgrade", "label_zh": "升級選項", "type": "radio", "required": false, "options": [
+                  { "name_en": "Pineapple Bun", "name_zh": "菠蘿包", "price": 2.00 },
+                  { "name_en": "Salted Veg Pork Vermicelli", "name_zh": "雪菜肉絲米粉", "price": 2.50 },
+                  { "name_en": "Mini Ham Macaroni in Soup", "name_zh": "迷你火腿通粉", "price": 2.50 }
+                ]},
+                { "label_en": "Choose drink", "label_zh": "選擇飲品", "type": "radio", "required": true, "options": [
+                  { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+                  { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+                ]}
+              ]
+            },
+            { "code": "A11", "name_zh": "鐵板雞扒/豬扒", "name_en": "Pan Fried Chicken / Pork Chop", "price": 11.00, "image": "assets/menu/breakfast/a11-pan-fried-chop.jpg",
+              "customizations": [
+                { "label_en": "Choose meat", "label_zh": "選擇肉類", "type": "radio", "required": true, "options": [
+                  { "name_en": "Chicken", "name_zh": "鐵板雞扒", "price": 0 },
+                  { "name_en": "Pork Chop", "name_zh": "鐵板豬扒", "price": 0 }
+                ]},
+                { "label_en": "Choose egg style", "label_zh": "選擇蛋款", "type": "radio", "required": true, "options": [
+                  { "name_en": "Fried Eggs", "name_zh": "煎雙蛋", "price": 0 },
+                  { "name_en": "Scrambled Eggs", "name_zh": "炒雙蛋", "price": 0 }
+                ]},
+                { "label_en": "Choose side", "label_zh": "選擇配菜", "type": "radio", "required": true, "options": [
+                  { "name_en": "Salad", "name_zh": "沙律", "price": 0 },
+                  { "name_en": "Toast", "name_zh": "香草牛油厚多士", "price": 0 },
+                  { "name_en": "Hash Brown", "name_zh": "脆薯餅", "price": 0 },
+                  { "name_en": "Bun", "name_zh": "牛油餐包", "price": 0 }
+                ]},
+                { "label_en": "Upgrade", "label_zh": "升級選項", "type": "radio", "required": false, "options": [
+                  { "name_en": "Pineapple Bun", "name_zh": "菠蘿包", "price": 2.00 },
+                  { "name_en": "Salted Veg Pork Vermicelli", "name_zh": "雪菜肉絲米粉", "price": 2.50 },
+                  { "name_en": "Mini Ham Macaroni in Soup", "name_zh": "迷你火腿通粉", "price": 2.50 }
+                ]},
+                { "label_en": "Choose drink", "label_zh": "選擇飲品", "type": "radio", "required": true, "options": [
+                  { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+                  { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+                ]}
+              ]
+            },
             { "code": "A12", "name_zh": "紐約牛扒", "name_en": "New York Steak", "price": 12.50, "image": "assets/menu/breakfast/a12-ny-steak.jpg" },
             { "code": "A13", "name_zh": "吉烈豬扒", "name_en": "Pork Chop Cutlet", "price": 11.00, "image": "assets/menu/breakfast/a13-pork-chop-cutlet.jpg" },
             { "code": "A15", "name_zh": "吉烈魚扒", "name_en": "Cutlet Fish Fillet", "price": 12.00, "image": "assets/menu/breakfast/a15-cutlet-fish.jpg" }
@@ -202,16 +333,41 @@
         { "code": "E7", "name_zh": "芝士餐肉太陽蛋", "name_en": "Luncheon Meat & Egg w/ Cream Cheese Sauce", "price": 12.50, "image": "assets/menu/noodles/e7-luncheon-egg-cheese.jpg" },
         { "code": "E8", "name_zh": "瑞士豬軟骨", "name_en": "Pork Cartilage in Swiss Sauce", "price": 12.50, "image": "assets/menu/noodles/e8-swiss-pork-cartilage.jpg" },
         { "code": "E9", "name_zh": "咖喱豬軟骨", "name_en": "Pork Cartilage in Curry Sauce", "price": 12.50, "image": "assets/menu/noodles/e9-curry-pork-cartilage.jpg" },
-        { "code": "E10", "name_zh": "蔥油雞扒/豬扒", "name_en": "Pan-fried Chicken/Pork Chop in Green Onion Sauce", "price": 12.50, "image": "assets/menu/noodles/e10-green-onion-chop.jpg" }
+        { "code": "E10", "name_zh": "蔥油雞扒/豬扒", "name_en": "Pan-fried Chicken/Pork Chop in Green Onion Sauce", "price": 12.50, "image": "assets/menu/noodles/e10-green-onion-chop.jpg",
+          "customizations": [
+            { "label_en": "Choose meat", "label_zh": "選擇肉類", "type": "radio", "required": true, "options": [
+              { "name_en": "Chicken", "name_zh": "蔥油雞扒", "price": 0 },
+              { "name_en": "Pork Chop", "name_zh": "蔥油豬扒", "price": 0 }
+            ]},
+            { "label_en": "Choose drink", "label_zh": "選擇飲品", "type": "radio", "required": true, "options": [
+              { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+              { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+            ]},
+            { "label_en": "Add-ons", "label_zh": "加配", "type": "checkbox", "required": false, "options": [
+              { "name_en": "Fry Egg", "name_zh": "煎蛋", "price": 1.50 },
+              { "name_en": "Hash Brown", "name_zh": "脆薯餅", "price": 1.50 }
+            ]}
+          ]
+        }
       ]
     },
     {
       "id": "plates",
       "title_en": "Rice & Spaghetti Plates",
       "title_zh": "碟頭（飯或意粉）",
-      "description_en": "Available from 11:00 AM. Free Hot Coffee/Tea (Cold Drink +$1.50).",
-      "description_zh": "11:00後開始供應。奉送熱咖啡/茶（凍飲+$1.50）。",
+      "description_en": "Available from 11:00 AM. Choice of rice or spaghetti. Free Hot Coffee/Tea (Cold Drink +$1.50).",
+      "description_zh": "11:00後開始供應。可選飯或意粉。奉送熱咖啡/茶（凍飲+$1.50）。",
       "customizations": [
+        {
+          "label_en": "Choose base",
+          "label_zh": "選擇飯或意粉",
+          "type": "radio",
+          "required": true,
+          "options": [
+            { "name_en": "Rice", "name_zh": "飯", "price": 0 },
+            { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 }
+          ]
+        },
         {
           "label_en": "Choose drink",
           "label_zh": "選擇飲品",
@@ -224,13 +380,149 @@
         }
       ],
       "items": [
-        { "code": "C1", "name_zh": "紐約牛扒雙拼飯", "name_en": "Pan Fried NY Steak + choice of meat & Egg (Black Pepper/Onion Sauce)", "price": 16.50, "image": "assets/menu/plates/c1-ny-steak-plate.jpg" },
-        { "code": "C2", "name_zh": "鐵板雞扒/豬扒雙拼飯", "name_en": "Fried Chicken/Pork Chop + choice of meat & Egg (Black Pepper/Curry/Onion Sauce)", "price": 15.50, "image": "assets/menu/plates/c2-chop-plate.jpg" },
-        { "code": "C3", "name_zh": "吉烈/香煎豬扒肉醬太陽蛋飯", "name_en": "Cutlet Pork Chop & Egg in Meat Sauce", "price": 15.50, "image": "assets/menu/plates/c3-cutlet-meat-sauce.jpg" },
+        { "code": "C1", "name_zh": "紐約牛扒雙拼飯", "name_en": "Pan Fried NY Steak Combo", "price": 16.50, "image": "assets/menu/plates/c1-ny-steak-plate.jpg",
+          "customizations": [
+            { "label_en": "Choose base", "label_zh": "選擇飯或意粉", "type": "radio", "required": true, "options": [
+              { "name_en": "Rice", "name_zh": "飯", "price": 0 },
+              { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 }
+            ]},
+            {
+              "label_en": "Choose sauce",
+              "label_zh": "選擇汁醬",
+              "type": "radio",
+              "required": true,
+              "options": [
+                { "name_en": "Black Pepper", "name_zh": "黑椒汁", "price": 0 },
+                { "name_en": "Onion Sauce", "name_zh": "洋蔥汁", "price": 0 }
+              ]
+            },
+            {
+              "label_en": "Choose side meat",
+              "label_zh": "選擇配肉",
+              "type": "radio",
+              "required": true,
+              "options": [
+                { "name_en": "Ham", "name_zh": "火腿", "price": 0 },
+                { "name_en": "Luncheon Meat", "name_zh": "午餐肉", "price": 0 },
+                { "name_en": "Bacon", "name_zh": "煙肉", "price": 0 },
+                { "name_en": "Cheese Sausage", "name_zh": "脆脆芝士腸", "price": 0 },
+                { "name_en": "Fried Egg", "name_zh": "煎蛋", "price": 0 }
+              ]
+            },
+            {
+              "label_en": "Choose drink",
+              "label_zh": "選擇飲品",
+              "type": "radio",
+              "required": true,
+              "options": [
+                { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+                { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+              ]
+            }
+          ]
+        },
+        { "code": "C2", "name_zh": "鐵板雞扒/豬扒雙拼飯", "name_en": "Fried Chicken/Pork Chop Combo", "price": 15.50, "image": "assets/menu/plates/c2-chop-plate.jpg",
+          "customizations": [
+            { "label_en": "Choose base", "label_zh": "選擇飯或意粉", "type": "radio", "required": true, "options": [
+              { "name_en": "Rice", "name_zh": "飯", "price": 0 },
+              { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 }
+            ]},
+            {
+              "label_en": "Choose meat",
+              "label_zh": "選擇主肉",
+              "type": "radio",
+              "required": true,
+              "options": [
+                { "name_en": "Chicken", "name_zh": "雞扒", "price": 0 },
+                { "name_en": "Pork Chop", "name_zh": "豬扒", "price": 0 }
+              ]
+            },
+            {
+              "label_en": "Choose sauce",
+              "label_zh": "選擇汁醬",
+              "type": "radio",
+              "required": true,
+              "options": [
+                { "name_en": "Black Pepper", "name_zh": "黑椒汁", "price": 0 },
+                { "name_en": "Curry", "name_zh": "咖哩汁", "price": 0 },
+                { "name_en": "Onion Sauce", "name_zh": "洋蔥汁", "price": 0 }
+              ]
+            },
+            {
+              "label_en": "Choose side meat",
+              "label_zh": "選擇配肉",
+              "type": "radio",
+              "required": true,
+              "options": [
+                { "name_en": "Ham", "name_zh": "火腿", "price": 0 },
+                { "name_en": "Luncheon Meat", "name_zh": "午餐肉", "price": 0 },
+                { "name_en": "Bacon", "name_zh": "煙肉", "price": 0 },
+                { "name_en": "Cheese Sausage", "name_zh": "脆脆芝士腸", "price": 0 },
+                { "name_en": "Fried Egg", "name_zh": "煎蛋", "price": 0 }
+              ]
+            },
+            {
+              "label_en": "Choose drink",
+              "label_zh": "選擇飲品",
+              "type": "radio",
+              "required": true,
+              "options": [
+                { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+                { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+              ]
+            }
+          ]
+        },
+        { "code": "C3", "name_zh": "吉烈/香煎豬扒肉醬太陽蛋飯", "name_en": "Cutlet/Pan Fried Pork Chop & Egg in Meat Sauce", "price": 15.50, "image": "assets/menu/plates/c3-cutlet-meat-sauce.jpg",
+          "customizations": [
+            { "label_en": "Choose style", "label_zh": "選擇做法", "type": "radio", "required": true, "options": [
+              { "name_en": "Cutlet", "name_zh": "吉列", "price": 0 },
+              { "name_en": "Pan Fried", "name_zh": "香煎", "price": 0 }
+            ]},
+            { "label_en": "Choose base", "label_zh": "選擇飯或意粉", "type": "radio", "required": true, "options": [
+              { "name_en": "Rice", "name_zh": "飯", "price": 0 },
+              { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 }
+            ]},
+            { "label_en": "Choose drink", "label_zh": "選擇飲品", "type": "radio", "required": true, "options": [
+              { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+              { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+            ]}
+          ]
+        },
         { "code": "C5", "name_zh": "瑞士豬軟骨太陽蛋飯", "name_en": "Pork Cartilage in Swiss Sauce & Egg", "price": 15.00, "note_en": "Dish only: $22", "note_zh": "單餸: $22", "image": "assets/menu/plates/c5-swiss-cartilage.jpg" },
-        { "code": "C6", "name_zh": "蔥油豬扒/雞扒太陽蛋飯", "name_en": "Chicken/Pork Chop with Shallot & Onion Oil", "price": 15.00, "image": "assets/menu/plates/c6-shallot-chop.jpg" },
+        { "code": "C6", "name_zh": "蔥油豬扒/雞扒太陽蛋飯", "name_en": "Chicken/Pork Chop with Shallot & Onion Oil", "price": 15.00, "image": "assets/menu/plates/c6-shallot-chop.jpg",
+          "customizations": [
+            { "label_en": "Choose meat", "label_zh": "選擇肉類", "type": "radio", "required": true, "options": [
+              { "name_en": "Pork Chop", "name_zh": "蔥油豬扒", "price": 0 },
+              { "name_en": "Chicken", "name_zh": "蔥油雞扒", "price": 0 }
+            ]},
+            { "label_en": "Choose base", "label_zh": "選擇飯或意粉", "type": "radio", "required": true, "options": [
+              { "name_en": "Rice", "name_zh": "飯", "price": 0 },
+              { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 }
+            ]},
+            { "label_en": "Choose drink", "label_zh": "選擇飲品", "type": "radio", "required": true, "options": [
+              { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+              { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+            ]}
+          ]
+        },
         { "code": "C7", "name_zh": "咖喱金薯豬軟骨", "name_en": "Pork Cartilage in Curry Sauce", "price": 15.00, "note_en": "Dish only: $22", "note_zh": "單餸: $22", "image": "assets/menu/plates/c7-curry-cartilage.jpg" },
-        { "code": "C8", "name_zh": "咖哩吉烈/香煎豬扒太陽蛋飯", "name_en": "Cutlet Pork Chop & Egg in Curry Sauce", "price": 15.50, "image": "assets/menu/plates/c8-curry-cutlet.jpg" },
+        { "code": "C8", "name_zh": "咖哩吉烈/香煎豬扒太陽蛋飯", "name_en": "Cutlet/Pan Fried Pork Chop & Egg in Curry Sauce", "price": 15.50, "image": "assets/menu/plates/c8-curry-cutlet.jpg",
+          "customizations": [
+            { "label_en": "Choose style", "label_zh": "選擇做法", "type": "radio", "required": true, "options": [
+              { "name_en": "Cutlet", "name_zh": "吉列", "price": 0 },
+              { "name_en": "Pan Fried", "name_zh": "香煎", "price": 0 }
+            ]},
+            { "label_en": "Choose base", "label_zh": "選擇飯或意粉", "type": "radio", "required": true, "options": [
+              { "name_en": "Rice", "name_zh": "飯", "price": 0 },
+              { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 }
+            ]},
+            { "label_en": "Choose drink", "label_zh": "選擇飲品", "type": "radio", "required": true, "options": [
+              { "name_en": "Hot Coffee/Tea", "name_zh": "熱咖啡/茶", "price": 0 },
+              { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 1.50 }
+            ]}
+          ]
+        },
         { "code": "C9", "name_zh": "懷舊炸雞髀肉醬太陽蛋飯", "name_en": "Deep Fried Chicken Leg & Egg in Meat Sauce", "price": 16.00, "image": "assets/menu/plates/c9-fried-chicken-leg.jpg" }
       ]
     },
@@ -278,11 +570,37 @@
         }
       ],
       "items": [
-        { "code": "F1", "name_zh": "椒鹽豬扒飯/湯米", "name_en": "Wok Fried Spicy Salt Pork Chop with Rice", "price": 15.50, "image": "assets/menu/hk-authentic/f1-salt-pepper-pork.jpg" },
-        { "code": "F2", "name_zh": "芝香白汁火腿雞絲燴意粉", "name_en": "Ham & Sliced Chicken Spaghetti in Cream Sauce", "price": 15.00, "image": "assets/menu/hk-authentic/f2-ham-chicken-cream.jpg" },
-        { "code": "F3", "name_zh": "鮮茄牛肉燴意粉", "name_en": "Beef Spaghetti with Tomato Sauce", "price": 15.00, "image": "assets/menu/hk-authentic/f3-beef-tomato-spaghetti.jpg" },
-        { "code": "F5", "name_zh": "頭抽牛肉/雞扒/豬扒炒一丁", "name_en": "Fried Instant Noodles with Beef/Chicken/Pork Chop", "price": 15.00, "image": "assets/menu/hk-authentic/f5-fried-instant-noodles.jpg" },
-        { "code": "F8", "name_zh": "黑椒牛肉/雞扒/豬扒炒意粉", "name_en": "Pan-fried Beef/Chicken/Pork Chop in Black Pepper with Spaghetti", "price": 15.00, "image": "assets/menu/hk-authentic/f8-black-pepper-spaghetti.jpg" }
+        { "code": "F1", "name_zh": "椒鹽豬扒飯/湯米", "name_en": "Wok Fried Spicy Salt Pork Chop", "price": 15.50, "image": "assets/menu/hk-authentic/f1-salt-pepper-pork.jpg",
+          "customizations": [
+            { "label_en": "Choose base", "label_zh": "選擇主食", "type": "radio", "required": true, "options": [
+              { "name_en": "Rice", "name_zh": "飯", "price": 0 },
+              { "name_en": "Soup Rice Noodle", "name_zh": "湯米", "price": 0 }
+            ]},
+            { "label_en": "Upgrade", "label_zh": "升級選項", "type": "radio", "required": false, "options": [
+              { "name_en": "Fried Rice", "name_zh": "炒飯", "price": 1.00 }
+            ]}
+          ]
+        },
+        { "code": "F2", "name_zh": "芝香白汁火腿雞絲燴意粉", "name_en": "Ham & Sliced Chicken Spaghetti in Cream Sauce", "price": 15.00, "image": "assets/menu/hk-authentic/f2-ham-chicken-cream.jpg", "customizations": [] },
+        { "code": "F3", "name_zh": "鮮茄牛肉燴意粉", "name_en": "Beef Spaghetti with Tomato Sauce", "price": 15.00, "image": "assets/menu/hk-authentic/f3-beef-tomato-spaghetti.jpg", "customizations": [] },
+        { "code": "F5", "name_zh": "頭抽牛肉/雞扒/豬扒炒一丁", "name_en": "Fried Instant Noodles with Beef/Chicken/Pork Chop", "price": 15.00, "image": "assets/menu/hk-authentic/f5-fried-instant-noodles.jpg",
+          "customizations": [
+            { "label_en": "Choose meat", "label_zh": "選擇肉類", "type": "radio", "required": true, "options": [
+              { "name_en": "Beef", "name_zh": "牛肉", "price": 0 },
+              { "name_en": "Chicken", "name_zh": "雞扒", "price": 0 },
+              { "name_en": "Pork Chop", "name_zh": "豬扒", "price": 0 }
+            ]}
+          ]
+        },
+        { "code": "F8", "name_zh": "黑椒牛肉/雞扒/豬扒炒意粉", "name_en": "Pan-fried Beef/Chicken/Pork Chop in Black Pepper with Spaghetti", "price": 15.00, "image": "assets/menu/hk-authentic/f8-black-pepper-spaghetti.jpg",
+          "customizations": [
+            { "label_en": "Choose meat", "label_zh": "選擇肉類", "type": "radio", "required": true, "options": [
+              { "name_en": "Beef", "name_zh": "牛肉", "price": 0 },
+              { "name_en": "Chicken", "name_zh": "雞扒", "price": 0 },
+              { "name_en": "Pork Chop", "name_zh": "豬扒", "price": 0 }
+            ]}
+          ]
+        }
       ]
     },
     {
@@ -313,9 +631,33 @@
             { "code": "", "name_zh": "榛子醬西多士", "name_en": "Nutella Toast", "price": 8.00, "badge": "New", "image": "assets/menu/snacks/nutella-toast.jpg" },
             { "code": "", "name_zh": "法蘭西多士", "name_en": "French Toast", "price": 7.00, "image": "assets/menu/snacks/french-toast.jpg" },
             { "code": "", "name_zh": "咖吔西多士", "name_en": "Kaya French Toast", "price": 8.00, "image": "assets/menu/snacks/kaya-french-toast.jpg" },
-            { "code": "", "name_zh": "紅豆冰", "name_en": "Red Beans Ice", "price": 5.50, "image": "assets/menu/snacks/red-beans-ice.jpg" },
-            { "code": "", "name_zh": "香炸雞翼薯條/沙律", "name_en": "Chicken Wings (3 pcs) w/ Fries or Salad", "price": 9.00, "image": "assets/menu/snacks/chicken-wings-fries.jpg" },
-            { "code": "", "name_zh": "懷舊炸雞髀薯條/沙律", "name_en": "Deep-Fried Chicken Leg w/ Fries or Potato Salad", "price": 10.00, "image": "assets/menu/snacks/fried-chicken-leg-fries.jpg" }
+            { "code": "", "name_zh": "紅豆冰", "name_en": "Red Beans Ice", "price": 5.50, "image": "assets/menu/snacks/red-beans-ice.jpg", "customizations": [] },
+            { "code": "", "name_zh": "香炸雞翼薯條/沙律", "name_en": "Chicken Wings (3 pcs) w/ Fries or Salad", "price": 9.00, "image": "assets/menu/snacks/chicken-wings-fries.jpg",
+              "customizations": [
+                { "label_en": "Choose side", "label_zh": "選擇配菜", "type": "radio", "required": true, "options": [
+                  { "name_en": "Fries", "name_zh": "薯條", "price": 0 },
+                  { "name_en": "Salad", "name_zh": "沙律", "price": 0 }
+                ]},
+                { "label_en": "Add drink", "label_zh": "加配飲品", "type": "radio", "required": false, "options": [
+                  { "name_en": "Hot Drink", "name_zh": "熱飲", "price": 1.50 },
+                  { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 2.50 },
+                  { "name_en": "Red Beans Ice", "name_zh": "紅豆冰", "price": 3.50 }
+                ]}
+              ]
+            },
+            { "code": "", "name_zh": "懷舊炸雞髀薯條/沙律", "name_en": "Deep-Fried Chicken Leg w/ Fries or Potato Salad", "price": 10.00, "image": "assets/menu/snacks/fried-chicken-leg-fries.jpg",
+              "customizations": [
+                { "label_en": "Choose side", "label_zh": "選擇配菜", "type": "radio", "required": true, "options": [
+                  { "name_en": "Fries", "name_zh": "薯條", "price": 0 },
+                  { "name_en": "Potato Salad", "name_zh": "薯仔沙律", "price": 0 }
+                ]},
+                { "label_en": "Add drink", "label_zh": "加配飲品", "type": "radio", "required": false, "options": [
+                  { "name_en": "Hot Drink", "name_zh": "熱飲", "price": 1.50 },
+                  { "name_en": "Cold Drink", "name_zh": "凍飲", "price": 2.50 },
+                  { "name_en": "Red Beans Ice", "name_zh": "紅豆冰", "price": 3.50 }
+                ]}
+              ]
+            }
           ]
         },
         {
@@ -391,8 +733,44 @@
             }
           ],
           "items": [
-            { "code": "", "name_zh": "焗一哥豬扒/吉列豬扒", "name_en": "Baked Pork Chop", "price": 68, "image": "assets/menu/party-tray/baked-pork-chop-tray.jpg" },
-            { "code": "", "name_zh": "焗炸雞球/雞扒", "name_en": "Baked Chicken", "price": 68, "image": "assets/menu/party-tray/baked-chicken-tray.jpg" },
+            { "code": "", "name_zh": "焗一哥豬扒/吉列豬扒", "name_en": "Baked Pork Chop", "price": 68, "image": "assets/menu/party-tray/baked-pork-chop-tray.jpg",
+              "customizations": [
+                { "label_en": "Choose style", "label_zh": "選擇做法", "type": "radio", "required": true, "options": [
+                  { "name_en": "Pan Fried", "name_zh": "一哥豬扒", "price": 0 },
+                  { "name_en": "Cutlet", "name_zh": "吉列豬扒", "price": 0 }
+                ]},
+                { "label_en": "Choose base", "label_zh": "選擇飯或意粉", "type": "radio", "required": true, "options": [
+                  { "name_en": "Baked Rice", "name_zh": "焗飯", "price": 0 },
+                  { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 }
+                ]},
+                { "label_en": "Choose sauce", "label_zh": "選擇汁醬", "type": "radio", "required": true, "options": [
+                  { "name_en": "Tomato", "name_zh": "蕃茄汁", "price": 0 },
+                  { "name_en": "Curry", "name_zh": "咖喱汁", "price": 0 },
+                  { "name_en": "White", "name_zh": "白汁", "price": 0 },
+                  { "name_en": "Mushroom", "name_zh": "菌汁", "price": 0 },
+                  { "name_en": "Cheese", "name_zh": "芝士汁", "price": 0 }
+                ]}
+              ]
+            },
+            { "code": "", "name_zh": "焗炸雞球/雞扒", "name_en": "Baked Chicken", "price": 68, "image": "assets/menu/party-tray/baked-chicken-tray.jpg",
+              "customizations": [
+                { "label_en": "Choose style", "label_zh": "選擇做法", "type": "radio", "required": true, "options": [
+                  { "name_en": "Chicken Ball", "name_zh": "炸雞球", "price": 0 },
+                  { "name_en": "Chicken Fillet", "name_zh": "雞扒", "price": 0 }
+                ]},
+                { "label_en": "Choose base", "label_zh": "選擇飯或意粉", "type": "radio", "required": true, "options": [
+                  { "name_en": "Baked Rice", "name_zh": "焗飯", "price": 0 },
+                  { "name_en": "Spaghetti", "name_zh": "意粉", "price": 0 }
+                ]},
+                { "label_en": "Choose sauce", "label_zh": "選擇汁醬", "type": "radio", "required": true, "options": [
+                  { "name_en": "Tomato", "name_zh": "蕃茄汁", "price": 0 },
+                  { "name_en": "Curry", "name_zh": "咖喱汁", "price": 0 },
+                  { "name_en": "White", "name_zh": "白汁", "price": 0 },
+                  { "name_en": "Mushroom", "name_zh": "菌汁", "price": 0 },
+                  { "name_en": "Cheese", "name_zh": "芝士汁", "price": 0 }
+                ]}
+              ]
+            },
             { "code": "", "name_zh": "焗吉列魚柳", "name_en": "Baked Fish Fillet", "price": 68, "image": "assets/menu/party-tray/baked-fish-tray.jpg" },
             { "code": "", "name_zh": "焗肉丸肉醬意大利粉", "name_en": "Bolognese Meatball", "price": 68, "image": "assets/menu/party-tray/bolognese-meatball-tray.jpg" },
             { "code": "", "name_zh": "焗雜菌蔬菜", "name_en": "Mixed Mushroom Veg", "price": 65, "image": "assets/menu/party-tray/mushroom-veg-tray.jpg" },
@@ -420,9 +798,21 @@
             { "code": "", "name_zh": "蒜香辣椒大蝦魷魚圈意粉", "name_en": "Garlic Prawn & Squid Spaghetti", "price": 78, "image": "assets/menu/party-tray/garlic-prawn-squid-tray.jpg" },
             { "code": "", "name_zh": "卡邦尼大蝦意粉", "name_en": "Carbonara Prawn", "price": 68, "image": "assets/menu/party-tray/carbonara-prawn-tray.jpg" },
             { "code": "", "name_zh": "白汁雞皇燴意粉", "name_en": "Chicken White Sauce Spaghetti", "price": 68, "image": "assets/menu/party-tray/chicken-white-sauce-tray.jpg" },
-            { "code": "", "name_zh": "鮮茄牛肉/豬扒/雞扒燴意粉", "name_en": "Tomato Beef/Pork/Chicken Spaghetti", "price": 68, "image": "assets/menu/party-tray/tomato-spaghetti-tray.jpg" },
-            { "code": "", "name_zh": "黑椒牛肉/豬扒/雞扒炒意粉", "name_en": "Black Pepper Stir-fry Spaghetti", "price": 68, "image": "assets/menu/party-tray/black-pepper-stirfry-tray.jpg" },
-            { "code": "", "name_zh": "乾炒牛肉/豬扒/雞扒炒意粉", "name_en": "Dry-fried Spaghetti", "price": 68, "image": "assets/menu/party-tray/dry-fried-spaghetti-tray.jpg" },
+            { "code": "", "name_zh": "鮮茄牛肉/豬扒/雞扒燴意粉", "name_en": "Tomato Spaghetti", "price": 68, "image": "assets/menu/party-tray/tomato-spaghetti-tray.jpg",
+              "customizations": [{ "label_en": "Choose meat", "label_zh": "選擇肉類", "type": "radio", "required": true, "options": [
+                { "name_en": "Beef", "name_zh": "牛肉", "price": 0 }, { "name_en": "Pork Chop", "name_zh": "豬扒", "price": 0 }, { "name_en": "Chicken", "name_zh": "雞扒", "price": 0 }
+              ]}]
+            },
+            { "code": "", "name_zh": "黑椒牛肉/豬扒/雞扒炒意粉", "name_en": "Black Pepper Stir-fry Spaghetti", "price": 68, "image": "assets/menu/party-tray/black-pepper-stirfry-tray.jpg",
+              "customizations": [{ "label_en": "Choose meat", "label_zh": "選擇肉類", "type": "radio", "required": true, "options": [
+                { "name_en": "Beef", "name_zh": "牛肉", "price": 0 }, { "name_en": "Pork Chop", "name_zh": "豬扒", "price": 0 }, { "name_en": "Chicken", "name_zh": "雞扒", "price": 0 }
+              ]}]
+            },
+            { "code": "", "name_zh": "乾炒牛肉/豬扒/雞扒炒意粉", "name_en": "Dry-fried Spaghetti", "price": 68, "image": "assets/menu/party-tray/dry-fried-spaghetti-tray.jpg",
+              "customizations": [{ "label_en": "Choose meat", "label_zh": "選擇肉類", "type": "radio", "required": true, "options": [
+                { "name_en": "Beef", "name_zh": "牛肉", "price": 0 }, { "name_en": "Pork Chop", "name_zh": "豬扒", "price": 0 }, { "name_en": "Chicken", "name_zh": "雞扒", "price": 0 }
+              ]}]
+            },
             { "code": "", "name_zh": "生炒牛肉飯", "name_en": "Beef Fried Rice", "price": 68, "image": "assets/menu/party-tray/beef-fried-rice-tray.jpg" },
             { "code": "", "name_zh": "椰香菠蘿雞粒炒飯", "name_en": "Pineapple Chicken Fried Rice", "price": 68, "image": "assets/menu/party-tray/pineapple-chicken-rice-tray.jpg" },
             { "code": "", "name_zh": "五香肉丁炒飯", "name_en": "Spiced Pork Fried Rice", "price": 68, "image": "assets/menu/party-tray/spiced-pork-rice-tray.jpg" },
