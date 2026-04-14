@@ -63,11 +63,33 @@
     initImageFallbacks();
     initLightbox();
 
+    initPaletteToggle();
+
     // Auto-open cart if returning from cancelled payment
     if (window.location.hash === '#open-cart') {
       openCart();
       history.replaceState(null, '', window.location.pathname);
     }
+  }
+
+  // --- Palette Toggle ---
+  function initPaletteToggle() {
+    const saved = localStorage.getItem('kamdo_palette');
+    if (saved) document.documentElement.setAttribute('data-palette', saved);
+
+    const btn = document.getElementById('palette-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      const current = document.documentElement.getAttribute('data-palette');
+      const next = current === 'gold' ? '' : 'gold';
+      if (next) {
+        document.documentElement.setAttribute('data-palette', next);
+        localStorage.setItem('kamdo_palette', next);
+      } else {
+        document.documentElement.removeAttribute('data-palette');
+        localStorage.removeItem('kamdo_palette');
+      }
+    });
   }
 
   // --- Scroll Spy ---
