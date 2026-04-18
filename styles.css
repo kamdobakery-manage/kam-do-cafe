@@ -55,7 +55,7 @@
   --border-radius: 10px;
 }
 
-/* --- Palette: 古銅沙金 (Antique Sand Gold) --- */
+/* --- Palette: 古銅沙金 (Antique Sand Gold) --- HIDDEN
 [data-palette="gold"] {
   --color-bg: #FDFAF3;
   --color-surface: #FFFCF6;
@@ -84,6 +84,147 @@
   --color-shadow-rgb: 74, 55, 8;
   --color-overlay-rgb: 55, 40, 5;
 }
+*/
+
+/* --- Palette: 深灰綠 (Deep Teal Green) --- HIDDEN
+[data-palette="teal"] {
+  --color-bg: #F6FCFB;
+  --color-surface: #F9FDFB;
+  --color-surface-alt: #EEF7F5;
+  --color-surface-warm: #E2EFEC;
+  --color-text: #152D2B;
+  --color-text-secondary: #2E504D;
+  --color-text-tertiary: #5E8480;
+  --color-accent: #FED3A8;
+  --color-accent-light: #FEDDBA;
+  --color-accent-bg: rgba(254, 211, 168, 0.12);
+  --color-accent-cta: #9D1E31;
+  --color-surface-card: #F9FDFB;
+  --color-divider: #C2D8D5;
+  --color-border: #D0E2DF;
+  --color-border-light: #E4F0ED;
+  --color-badge-new: #9D1E31;
+  --color-badge-signature: #FED3A8;
+  --color-success: #2E9E5A;
+  --color-cart-bg: #F9FDFB;
+  --color-cart-text: #152D2B;
+  --color-brand-red: #195A56;
+  --color-brand-red-dark: #0F3836;
+  --color-brand-red-light: #257D78;
+  --color-pink-check: transparent;
+  --color-shadow-rgb: 21, 45, 43;
+  --color-overlay-rgb: 15, 35, 33;
+}
+*/
+
+/* --- Palette: 暖奶金 (Warm Cream Gold) --- HIDDEN
+[data-palette="cream"] {
+  --color-bg: #FBF5EB;
+  --color-surface: #FDF8F0;
+  --color-surface-alt: #F5EBDA;
+  --color-surface-warm: #EDDFCA;
+  --color-text: #3B1A0E;
+  --color-text-secondary: #6A3928;
+  --color-text-tertiary: #957060;
+  --color-accent: #E4B326;
+  --color-accent-light: #ECC44E;
+  --color-accent-bg: rgba(228, 179, 38, 0.08);
+  --color-accent-cta: #B22A2A;
+  --color-surface-card: #FDF8F0;
+  --color-divider: #DDD0BB;
+  --color-border: #E6DBCA;
+  --color-border-light: #F0E8DC;
+  --color-badge-new: #B22A2A;
+  --color-badge-signature: #E4B326;
+  --color-success: #2E9E5A;
+  --color-cart-bg: #FDF8F0;
+  --color-cart-text: #3B1A0E;
+  --color-brand-red: #B22A2A;
+  --color-brand-red-dark: #7A1818;
+  --color-brand-red-light: #CC4040;
+  --color-pink-check: transparent;
+  --color-shadow-rgb: 59, 26, 14;
+  --color-overlay-rgb: 48, 18, 10;
+}
+*/
+
+/* --- Palette: 旺角街市 (Mong Kok Street Market) --- ACTIVE DEFAULT */
+[data-palette="mongkok"] {
+  /* Base cream + punchy red/yellow — bustling cha chaan teng vibe */
+  --color-bg: #FBF4E6;
+  --color-surface: #FFFAF0;
+  --color-surface-alt: #FFF5E0;
+  --color-surface-warm: #F5B94A;
+  --color-surface-card: #FFFAF0;
+  --color-text: #1A1410;
+  --color-text-secondary: #3D2817;
+  --color-text-tertiary: #6B4E2E;
+  --color-accent: #D42C2C;
+  --color-accent-light: #F5B94A;
+  --color-accent-bg: rgba(212, 44, 44, 0.06);
+  --color-accent-cta: #D42C2C;
+  --color-divider: #D42C2C;
+  --color-border: #D42C2C;
+  --color-border-light: #F2E3C0;
+  --color-badge-new: #E85A2C;
+  --color-badge-signature: #F5B94A;
+  --color-success: #2E7D32;
+  --color-cart-bg: #FFFAF0;
+  --color-cart-text: #1A1410;
+  --color-brand-red: #D42C2C;
+  --color-brand-red-dark: #B81C1C;
+  --color-brand-red-light: #E85A2C;
+  --color-pink-check: transparent;
+  --color-shadow-rgb: 26, 20, 16;
+  --color-overlay-rgb: 20, 15, 10;
+
+  /* Extra tokens unique to Mong Kok palette */
+  --mk-yellow: #F5B94A;
+  --mk-red: #D42C2C;
+  --mk-chop: #B81C1C;
+  --mk-ink: #1A1410;
+  --mk-green: #2E7D32;
+  --mk-orange: #E85A2C;
+  --mk-cream: #FBF4E6;
+
+  /* Typography overrides */
+  --font-display: 'Noto Serif TC', 'Kaiti SC', 'STKaiti', serif;
+  --font-body: 'Noto Sans TC', 'DM Sans', -apple-system, sans-serif;
+  --font-handwritten: 'Ma Shan Zheng', 'Noto Serif TC', cursive;
+  --font-price: 'Archivo Black', 'Oswald', sans-serif;
+  --font-english-display: 'Oswald', 'Bebas Neue', sans-serif;
+}
+
+/* --- Palette: 金醬紫 (Golden Burgundy) --- HIDDEN
+[data-palette="burgundy"] {
+  --color-bg: #FEFAF2;
+  --color-surface: #FFFCF5;
+  --color-surface-alt: #FBF3E5;
+  --color-surface-warm: #F3E8D4;
+  --color-text: #2E0A10;
+  --color-text-secondary: #5C2028;
+  --color-text-tertiary: #8A5560;
+  --color-accent: #FBDC92;
+  --color-accent-light: #FCE4A8;
+  --color-accent-bg: rgba(251, 220, 146, 0.12);
+  --color-accent-cta: #7A1020;
+  --color-surface-card: #FFFCF5;
+  --color-divider: #DDD0BE;
+  --color-border: #E8DDD0;
+  --color-border-light: #F2ECE2;
+  --color-badge-new: #7A1020;
+  --color-badge-signature: #FBDC92;
+  --color-success: #2E9E5A;
+  --color-cart-bg: #FFFCF5;
+  --color-cart-text: #2E0A10;
+  --color-brand-red: #4A010A;
+  --color-brand-red-dark: #2C0004;
+  --color-brand-red-light: #6B1520;
+  --color-pink-check: transparent;
+  --color-shadow-rgb: 46, 10, 16;
+  --color-overlay-rgb: 35, 5, 10;
+}
+*/
 
 /* --- Reset & Base --- */
 *, *::before, *::after {
@@ -302,12 +443,33 @@ button {
   border-radius: 0 50% 50% 0;
 }
 
+/* HIDDEN
 [data-palette="gold"] .palette-toggle__half--left {
   background: #C4A44A;
 }
-
 [data-palette="gold"] .palette-toggle__half--right {
   background: #6B510E;
+}
+[data-palette="teal"] .palette-toggle__half--left {
+  background: #195A56;
+}
+[data-palette="teal"] .palette-toggle__half--right {
+  background: #FED3A8;
+}
+*/
+
+[data-palette="cream"] .palette-toggle__half--left {
+  background: #B22A2A;
+}
+[data-palette="cream"] .palette-toggle__half--right {
+  background: #E4B326;
+}
+
+[data-palette="burgundy"] .palette-toggle__half--left {
+  background: #4A010A;
+}
+[data-palette="burgundy"] .palette-toggle__half--right {
+  background: #FBDC92;
 }
 
 /* --- Section Indicator Bar --- */
@@ -599,6 +761,275 @@ button {
   position: relative;
   overflow: hidden;
   padding: var(--space-3xl) var(--space-xl);
+}
+
+/* Classic layout shown by default, hidden in mongkok palette */
+.hero__classic { display: contents; }
+[data-palette="mongkok"] .hero__classic { display: none; }
+
+/* Mong Kok layout hidden by default */
+.hero-mk { display: none; }
+[data-palette="mongkok"] .hero-mk {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Mong Kok: flatten the hero container and use cream paper */
+[data-palette="mongkok"] .hero {
+  background: var(--mk-cream, #FBF4E6);
+  background-image: radial-gradient(circle at 1px 1px, rgba(184, 28, 28, 0.06) 1px, transparent 0);
+  background-size: 16px 16px;
+  padding: 0;
+  min-height: calc(100vh - var(--nav-height));
+  display: block;
+}
+
+[data-palette="mongkok"] .hero-mk__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 1.5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 2rem;
+  align-items: start;
+  position: relative;
+  flex: 1;
+}
+
+[data-palette="mongkok"] .hero-mk__left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 0.5rem;
+}
+
+[data-palette="mongkok"] .hero-mk__big-name {
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  margin-bottom: 1rem;
+  text-align: left;
+  line-height: 1;
+  height: auto;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+[data-palette="mongkok"] .hero-mk__signboard {
+  background: var(--mk-yellow, #F5B94A);
+  border: 3px solid var(--mk-red, #D42C2C);
+  padding: 8px 16px;
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--mk-ink, #1A1410);
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+  box-shadow: 3px 3px 0 var(--mk-chop, #B81C1C);
+}
+
+[data-palette="mongkok"] .hero-mk__dot {
+  color: var(--mk-red, #D42C2C);
+  font-weight: 900;
+}
+
+[data-palette="mongkok"] .hero-mk__status {
+  background: var(--mk-green, #2E7D32);
+  color: #fff;
+  padding: 8px 14px;
+  font-family: var(--font-body, sans-serif);
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 18px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+[data-palette="mongkok"] .hero-mk__cta {
+  display: inline-block;
+  background: var(--mk-red, #D42C2C);
+  color: var(--mk-yellow, #F5B94A);
+  font-family: var(--font-display, serif);
+  font-weight: 900;
+  font-size: 1.25rem;
+  padding: 12px 28px;
+  text-decoration: none;
+  border: 3px solid var(--mk-chop, #B81C1C);
+  box-shadow: 4px 4px 0 var(--mk-ink, #1A1410);
+  transition: transform 0.15s;
+}
+[data-palette="mongkok"] .hero-mk__cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--mk-ink, #1A1410);
+}
+
+[data-palette="mongkok"] .hero-mk__right {
+  position: relative;
+  min-height: 440px;
+  padding: 1rem 1rem 2rem;
+}
+
+[data-palette="mongkok"] .hero-mk__chop {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  z-index: 4;
+}
+
+[data-palette="mongkok"] .hero-mk__collage {
+  position: relative;
+  width: 100%;
+  height: 420px;
+}
+
+[data-palette="mongkok"] .hero-mk__dish {
+  position: absolute;
+  width: 180px;
+  background: var(--mk-cream, #FBF4E6);
+  border: 3px solid var(--mk-red, #D42C2C);
+  padding: 5px 5px 8px;
+  box-shadow: 5px 5px 0 rgba(26, 20, 16, 0.12);
+  transition: transform 0.25s;
+}
+[data-palette="mongkok"] .hero-mk__dish:hover {
+  transform: translateY(-4px) rotate(0) !important;
+  z-index: 10;
+}
+
+[data-palette="mongkok"] .hero-mk__dish--1 {
+  top: 0; left: 10px;
+  transform: rotate(-5deg);
+  z-index: 3;
+}
+[data-palette="mongkok"] .hero-mk__dish--2 {
+  top: 80px; left: 210px;
+  transform: rotate(4deg);
+  z-index: 2;
+}
+[data-palette="mongkok"] .hero-mk__dish--3 {
+  top: 210px; left: 70px;
+  transform: rotate(-2deg);
+  z-index: 1;
+}
+
+[data-palette="mongkok"] .hero-mk__dish-img,
+[data-palette="mongkok"] .hero-mk__dish-ph {
+  display: block;
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  background: var(--mk-yellow, #F5B94A);
+}
+[data-palette="mongkok"] .hero-mk__dish-ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display, serif);
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--mk-ink, #1A1410);
+}
+
+[data-palette="mongkok"] .hero-mk__dish-name {
+  text-align: center;
+  padding: 8px 4px 0;
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  color: var(--mk-ink, #1A1410);
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+[data-palette="mongkok"] .hero-mk__dish-price {
+  position: absolute;
+  right: -14px;
+  bottom: -12px;
+  background: var(--mk-red, #D42C2C);
+  color: #fff;
+  font-family: var(--font-price, 'Archivo Black'), sans-serif;
+  font-size: 1.15rem;
+  padding: 6px 10px;
+  border: 2px solid var(--mk-chop, #B81C1C);
+  transform: rotate(6deg);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+[data-palette="mongkok"] .hero-mk__dish-burst {
+  position: absolute;
+  top: -26px;
+  left: -20px;
+  z-index: 5;
+}
+
+[data-palette="mongkok"] .hero-mk__note {
+  position: absolute;
+  bottom: 12px;
+  right: 30px;
+  font-size: 1.6rem;
+  transform: rotate(-4deg);
+  z-index: 5;
+  color: var(--mk-chop, #B81C1C);
+}
+
+[data-palette="mongkok"] .hero-mk__marquee {
+  margin-top: auto;
+}
+
+/* Mobile hero layout */
+@media (max-width: 820px) {
+  [data-palette="mongkok"] .hero-mk__inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 1.5rem 1rem 2rem;
+  }
+  [data-palette="mongkok"] .hero-mk__big-name {
+    font-size: clamp(2.5rem, 14vw, 5rem);
+    writing-mode: horizontal-tb;
+    margin-bottom: 0.75rem;
+    white-space: nowrap;
+    text-align: center;
+    width: 100%;
+  }
+  [data-palette="mongkok"] .hero-mk__left {
+    text-align: center;
+    align-items: center;
+  }
+  [data-palette="mongkok"] .hero-mk__signboard {
+    font-size: 0.72rem;
+    padding: 6px 10px;
+    gap: 6px;
+  }
+  [data-palette="mongkok"] .hero-mk__right {
+    min-height: 460px;
+    margin-top: 1rem;
+  }
+  [data-palette="mongkok"] .hero-mk__collage {
+    height: 460px;
+  }
+  [data-palette="mongkok"] .hero-mk__dish {
+    width: 46%;
+  }
+  [data-palette="mongkok"] .hero-mk__dish--1 {
+    top: 10px; left: 4%;
+  }
+  [data-palette="mongkok"] .hero-mk__dish--2 {
+    top: 130px; left: 50%;
+  }
+  [data-palette="mongkok"] .hero-mk__dish--3 {
+    top: 270px; left: 25%;
+  }
+  [data-palette="mongkok"] .hero-mk__chop {
+    top: -6px;
+    right: 6px;
+    transform: rotate(-8deg) scale(0.7);
+  }
 }
 
 /* Background image layer */
@@ -932,6 +1363,22 @@ button {
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.7;
+}
+
+/* --- Section Header Image --- */
+.section__header-img {
+  display: block;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto var(--space-md);
+}
+
+/* Desktop: larger header images */
+@media (min-width: 769px) {
+  .section__header-img {
+    max-width: 550px;
+  }
 }
 
 /* Minimal divider between sections */
@@ -2067,6 +2514,7 @@ button {
     height: 32px;
     font-size: 18px;
   }
+
 }
 
 @media (max-width: 480px) {
@@ -2102,6 +2550,7 @@ button {
     width: 80px;
     min-height: 80px;
   }
+
 }
 
 /* --- Scroll Animations --- */
@@ -2408,4 +2857,946 @@ button {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* ============================================
+   旺角街市 Decoration Toolkit
+   Reusable Mong Kok street market visual elements
+   ============================================ */
+
+/* Paper texture background — subtle dotted cream */
+[data-palette="mongkok"] .mk-paper-bg,
+[data-palette="mongkok"] body {
+  background-color: var(--mk-cream, #FBF4E6);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(184, 28, 28, 0.07) 1px, transparent 0);
+  background-size: 18px 18px;
+}
+
+/* Starburst sticker — 10-point yellow star with red text */
+.mk-starburst {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  background: var(--mk-yellow, #F5B94A);
+  color: var(--mk-red, #D42C2C);
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  font-size: 1rem;
+  line-height: 1;
+  text-align: center;
+  clip-path: polygon(
+    50% 0%, 61% 18%, 78% 10%, 75% 28%, 95% 30%,
+    82% 45%, 100% 55%, 82% 60%, 90% 78%, 72% 73%,
+    70% 95%, 55% 82%, 40% 100%, 35% 80%, 18% 90%,
+    22% 70%, 5% 68%, 18% 55%, 0% 45%, 20% 40%,
+    10% 22%, 28% 28%, 22% 10%, 42% 15%
+  );
+  transform: rotate(-15deg);
+  padding: 4px;
+  box-shadow: 0 2px 0 rgba(184, 28, 28, 0.15);
+}
+.mk-starburst--sm { width: 52px; height: 52px; font-size: 0.75rem; }
+.mk-starburst--lg { width: 96px; height: 96px; font-size: 1.25rem; }
+.mk-starburst--tilt-right { transform: rotate(15deg); }
+
+/* Red chop stamp — circular with calligraphy char */
+.mk-chop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--mk-chop, #B81C1C);
+  color: var(--mk-cream, #FBF4E6);
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  font-size: 1.75rem;
+  line-height: 1;
+  text-align: center;
+  border: 3px double var(--mk-cream, #FBF4E6);
+  box-shadow: inset 0 0 0 1px rgba(184, 28, 28, 0.8);
+  transform: rotate(-8deg);
+  opacity: 0.92;
+  filter: contrast(1.1);
+}
+.mk-chop--square {
+  border-radius: 4px;
+  transform: rotate(-5deg);
+}
+.mk-chop--lg {
+  width: 88px; height: 88px;
+  font-size: 2.5rem;
+}
+.mk-chop--ring {
+  background: transparent;
+  color: var(--mk-chop, #B81C1C);
+  border: 3px solid var(--mk-chop, #B81C1C);
+  box-shadow: inset 0 0 0 5px var(--mk-cream, #FBF4E6), inset 0 0 0 6px var(--mk-chop, #B81C1C);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.1;
+  flex-direction: column;
+}
+.mk-chop--ring small { font-size: 0.625rem; letter-spacing: 0.05em; }
+
+/* Washi tape — translucent strip */
+.mk-washi-tape {
+  position: absolute;
+  width: 90px;
+  height: 22px;
+  opacity: 0.78;
+  background-image: linear-gradient(90deg,
+    transparent 0, transparent 2px,
+    rgba(255,255,255,0.25) 2px, rgba(255,255,255,0.25) 4px,
+    transparent 4px, transparent 10px);
+  background-color: var(--mk-orange, #E85A2C);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+.mk-washi-tape--orange { background-color: #E8823C; }
+.mk-washi-tape--green { background-color: #5A9B3E; }
+.mk-washi-tape--red { background-color: #D42C2C; }
+.mk-washi-tape--tl { top: -8px; left: -12px; transform: rotate(-18deg); }
+.mk-washi-tape--tr { top: -8px; right: -12px; transform: rotate(15deg); }
+.mk-washi-tape--bl { bottom: -8px; left: -12px; transform: rotate(12deg); }
+.mk-washi-tape--br { bottom: -8px; right: -12px; transform: rotate(-15deg); }
+
+/* Vertical calligraphy — huge Chinese brush text */
+.mk-vertical-cal {
+  writing-mode: vertical-rl;
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  color: var(--mk-ink, #1A1410);
+  letter-spacing: 0.08em;
+  text-shadow:
+    3px 3px 0 var(--mk-red, #D42C2C),
+    4px 4px 0 rgba(184, 28, 28, 0.4);
+  line-height: 1.02;
+}
+
+/* Handwritten note */
+.mk-handwritten {
+  font-family: var(--font-handwritten, 'Ma Shan Zheng'), cursive;
+  color: var(--mk-ink, #1A1410);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* Marquee — scrolling red banner */
+.mk-marquee {
+  position: relative;
+  overflow: hidden;
+  background: var(--mk-red, #D42C2C);
+  color: var(--mk-yellow, #F5B94A);
+  padding: 12px 0;
+  font-family: var(--font-body, sans-serif);
+  font-weight: 700;
+  font-size: 1rem;
+  border-top: 3px solid var(--mk-chop, #B81C1C);
+  border-bottom: 3px solid var(--mk-chop, #B81C1C);
+}
+.mk-marquee__track {
+  display: flex;
+  gap: 48px;
+  white-space: nowrap;
+  animation: mk-marquee-scroll 28s linear infinite;
+  width: fit-content;
+}
+.mk-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+@keyframes mk-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Receipt dashed sawtooth edge for modals */
+.mk-receipt-edge-top,
+.mk-receipt-edge-bottom {
+  position: relative;
+}
+.mk-receipt-edge-top::before,
+.mk-receipt-edge-bottom::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background-image: radial-gradient(circle at 6px 0, transparent 0 6px, var(--mk-cream, #FBF4E6) 6px);
+  background-size: 12px 12px;
+  background-repeat: repeat-x;
+}
+.mk-receipt-edge-top::before { top: -1px; background-position: 0 -6px; }
+.mk-receipt-edge-bottom::after { bottom: -1px; background-position: 0 6px; transform: rotate(180deg); }
+
+/* Price tag — oversized red */
+.mk-price {
+  font-family: var(--font-price, 'Archivo Black'), sans-serif;
+  color: var(--mk-red, #D42C2C);
+  font-size: 2.5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Green combo tag */
+.mk-tag-green {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--mk-green, #2E7D32);
+  color: #fff;
+  font-family: var(--font-body, sans-serif);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  border-radius: 3px;
+}
+.mk-tag-orange {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--mk-orange, #E85A2C);
+  color: #fff;
+  font-family: var(--font-body, sans-serif);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  border-radius: 3px;
+}
+
+/* Item code sticker — small pill for A1/A2/... */
+.mk-code-sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  padding: 4px 10px;
+  background: var(--mk-ink, #1A1410);
+  color: var(--mk-yellow, #F5B94A);
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  border-radius: 3px;
+  border: 2px solid var(--mk-red, #D42C2C);
+}
+
+/* Small "GOOD" sticker next to price */
+.mk-good-sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--mk-orange, #E85A2C);
+  color: #fff;
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  transform: rotate(-12deg);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+}
+
+/* Absolute positioning utilities for decorations */
+.mk-abs-tl { position: absolute; top: -8px; left: -8px; z-index: 3; }
+.mk-abs-tr { position: absolute; top: -8px; right: -8px; z-index: 3; }
+.mk-abs-bl { position: absolute; bottom: -8px; left: -8px; z-index: 3; }
+.mk-abs-br { position: absolute; bottom: -8px; right: -8px; z-index: 3; }
+
+/* Thick red section divider */
+[data-palette="mongkok"] .mk-section-divider {
+  height: 6px;
+  background:
+    linear-gradient(var(--mk-red, #D42C2C), var(--mk-red, #D42C2C)) 0 0/100% 2px no-repeat,
+    linear-gradient(var(--mk-red, #D42C2C), var(--mk-red, #D42C2C)) 0 100%/100% 2px no-repeat;
+  margin: 0;
+}
+
+/* ============================================
+   旺角街市 — Menu Item Card overrides
+   ============================================ */
+
+/* Mong Kok decorations hidden by default */
+.menu-item__mk,
+.menu-item__mk-tag,
+.menu-item__mk-good { display: none; }
+
+[data-palette="mongkok"] .menu-item__mk { display: block; }
+[data-palette="mongkok"] .menu-item__mk-tag { display: inline-block; }
+[data-palette="mongkok"] .menu-item__mk-good { display: inline-flex; }
+
+/* Hide decorations that are superseded by Mong Kok equivalents */
+[data-palette="mongkok"] .menu-item__code-inline { display: none; }
+[data-palette="mongkok"] .menu-item__badge { display: none; }
+
+/* Menu item container — paper card with red border + alternating fill */
+[data-palette="mongkok"] .menu-item {
+  position: relative;
+  background: var(--mk-cream, #FBF4E6);
+  border: 3px solid var(--mk-red, #D42C2C);
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: 4px 4px 0 rgba(26, 20, 16, 0.08);
+  margin-bottom: 1.25rem;
+  padding: 0;
+}
+[data-palette="mongkok"] .menu-item:hover {
+  box-shadow: 6px 6px 0 rgba(26, 20, 16, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Alternating yellow / cream cards */
+[data-palette="mongkok"] .menu-list > .menu-item:nth-child(even) {
+  background: var(--mk-yellow, #F5B94A);
+}
+
+/* Decoration wrapper scoped to card */
+[data-palette="mongkok"] .menu-item__mk-code {
+  position: absolute;
+  top: -14px;
+  left: 12px;
+  z-index: 4;
+  transform: rotate(-4deg);
+}
+
+[data-palette="mongkok"] .menu-item__mk-chop {
+  position: absolute;
+  top: -18px;
+  right: 16px;
+  z-index: 4;
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+}
+
+[data-palette="mongkok"] .menu-item__mk-burst {
+  position: absolute;
+  top: -22px;
+  right: 74px;
+  z-index: 5;
+  width: 58px;
+  height: 58px;
+  font-size: 0.8rem;
+}
+
+/* Left image — keep size but add red border */
+[data-palette="mongkok"] .menu-item__image {
+  width: 140px;
+  min-height: 140px;
+  border-right: 3px solid var(--mk-red, #D42C2C);
+}
+[data-palette="mongkok"] .menu-item__image-placeholder {
+  width: 140px;
+  min-height: 140px;
+  background: linear-gradient(135deg, var(--mk-yellow, #F5B94A), var(--mk-orange, #E85A2C));
+  border-right: 3px solid var(--mk-red, #D42C2C);
+}
+[data-palette="mongkok"] .menu-item__image-placeholder .placeholder__text {
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  color: var(--mk-ink, #1A1410);
+  opacity: 0.85;
+  font-size: 1.25rem;
+}
+
+/* Right content area — tighter, bold */
+[data-palette="mongkok"] .menu-item__info {
+  padding: 14px 16px 12px;
+}
+
+[data-palette="mongkok"] .menu-item__name-zh {
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--mk-ink, #1A1410);
+  line-height: 1.15;
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+
+[data-palette="mongkok"] .menu-item__name-en {
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--mk-ink, #1A1410);
+  opacity: 0.75;
+}
+
+[data-palette="mongkok"] .menu-item__note {
+  font-family: var(--font-handwritten, 'Ma Shan Zheng'), cursive;
+  color: var(--mk-chop, #B81C1C);
+  font-size: 0.95rem;
+  font-weight: 400;
+  margin-top: 6px;
+}
+
+[data-palette="mongkok"] .menu-item__mk-tag {
+  margin-top: 8px;
+}
+
+/* Price row — oversized red price + GOOD sticker + add button */
+[data-palette="mongkok"] .menu-item__right {
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  position: relative;
+}
+
+[data-palette="mongkok"] .menu-item__price {
+  font-family: var(--font-price, 'Archivo Black'), sans-serif;
+  font-size: 1.85rem;
+  color: var(--mk-red, #D42C2C);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-shadow: 2px 2px 0 rgba(184, 28, 28, 0.15);
+}
+
+[data-palette="mongkok"] .menu-item__mk-good {
+  width: 32px;
+  height: 32px;
+  font-size: 0.58rem;
+}
+
+/* Add button — yellow on red instead of pill */
+[data-palette="mongkok"] .menu-item__add-btn {
+  background: var(--mk-ink, #1A1410);
+  color: var(--mk-yellow, #F5B94A);
+  border: 2px solid var(--mk-red, #D42C2C);
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  box-shadow: 2px 2px 0 var(--mk-red, #D42C2C);
+  margin-left: auto;
+}
+[data-palette="mongkok"] .menu-item__add-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--mk-red, #D42C2C);
+}
+
+/* Mobile tweaks */
+@media (max-width: 560px) {
+  [data-palette="mongkok"] .menu-item__mk-chop { width: 40px; height: 40px; font-size: 1.25rem; top: -14px; right: 12px; }
+  [data-palette="mongkok"] .menu-item__mk-burst { width: 48px; height: 48px; font-size: 0.68rem; top: -16px; right: 58px; }
+  [data-palette="mongkok"] .menu-item__mk-code { top: -12px; left: 8px; }
+  [data-palette="mongkok"] .menu-item__image,
+  [data-palette="mongkok"] .menu-item__image-placeholder {
+    width: 110px;
+    min-height: 110px;
+  }
+  [data-palette="mongkok"] .menu-item__price { font-size: 1.5rem; }
+  [data-palette="mongkok"] .menu-item__name-zh { font-size: 1.1rem; }
+}
+
+/* ============================================
+   旺角街市 — Section Header (text banner + washi tape)
+   ============================================ */
+
+.section__header-mk { display: none; }
+
+/* In mongkok palette: hide image header, show text banner */
+[data-palette="mongkok"] .section__header-img { display: none; }
+[data-palette="mongkok"] .section__header > * { display: none; }
+[data-palette="mongkok"] .section__header { margin-bottom: 0; padding: 0; }
+
+[data-palette="mongkok"] .section__header-mk {
+  display: block;
+  position: relative;
+  margin: 2rem 0 2rem;
+  padding: 18px 24px 18px;
+  background: var(--mk-cream, #FBF4E6);
+  border: 4px double var(--mk-red, #D42C2C);
+  box-shadow:
+    inset 0 0 0 2px var(--mk-cream, #FBF4E6),
+    5px 5px 0 rgba(26, 20, 16, 0.08);
+}
+
+[data-palette="mongkok"] .section__header-mk-tape {
+  position: absolute;
+  width: 80px;
+  height: 22px;
+  opacity: 0.8;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+[data-palette="mongkok"] .section__header-mk-tape--tl {
+  top: -10px; left: -18px; transform: rotate(-16deg);
+  background: #E8823C;
+  background-image: linear-gradient(90deg, transparent 0 2px, rgba(255,255,255,0.25) 2px 4px, transparent 4px 10px);
+}
+[data-palette="mongkok"] .section__header-mk-tape--tr {
+  top: -10px; right: -18px; transform: rotate(14deg);
+  background: #5A9B3E;
+  background-image: linear-gradient(90deg, transparent 0 2px, rgba(255,255,255,0.25) 2px 4px, transparent 4px 10px);
+}
+
+[data-palette="mongkok"] .section__header-mk-inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+[data-palette="mongkok"] .section__header-mk-zh {
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--mk-ink, #1A1410);
+  letter-spacing: 0.02em;
+  text-shadow: 3px 3px 0 var(--mk-red, #D42C2C), 4px 4px 0 rgba(184, 28, 28, 0.4);
+  line-height: 1;
+  margin: 0;
+}
+
+[data-palette="mongkok"] .section__header-mk-en {
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 2vw, 1.5rem);
+  color: var(--mk-chop, #B81C1C);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 0;
+}
+
+[data-palette="mongkok"] .section__header-mk-sub {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--mk-red, #D42C2C);
+  font-family: var(--font-handwritten, 'Ma Shan Zheng'), cursive;
+  color: var(--mk-chop, #B81C1C);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Subsection titles in Mong Kok */
+[data-palette="mongkok"] .subsection__title {
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--mk-chop, #B81C1C);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+[data-palette="mongkok"] .subsection__title-zh {
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  color: var(--mk-ink, #1A1410);
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 14px;
+}
+[data-palette="mongkok"] .subsection__title-zh::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  bottom: 5px;
+  width: 5px;
+  background: var(--mk-red, #D42C2C);
+}
+[data-palette="mongkok"] .subsection__description {
+  font-family: var(--font-handwritten, 'Ma Shan Zheng'), cursive;
+  color: var(--mk-chop, #B81C1C);
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+
+/* Section bottom divider */
+[data-palette="mongkok"] .section + .section::before {
+  content: '';
+  display: block;
+  height: 6px;
+  background:
+    linear-gradient(var(--mk-red, #D42C2C), var(--mk-red, #D42C2C)) 0 0/100% 2px no-repeat,
+    linear-gradient(var(--mk-red, #D42C2C), var(--mk-red, #D42C2C)) 0 100%/100% 2px no-repeat;
+  margin: 0 auto;
+  max-width: var(--max-width);
+}
+
+@media (max-width: 560px) {
+  [data-palette="mongkok"] .section__header-mk {
+    padding: 14px 16px;
+    margin: 1rem 0 1.25rem;
+  }
+  [data-palette="mongkok"] .section__header-mk-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  [data-palette="mongkok"] .section__header-mk-sub {
+    font-size: 0.95rem;
+  }
+}
+
+/* ============================================
+   旺角街市 — Combo Modal (receipt / order slip style)
+   ============================================ */
+
+[data-palette="mongkok"] .combo-modal-overlay.open {
+  background: rgba(26, 20, 16, 0.7);
+  backdrop-filter: blur(2px);
+}
+
+[data-palette="mongkok"] .combo-modal {
+  background: #FFFDF5;
+  border-radius: 0;
+  border: 2px solid var(--mk-ink, #1A1410);
+  box-shadow:
+    8px 8px 0 var(--mk-red, #D42C2C),
+    0 20px 60px rgba(0, 0, 0, 0.4);
+  transform: translate(-50%, -50%) rotate(0.5deg);
+  max-width: 460px;
+  overflow: visible;
+}
+
+/* Sawtooth top & bottom edges — receipt-paper feel */
+[data-palette="mongkok"] .combo-modal::before,
+[data-palette="mongkok"] .combo-modal::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  height: 10px;
+  background-image: radial-gradient(circle at 5px 0, transparent 0 5px, #FFFDF5 5px);
+  background-size: 10px 10px;
+  background-repeat: repeat-x;
+  z-index: 2;
+  pointer-events: none;
+}
+[data-palette="mongkok"] .combo-modal::before {
+  top: -1px;
+  background-position: 0 -5px;
+}
+[data-palette="mongkok"] .combo-modal::after {
+  bottom: -1px;
+  background-position: 0 5px;
+  transform: scaleY(-1);
+}
+
+/* Top "落單 ORDER" strip */
+[data-palette="mongkok"] .combo-modal__header {
+  position: relative;
+  background: var(--mk-red, #D42C2C);
+  color: var(--mk-yellow, #F5B94A);
+  border-bottom: 3px double var(--mk-chop, #B81C1C);
+  padding: 14px 20px 12px;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+[data-palette="mongkok"] .combo-modal__header::before {
+  content: '落單 · ORDER';
+  display: block;
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: var(--mk-yellow, #F5B94A);
+  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(245, 185, 74, 0.5);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+[data-palette="mongkok"] .combo-modal__title {
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  color: var(--mk-yellow, #F5B94A);
+  font-size: 1.35rem;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+}
+[data-palette="mongkok"] .combo-modal__title .menu-item__code-inline {
+  display: inline-block !important;
+  background: var(--mk-ink, #1A1410);
+  color: var(--mk-yellow, #F5B94A);
+  padding: 2px 8px;
+  margin-right: 6px;
+  border: 2px solid var(--mk-yellow, #F5B94A);
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+[data-palette="mongkok"] .combo-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--mk-yellow, #F5B94A);
+  color: var(--mk-chop, #B81C1C);
+  border: 2px solid var(--mk-chop, #B81C1C);
+  border-radius: 0;
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+[data-palette="mongkok"] .combo-modal__close:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Body — dashed-cut option groups */
+[data-palette="mongkok"] .combo-modal__body {
+  background: #FFFDF5;
+  padding: 16px 20px 12px;
+  background-image:
+    linear-gradient(#FFFDF5, #FFFDF5),
+    linear-gradient(135deg, transparent 48%, rgba(26, 20, 16, 0.015) 48% 52%, transparent 52%);
+  background-size: 100% 100%, 12px 12px;
+}
+
+[data-palette="mongkok"] .combo-modal__group {
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--mk-red, #D42C2C);
+  position: relative;
+}
+[data-palette="mongkok"] .combo-modal__group:last-child {
+  border-bottom: none;
+}
+
+[data-palette="mongkok"] .combo-modal__group-label {
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  color: var(--mk-ink, #1A1410);
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-left: 4px solid var(--mk-red, #D42C2C);
+  line-height: 1.2;
+}
+[data-palette="mongkok"] .combo-modal__group-label span {
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-weight: 400;
+  color: var(--mk-chop, #B81C1C);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-left: 8px;
+}
+
+/* Options — hand-drawn radio / checkbox style */
+[data-palette="mongkok"] .combo-modal__options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 4px;
+}
+
+[data-palette="mongkok"] .combo-modal__option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: transparent;
+  color: var(--mk-ink, #1A1410);
+  border: none;
+  border-radius: 0;
+  font-family: var(--font-body, sans-serif);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s;
+}
+[data-palette="mongkok"] .combo-modal__option:hover {
+  background: rgba(245, 185, 74, 0.25);
+}
+
+/* Radio-style marker (circle) */
+[data-palette="mongkok"] .combo-modal__group[data-type="radio"] .combo-modal__option::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid var(--mk-ink, #1A1410);
+  border-radius: 50%;
+  background: transparent;
+  flex-shrink: 0;
+  transform: rotate(-4deg);
+}
+[data-palette="mongkok"] .combo-modal__group[data-type="radio"] .combo-modal__option.selected::before {
+  background:
+    radial-gradient(circle at 45% 45%, var(--mk-chop, #B81C1C) 0 35%, transparent 38%),
+    radial-gradient(circle at 55% 55%, var(--mk-red, #D42C2C) 0 30%, transparent 33%);
+  border-color: var(--mk-chop, #B81C1C);
+}
+
+/* Checkbox-style marker (square) */
+[data-palette="mongkok"] .combo-modal__group[data-type="checkbox"] .combo-modal__option::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid var(--mk-ink, #1A1410);
+  border-radius: 3px;
+  background: transparent;
+  flex-shrink: 0;
+  transform: rotate(-3deg);
+}
+[data-palette="mongkok"] .combo-modal__group[data-type="checkbox"] .combo-modal__option.selected::before {
+  background:
+    linear-gradient(135deg, transparent 30%, var(--mk-chop, #B81C1C) 30% 55%, transparent 55%) no-repeat,
+    linear-gradient(225deg, transparent 45%, var(--mk-chop, #B81C1C) 45% 70%, transparent 70%) no-repeat;
+  background-size: 100% 100%;
+  border-color: var(--mk-chop, #B81C1C);
+}
+[data-palette="mongkok"] .combo-modal__group[data-type="checkbox"] .combo-modal__option.selected::after {
+  content: '✓';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-8deg);
+  font-family: var(--font-handwritten, 'Ma Shan Zheng'), cursive;
+  color: var(--mk-chop, #B81C1C);
+  font-size: 1.3rem;
+  font-weight: 900;
+  pointer-events: none;
+  line-height: 1;
+}
+
+[data-palette="mongkok"] .combo-modal__option.selected {
+  background: rgba(245, 185, 74, 0.35);
+  font-weight: 700;
+}
+
+[data-palette="mongkok"] .combo-modal__option-price {
+  margin-left: auto;
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-weight: 700;
+  color: var(--mk-chop, #B81C1C);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+}
+
+/* Footer — receipt total + CTA */
+[data-palette="mongkok"] .combo-modal__footer {
+  position: relative;
+  background: #FFFDF5;
+  border-top: 2px dashed var(--mk-ink, #1A1410);
+  padding: 16px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+[data-palette="mongkok"] .combo-modal__footer::before {
+  content: '合共 · TOTAL';
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--mk-ink, #1A1410);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+[data-palette="mongkok"] .combo-modal__price {
+  font-family: var(--font-price, 'Archivo Black'), sans-serif;
+  color: var(--mk-red, #D42C2C);
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: right;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+[data-palette="mongkok"] .combo-modal__add-btn {
+  background: var(--mk-red, #D42C2C);
+  color: var(--mk-yellow, #F5B94A);
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  padding: 14px 20px;
+  border: 3px solid var(--mk-chop, #B81C1C);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--mk-ink, #1A1410);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+[data-palette="mongkok"] .combo-modal__add-btn:not(:disabled):hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--mk-ink, #1A1410);
+}
+[data-palette="mongkok"] .combo-modal__add-btn::before {
+  content: '加入訂單 · ';
+}
+[data-palette="mongkok"] .combo-modal__add-btn::after {
+  content: '';
+}
+[data-palette="mongkok"] .combo-modal__add-btn:disabled {
+  background: rgba(26, 20, 16, 0.25);
+  color: var(--mk-cream, #FBF4E6);
+  box-shadow: 4px 4px 0 rgba(26, 20, 16, 0.15);
+  cursor: not-allowed;
+}
+
+/* Corner decorations — date stamp (top-left of body) + chop (bottom-right) */
+[data-palette="mongkok"] .combo-modal__body::before {
+  content: '16/04/2026 · KAM DO';
+  display: block;
+  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+  color: var(--mk-chop, #B81C1C);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: 0.7;
+  border: 1.5px solid var(--mk-chop, #B81C1C);
+  display: inline-block;
+  padding: 2px 6px;
+  transform: rotate(-2deg);
+}
+
+[data-palette="mongkok"] .combo-modal::before {
+  /* restored sawtooth, handled above */
+}
+[data-palette="mongkok"] .combo-modal__footer::after {
+  content: '落單';
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--mk-chop, #B81C1C);
+  color: var(--mk-cream, #FBF4E6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  transform: rotate(-12deg);
+  opacity: 0.9;
+  box-shadow: inset 0 0 0 2px var(--mk-cream, #FBF4E6);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.75;
 }

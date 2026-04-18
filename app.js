@@ -12,6 +12,19 @@
   let sectionCounter = 0;
   let pendingComboItem = null;
 
+  // --- Header Image Config ---
+  const HEADER_IMAGES = {
+    'breakfast':    { src: 'assets/headers/01-all-day-breakfast.png',       alt: '01 All-Day Breakfast 全日早·常餐' },
+    'noodles':      { src: 'assets/headers/02-stirred-nissin-noodles.png',  alt: '02 Stirred Nissin Noodles 出前撈丁' },
+    'plates':       { src: 'assets/headers/03-rice-spaghetti-plates.png',   alt: '03 Rice & Spaghetti Plates 碟頭（飯或意粉）' },
+    'baked':        { src: 'assets/headers/04-200c-baked.png',              alt: '04 200°C Baked 200°C 真焗' },
+    'hk-authentic': { src: 'assets/headers/05-hk-authentic.png',            alt: '05 HK Authentic 經典港味' },
+    'snacks':       { src: 'assets/headers/06-hk-snacks-pineapple-buns.png',alt: '06 HK Snacks & Pineapple Buns 香港情懷 & 菠蘿包' },
+    'drinks':       { src: 'assets/headers/07-drinks.png',                  alt: '07 Drinks 冷熱飲品' },
+    'party-tray':   { src: 'assets/headers/08-party-tray-catering.png',     alt: '08 Party Tray & Catering 派對到會' },
+    'featured':     { src: 'assets/headers/00-signature-dishes.png',       alt: 'Signature Dishes 招牌推介' },
+  };
+
   // --- DOM Cache ---
   const app = {
     nav: null,
@@ -80,9 +93,13 @@
 
     const btn = document.getElementById('palette-toggle');
     if (!btn) return;
+
+    var palettes = ['mongkok', ''];
+
     btn.addEventListener('click', function () {
-      const current = document.documentElement.getAttribute('data-palette');
-      const next = current === 'gold' ? '' : 'gold';
+      var current = document.documentElement.getAttribute('data-palette') || '';
+      var idx = palettes.indexOf(current);
+      var next = palettes[(idx + 1) % palettes.length];
       if (next) {
         document.documentElement.setAttribute('data-palette', next);
         localStorage.setItem('kamdo_palette', next);
@@ -349,12 +366,13 @@
     const r = menuData.restaurant;
     const hero = document.getElementById('hero');
 
-    // Check if hero image exists
+    // Check if hero image exists (classic palette only)
     const heroImagePath = 'assets/hero/hero-main.jpg';
     const img = new Image();
     img.onload = function () {
       hero.classList.remove('hero--no-image');
-      hero.querySelector('.hero__bg').style.backgroundImage = `url('${heroImagePath}')`;
+      const bg = hero.querySelector('.hero__bg');
+      if (bg) bg.style.backgroundImage = `url('${heroImagePath}')`;
     };
     img.onerror = function () {
       hero.classList.add('hero--no-image');
@@ -364,16 +382,84 @@
     // Default to no-image state
     hero.classList.add('hero--no-image');
 
+    // Build Mong Kok food collage: prefer featured items with images, fall back to any item
+    const collageItems = [];
+    for (const feat of (menuData.featured || [])) {
+      const it = findItem(feat.section_id, feat.item_code, feat.item_name);
+      if (it && it.image) collageItems.push(it);
+      if (collageItems.length >= 3) break;
+    }
+    // If fewer than 3, pad from any section's first items with images
+    if (collageItems.length < 3) {
+      for (const section of (menuData.sections || [])) {
+        const pool = section.items || (section.subsections || []).reduce((a, s) => a.concat(s.items || []), []);
+        for (const it of pool) {
+          if (collageItems.length >= 3) break;
+          if (it.image && !collageItems.includes(it)) collageItems.push(it);
+        }
+        if (collageItems.length >= 3) break;
+      }
+    }
+    const burstTexts = ['招牌!', '必食', '人氣#1'];
+    const burstClasses = ['', 'mk-starburst--tilt-right', ''];
+    const collage = collageItems.slice(0, 3).map(function (item, i) {
+      const priceTxt = item.price ? `$${item.price.toFixed(2)}` : '';
+      const nameShort = (item.name_zh || '').length > 7 ? item.name_zh.substring(0, 7) : item.name_zh;
+      return `
+        <figure class="hero-mk__dish hero-mk__dish--${i + 1}">
+          ${imageHtml(item.image, item.name_en, 'hero-mk__dish-img', 'hero-mk__dish-ph', item.name_zh.substring(0, 2))}
+          <div class="hero-mk__dish-name">${nameShort}</div>
+          <span class="mk-starburst ${burstClasses[i]} hero-mk__dish-burst">${burstTexts[i]}</span>
+          <span class="hero-mk__dish-price">${priceTxt}</span>
+        </figure>
+      `;
+    }).join('');
+
     hero.innerHTML = `
-      <div class="hero__bg"></div>
-      <div class="hero__watermark">${r.name_zh.substring(0, 2)}</div>
-      <div class="hero__content">
-        <p class="hero__tagline">Authentic Hong Kong Caf\u00e9</p>
-        <h1 class="hero__title-zh">${r.name_zh}</h1>
-        <p class="hero__title">${r.name_en}</p>
-        <p class="hero__description">${r.tagline_en}. Classic comfort food made fresh daily.</p>
-        <div class="hero__cta-row">
-          <a href="#breakfast" class="btn btn--primary">Browse Menu</a>
+      <!-- Classic hero layout (shown when palette is not mongkok) -->
+      <div class="hero__classic">
+        <div class="hero__bg"></div>
+        <div class="hero__watermark">${r.name_zh.substring(0, 2)}</div>
+        <div class="hero__content">
+          <p class="hero__tagline">Authentic Hong Kong Caf\u00e9</p>
+          <h1 class="hero__title-zh">${r.name_zh}</h1>
+          <p class="hero__title">${r.name_en}</p>
+          <p class="hero__description">${r.tagline_en}. Classic comfort food made fresh daily.</p>
+          <div class="hero__cta-row">
+            <a href="#breakfast" class="btn btn--primary">Browse Menu</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mong Kok hero layout (shown when palette is mongkok) -->
+      <div class="hero-mk">
+        <div class="hero-mk__inner">
+          <div class="hero-mk__left">
+            <div class="mk-vertical-cal hero-mk__big-name">金都茶餐廳</div>
+            <div class="hero-mk__signboard">
+              <span>KAM DO CAFE</span><span class="hero-mk__dot">·</span>
+              <span>RICHMOND BC</span><span class="hero-mk__dot">·</span>
+              <span>SINCE 1988</span>
+            </div>
+            <div class="hero-mk__status">營業中 · 8AM–7PM</div>
+            <a href="#breakfast" class="hero-mk__cta">落單 睇餐牌 →</a>
+          </div>
+          <div class="hero-mk__right">
+            <div class="mk-chop mk-chop--ring mk-chop--lg hero-mk__chop">
+              <span>正宗港式</span>
+              <small>AUTHENTIC HK</small>
+            </div>
+            <div class="hero-mk__collage">
+              ${collage}
+            </div>
+            <div class="mk-handwritten hero-mk__note">今日人氣之選 →</div>
+          </div>
+        </div>
+        <div class="mk-marquee hero-mk__marquee">
+          <div class="mk-marquee__track">
+            <span class="mk-marquee__item">🔥 全日早餐 · 奉送咖啡/茶 · 出前一丁任選 · 外賣 WhatsApp ☎ 604-000-0000 · 開業 1988 · 正宗港式 🔥</span>
+            <span class="mk-marquee__item">🔥 全日早餐 · 奉送咖啡/茶 · 出前一丁任選 · 外賣 WhatsApp ☎ 604-000-0000 · 開業 1988 · 正宗港式 🔥</span>
+          </div>
         </div>
       </div>
     `;
@@ -420,10 +506,10 @@
       return;
     }
 
+    const featImg = HEADER_IMAGES['featured'];
     app.featuredContainer.innerHTML = `
       <div class="featured__header">
-        <h2 class="featured__title">Signature Dishes</h2>
-        <p class="featured__subtitle">\u62db\u724c\u63a8\u4ecb</p>
+        <img class="section__header-img" src="${featImg.src}" alt="${featImg.alt}">
       </div>
       <div class="featured__grid">${cards}</div>
     `;
@@ -495,14 +581,33 @@
       ? `<p class="section__description">${section.description_en}</p>`
       : '';
 
+    const headerImg = HEADER_IMAGES[section.id];
+    const headerContent = headerImg
+      ? `<img class="section__header-img" src="${headerImg.src}" alt="${headerImg.alt}">`
+      : `<div class="section__number">${num}</div>
+         <h2 class="section__title">${section.title_en}</h2>
+         <p class="section__title-zh">${section.title_zh}</p>`;
+
+    // Mong Kok text-based section header (hidden in classic palette)
+    const mkHeader = `
+      <div class="section__header-mk">
+        <span class="section__header-mk-tape section__header-mk-tape--tl"></span>
+        <span class="section__header-mk-tape section__header-mk-tape--tr"></span>
+        <div class="section__header-mk-inner">
+          <h2 class="section__header-mk-zh">${section.title_zh}</h2>
+          <p class="section__header-mk-en">${section.title_en}</p>
+        </div>
+        ${section.description_zh ? `<p class="section__header-mk-sub">「${section.description_zh}」</p>` : ''}
+      </div>
+    `;
+
     return `
       <section class="section" id="${section.id}">
         <div class="section__header">
-          <div class="section__number">${num}</div>
-          <h2 class="section__title">${section.title_en}</h2>
-          <p class="section__title-zh">${section.title_zh}</p>
+          ${headerContent}
           ${descHtml}
         </div>
+        ${mkHeader}
         ${itemsHtml}
       </section>
     `;
@@ -550,8 +655,30 @@
       btnAttr = `data-add-item="${encodeURIComponent(JSON.stringify(baseData))}"`;
     }
 
+    // Mong Kok decorations (hidden in other palettes via CSS)
+    const chopChars = ['正', '好', '招', '人', '必', '靚'];
+    const chopSeed = item.code ? (item.code.charCodeAt(0) + (item.code.charCodeAt(1) || 0)) : 0;
+    const chop = chopChars[chopSeed % chopChars.length];
+    const isSignature = item.badge === 'Signature';
+    const burstText = item.badge === 'Signature' ? '招牌!'
+      : item.badge === 'New' ? '新品!'
+      : item.badge === 'Award' ? '得獎!'
+      : '';
+    const hasFreeDrink = customizations && customizations.some(function (c) {
+      return (c.label_zh || '').indexOf('飲') >= 0
+        && c.options && c.options.some(function (o) { return o.price === 0; });
+    });
+    const mkDecorations = `
+      <div class="menu-item__mk">
+        ${item.code ? `<span class="menu-item__mk-code mk-code-sticker">${item.code}</span>` : ''}
+        <span class="menu-item__mk-chop mk-chop mk-chop--square">${chop}</span>
+        ${burstText ? `<span class="menu-item__mk-burst mk-starburst mk-starburst--sm">${burstText}</span>` : ''}
+      </div>
+    `;
+
     return `
-      <li class="menu-item">
+      <li class="menu-item${isSignature ? ' menu-item--signature' : ''}">
+        ${mkDecorations}
         ${imgHtml}
         <div class="menu-item__info">
           <div>
@@ -559,9 +686,11 @@
             <div class="menu-item__name-en">${escapeHtml(item.name_en)}</div>
             ${note}
             ${badges}
+            ${hasFreeDrink ? '<span class="menu-item__mk-tag mk-tag-green">配奉送飲</span>' : ''}
           </div>
           <div class="menu-item__right">
             <span class="menu-item__price">$${item.price.toFixed(2)}</span>
+            <span class="menu-item__mk-good mk-good-sticker">GOOD</span>
             <button class="menu-item__add-btn" ${btnAttr} aria-label="Add to cart">+</button>
           </div>
         </div>
@@ -603,12 +732,17 @@
       `;
     }
 
+    const headerImg = HEADER_IMAGES[section.id];
+    const headerContent = headerImg
+      ? `<img class="section__header-img" src="${headerImg.src}" alt="${headerImg.alt}">`
+      : `<div class="section__number">${num}</div>
+         <h2 class="section__title">${section.title_en}</h2>
+         <p class="section__title-zh">${section.title_zh}</p>`;
+
     return `
       <section class="section" id="${section.id}">
         <div class="section__header">
-          <div class="section__number">${num}</div>
-          <h2 class="section__title">${section.title_en}</h2>
-          <p class="section__title-zh">${section.title_zh}</p>
+          ${headerContent}
         </div>
         <table class="drinks-table">
           <thead>
