@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kam Do Cafe — Signature Spread (v3)</title>
+
+<!--
+==========================================================================
+  V3: SIGNATURE SPREAD
+  --------------------------------------------------------------------
+  Aesthetic: Bold Instagram/cookbook contents-page energy. Dense with
+  offerings. Feels like a menu spread opened in a magazine —
+  4 numbered product tiles on the right, muscular brand statement
+  on the left anchored by a big cinnabar red block.
+
+  Core ideas:
+   • Half-page red block with cream brand typography inside (loud)
+   • Asymmetric 4-tile product grid on the right
+   • Gold circular number tags (01, 02, 03, 04) like a recipe index
+   • Archivo Black for extra brand attitude
+   • Price tags visible on each tile — commercial confidence
+   • Bigger typographic contrast: huge + tiny, no middle
+
+  Differentiation: Feels like a proper bakery's Instagram grid
+  compressed into a hero. Product-forward, confident, modern.
+==========================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ================== TOKENS ================== */
+:root {
+  --kd-red:          #C8312D;
+  --kd-red-dark:     #9E2521;
+  --kd-gold:         #D9A548;
+  --kd-gold-light:   #EEBD5E;
+  --kd-cream:        #F5EFE6;
+  --kd-cream-warm:   #EDE6D8;
+  --kd-white:        #FDFAF3;
+  --kd-ink:          #1A1610;
+  --kd-charcoal:     #4A3F2E;
+  --kd-stone:        #8B7A5F;
+  --kd-egg:          #F5C443;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  min-height: 100%;
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--kd-cream);
+  color: var(--kd-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ================== NAV ================== */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--kd-cream);
+  padding: 16px 40px;
+  border-bottom: 1px solid rgba(26, 22, 16, 0.08);
+}
+.nav__inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 40px;
+}
+.nav__brand {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.nav__logo {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px var(--kd-cream), 0 0 0 3px var(--kd-gold);
+}
+.nav__brand-zh {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--kd-ink);
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+.nav__brand-en {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--kd-red);
+  margin-top: 3px;
+}
+.nav__links {
+  display: flex; gap: 28px; justify-self: center;
+  list-style: none;
+}
+.nav__links a {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--kd-charcoal);
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 0.2s;
+}
+.nav__links a:hover { color: var(--kd-red); }
+.nav__actions { display: flex; gap: 16px; align-items: center; }
+.nav__cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--kd-ink);
+  color: var(--kd-white);
+  border: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.nav__cart:hover { background: var(--kd-red); }
+.nav__cart-count {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; height: 18px;
+  padding: 0 5px;
+  background: var(--kd-gold);
+  color: var(--kd-ink);
+  border-radius: 9px;
+  font-size: 10px;
+}
+
+/* ================== HERO ================== */
+.hero {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  min-height: calc(100vh - 77px);
+}
+
+/* ---- LEFT: Brand manifesto with red block ---- */
+.hero__left {
+  position: relative;
+  background: var(--kd-cream);
+  padding: 56px 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* THE red block — anchors the whole page */
+.hero__redbox {
+  background: var(--kd-red);
+  padding: 48px 44px;
+  margin-bottom: 36px;
+  position: relative;
+  color: var(--kd-white);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+}
+/* Gold corner badge top-left of red block */
+.hero__redbox-stamp {
+  position: absolute;
+  top: -14px;
+  left: 44px;
+  width: 72px; height: 72px;
+  background: var(--kd-gold);
+  border: 3px solid var(--kd-cream);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--kd-ink);
+  text-align: center;
+  line-height: 1;
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900;
+}
+.hero__redbox-stamp-zh { font-size: 24px; letter-spacing: -0.04em; }
+.hero__redbox-stamp-en {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 7px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 3px;
+  color: var(--kd-ink);
+}
+
+.hero__redbox-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 20px;
+  margin-top: 32px;
+}
+
+.hero__title-zh {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900;
+  font-size: clamp(72px, 8vw, 128px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+}
+.hero__title-zh span {
+  display: inline-block;
+  padding: 0 8px;
+}
+.hero__title-zh-small {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 700;
+  font-size: clamp(26px, 2.8vw, 40px);
+  letter-spacing: 0.18em;
+  opacity: 0.9;
+}
+
+.hero__title-en {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(20px, 2.3vw, 30px);
+  letter-spacing: 0.04em;
+  margin-top: 24px;
+}
+.hero__title-en-sub {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-top: 6px;
+}
+
+/* Below the red block: taglines and CTAs */
+.hero__body {
+  padding: 0 8px;
+}
+.hero__tagline {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--kd-ink);
+  max-width: 480px;
+  margin-bottom: 10px;
+}
+.hero__tagline-en {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--kd-charcoal);
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.hero__ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 30px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn--primary {
+  background: var(--kd-ink);
+  color: var(--kd-white);
+  border: 2px solid var(--kd-ink);
+}
+.btn--primary:hover { background: var(--kd-red); border-color: var(--kd-red); }
+.btn--gold {
+  background: transparent;
+  color: var(--kd-ink);
+  border: 2px solid var(--kd-gold);
+}
+.btn--gold:hover { background: var(--kd-gold); }
+
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px;
+  background: var(--kd-cream-warm);
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--kd-charcoal);
+}
+.hero__status-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #2E7D32;
+  animation: breathe 2.2s ease-in-out infinite;
+}
+@keyframes breathe { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.85); } }
+
+/* ---- RIGHT: Asymmetric product grid ---- */
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1.35fr 1fr;
+  gap: 2px;
+  background: var(--kd-ink);
+}
+.tile {
+  position: relative;
+  overflow: hidden;
+  background: var(--kd-cream-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+.tile:hover { background: var(--kd-white); }
+
+/* Spans for asymmetric grid */
+.tile--hero {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3; /* tall column on left */
+  background: var(--kd-white);
+}
+.tile--02 { grid-column: 2; grid-row: 1; background: var(--kd-gold-light); }
+.tile--03 { grid-column: 2; grid-row: 2; background: var(--kd-cream-warm); }
+
+/* Gold number tag on each tile */
+.tile__number {
+  position: absolute;
+  top: 20px; left: 20px;
+  width: 44px; height: 44px;
+  background: var(--kd-ink);
+  color: var(--kd-gold-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  z-index: 3;
+}
+.tile--hero .tile__number { background: var(--kd-red); color: var(--kd-white); }
+
+/* Price badge top-right */
+.tile__price {
+  position: absolute;
+  top: 24px; right: 20px;
+  z-index: 3;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 16px;
+  color: var(--kd-ink);
+  letter-spacing: -0.02em;
+}
+.tile--hero .tile__price {
+  font-size: 24px;
+  padding: 6px 12px;
+  background: var(--kd-gold);
+}
+
+.tile__caption {
+  position: absolute;
+  left: 20px; bottom: 20px;
+  right: 20px;
+  z-index: 3;
+}
+.tile__caption-zh {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--kd-ink);
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+}
+.tile--hero .tile__caption-zh { font-size: 24px; }
+.tile__caption-en {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--kd-stone);
+  margin-top: 4px;
+}
+.tile--hero .tile__caption-en { font-size: 11px; color: var(--kd-red); }
+
+/* Product illustrations — one per tile, each tailored */
+/* TILE 1: Pineapple bun (hero product, largest) */
+.bun-art { position: relative; width: 80%; aspect-ratio: 1; max-width: 360px; }
+.bun-art__plate {
+  position: absolute; inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 30% 28%, #FDFAF3 0%, #EDE6D8 72%, #D0C4AC 100%);
+}
+.bun-art__bun-bottom {
+  position: absolute;
+  left: 22%; right: 22%; top: 48%;
+  height: 22%;
+  background: linear-gradient(180deg, #F5E4C5 0%, #E0C99A 100%);
+  border-radius: 50% 50% 22% 22% / 40% 40% 22% 22%;
+}
+.bun-art__egg {
+  position: absolute;
+  left: 20%; right: 20%; top: 44%;
+  height: 18%;
+  background: linear-gradient(180deg, #F5C443 0%, #E0A020 100%);
+  border-radius: 50% 50% 30% 30% / 60% 60% 30% 30%;
+}
+.bun-art__ham {
+  position: absolute;
+  left: 26%; right: 26%; top: 50%;
+  height: 8%;
+  background: linear-gradient(180deg, #D88878 0%, #BE6058 100%);
+  border-radius: 4px;
+}
+.bun-art__bun-top {
+  position: absolute;
+  left: 14%; right: 14%; top: 22%;
+  height: 40%;
+  background:
+    radial-gradient(circle at 35% 40%, rgba(112, 60, 10, 0.4) 0%, transparent 15%),
+    radial-gradient(circle at 62% 52%, rgba(112, 60, 10, 0.4) 0%, transparent 14%),
+    linear-gradient(180deg, #E0A033 0%, #B87010 100%);
+  border-radius: 52% 52% 35% 35% / 65% 65% 35% 35%;
+  box-shadow:
+    inset -10px -8px 22px rgba(95, 50, 8, 0.3),
+    inset 10px 8px 24px rgba(255, 220, 155, 0.4);
+}
+.bun-art__bun-top::before {
+  content: ''; position: absolute; inset: 8%;
+  background:
+    linear-gradient(60deg, transparent 48%, rgba(95, 50, 8, 0.3) 49%, rgba(95, 50, 8, 0.3) 51%, transparent 52%),
+    linear-gradient(-60deg, transparent 48%, rgba(95, 50, 8, 0.3) 49%, rgba(95, 50, 8, 0.3) 51%, transparent 52%);
+  background-size: 40px 40px;
+  border-radius: 52% 52% 35% 35% / 65% 65% 35% 35%;
+  mix-blend-mode: multiply;
+}
+
+/* TILE 2: Iced milk tea — tall translucent cup */
+.tea-art {
+  position: relative;
+  width: 45%;
+  aspect-ratio: 0.56;
+  max-width: 120px;
+  margin: 0 auto;
+}
+.tea-art__cup {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #D4A373 0%, #9E6B44 60%, #6D4528 100%);
+  clip-path: polygon(6% 4%, 94% 4%, 88% 100%, 12% 100%);
+  border-radius: 0;
+}
+.tea-art__ice {
+  position: absolute;
+  top: 8%; left: 10%; right: 10%;
+  height: 36%;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 60%);
+  clip-path: polygon(6% 0, 94% 0, 88% 100%, 12% 100%);
+}
+.tea-art__lid {
+  position: absolute;
+  top: -5%;
+  left: 2%; right: 2%;
+  height: 12%;
+  background: var(--kd-ink);
+  border-radius: 4px;
+}
+.tea-art__straw {
+  position: absolute;
+  top: -12%; left: 48%;
+  width: 4px; height: 30%;
+  background: var(--kd-red);
+}
+
+/* TILE 3: Egg tart — rosette with egg center */
+.tart-art {
+  position: relative;
+  width: 60%;
+  aspect-ratio: 1;
+  max-width: 160px;
+  margin: 0 auto;
+}
+.tart-art__crust {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(from 0deg,
+      #D9A548 0deg, #B8842C 8deg, #D9A548 16deg),
+    #C89E40;
+  box-shadow: inset 0 -8px 18px rgba(112, 70, 20, 0.25), 0 6px 14px rgba(112, 70, 20, 0.25);
+}
+.tart-art__egg {
+  position: absolute; inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 38% 32%,
+    #FDE089 0%, #F5C443 45%, #E0A020 100%);
+  box-shadow: inset 0 -6px 14px rgba(160, 110, 15, 0.25);
+}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero__grid { grid-template-rows: 340px 220px; }
+}
+@media (max-width: 640px) {
+  .nav { padding: 12px 16px; }
+  .nav__links { display: none; }
+  .nav__inner { gap: 0; justify-content: space-between; }
+  .hero__left { padding: 36px 24px; }
+  .hero__redbox { padding: 36px 24px; }
+  .hero__title-zh { font-size: 56px; }
+  .hero__tagline { font-size: 17px; }
+  .btn { font-size: 12px; padding: 14px 22px; letter-spacing: 0.1em; }
+  .hero__ctas { flex-direction: column; align-items: stretch; }
+  .btn { justify-content: center; }
+  .hero__grid { grid-template-rows: 280px 180px; }
+  .tile { padding: 20px; }
+  .tile__number { width: 34px; height: 34px; font-size: 13px; top: 14px; left: 14px; }
+  .tile__price { top: 16px; right: 14px; font-size: 14px; }
+  .tile--hero .tile__price { font-size: 18px; padding: 5px 10px; }
+  .tile__caption { left: 14px; bottom: 14px; right: 14px; }
+  .tile__caption-zh { font-size: 14px; }
+  .tile--hero .tile__caption-zh { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#">
+      <img class="nav__logo" src="../assets/logo/kam-do-logo.jpg" alt="Kam Do">
+      <div>
+        <div class="nav__brand-zh">金都茶餐廳</div>
+        <div class="nav__brand-en">Kam Do Cafe · Richmond BC</div>
+      </div>
+    </a>
+
+    <ul class="nav__links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#signature">Signature</a></li>
+      <li><a href="#catering">Catering</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav__actions">
+      <a class="nav__cart" href="#cart">
+        Cart
+        <span class="nav__cart-count">2</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <!-- LEFT: Red block brand statement -->
+  <div class="hero__left">
+    <div class="hero__redbox">
+      <div class="hero__redbox-stamp">
+        <div class="hero__redbox-stamp-zh">金都</div>
+        <div class="hero__redbox-stamp-en">Est. 1988</div>
+      </div>
+
+      <div class="hero__redbox-label">Hong Kong · Richmond BC</div>
+
+      <h1 class="hero__title-zh">
+        <span>金</span><span>都</span>
+      </h1>
+      <div class="hero__title-zh-small">茶 餐 廳</div>
+
+      <div class="hero__title-en">KAM DO CAFE.</div>
+      <div class="hero__title-en-sub">Since 1988 · No.3 Road</div>
+    </div>
+
+    <div class="hero__body">
+      <p class="hero__tagline">
+        茶記飯仔、菠蘿包出爐、奶茶熱飲。<br>
+        港式早午餐 · 到會外送。
+      </p>
+      <p class="hero__tagline-en">
+        All-day Hong Kong breakfast, fresh-baked pineapple buns, and hand-pulled milk tea — made on No.3 Road, Richmond BC.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="#menu" class="btn btn--primary">
+          落單睇餐牌 →
+        </a>
+        <a href="#whatsapp" class="btn btn--gold">
+          WhatsApp 訂餐
+        </a>
+      </div>
+
+      <div class="hero__status">
+        <span class="hero__status-dot"></span>
+        <span>Open · 營業中 · 8AM — 7PM</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: 3-tile asymmetric grid (1 hero + 2 secondary) -->
+  <div class="hero__grid">
+    <!-- Tile 01 — Pineapple bun signature (tall) -->
+    <div class="tile tile--hero">
+      <div class="tile__number">01</div>
+      <div class="tile__price">$6.50</div>
+      <div class="bun-art">
+        <div class="bun-art__plate"></div>
+        <div class="bun-art__bun-bottom"></div>
+        <div class="bun-art__ham"></div>
+        <div class="bun-art__egg"></div>
+        <div class="bun-art__bun-top"></div>
+      </div>
+      <div class="tile__caption">
+        <div class="tile__caption-zh">菠蘿包蛋腿</div>
+        <div class="tile__caption-en">Signature · Pineapple Bun</div>
+      </div>
+    </div>
+
+    <!-- Tile 02 — Iced milk tea -->
+    <div class="tile tile--02">
+      <div class="tile__number">02</div>
+      <div class="tile__price">$5.25</div>
+      <div class="tea-art">
+        <div class="tea-art__cup"></div>
+        <div class="tea-art__ice"></div>
+        <div class="tea-art__lid"></div>
+        <div class="tea-art__straw"></div>
+      </div>
+      <div class="tile__caption">
+        <div class="tile__caption-zh">凍奶茶</div>
+        <div class="tile__caption-en">HK Iced Milk Tea</div>
+      </div>
+    </div>
+
+    <!-- Tile 03 — Egg tart -->
+    <div class="tile tile--03">
+      <div class="tile__number">03</div>
+      <div class="tile__price">$2.80</div>
+      <div class="tart-art">
+        <div class="tart-art__crust"></div>
+        <div class="tart-art__egg"></div>
+      </div>
+      <div class="tile__caption">
+        <div class="tile__caption-zh">蛋撻</div>
+        <div class="tile__caption-en">Egg Tart · Daily</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

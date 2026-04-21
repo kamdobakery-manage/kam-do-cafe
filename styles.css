@@ -11,8 +11,8 @@
   --color-surface-alt: #FCF4EC;
   --color-surface-warm: #F2E8DC;
   --color-text: #4A1520;
-  --color-text-secondary: #7A3B42;
-  --color-text-tertiary: #9E6B6B;
+  --color-text-secondary: #6B2A34;
+  --color-text-tertiary: #7A4A4A;
   --color-accent: #B08D3E;
   --color-accent-light: #C8A855;
   --color-accent-bg: rgba(176, 141, 62, 0.08);
@@ -53,6 +53,20 @@
   --max-width: 1200px;
   --nav-height: 64px;
   --border-radius: 10px;
+
+  /* Shared tokens (palette-agnostic, may be overridden) */
+  --color-on-accent: #FFF8F0;
+  --cta-shadow-rgb: 216, 125, 74;
+
+  /* Type scale */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 15px;
+  --text-md: 17px;
+  --text-lg: 20px;
+  --text-xl: 26px;
+  --text-2xl: 36px;
+  --text-3xl: 52px;
 }
 
 /* --- Palette: 古銅沙金 (Antique Sand Gold) --- HIDDEN
@@ -148,49 +162,78 @@
 }
 */
 
-/* --- Palette: 旺角街市 (Mong Kok Street Market) --- ACTIVE DEFAULT */
-[data-palette="mongkok"] {
-  /* Base cream + punchy red/yellow — bustling cha chaan teng vibe */
-  --color-bg: #FBF4E6;
-  --color-surface: #FFFAF0;
-  --color-surface-alt: #FFF5E0;
-  --color-surface-warm: #F5B94A;
-  --color-surface-card: #FFFAF0;
-  --color-text: #1A1410;
-  --color-text-secondary: #3D2817;
-  --color-text-tertiary: #6B4E2E;
-  --color-accent: #D42C2C;
-  --color-accent-light: #F5B94A;
-  --color-accent-bg: rgba(212, 44, 44, 0.06);
-  --color-accent-cta: #D42C2C;
-  --color-divider: #D42C2C;
-  --color-border: #D42C2C;
-  --color-border-light: #F2E3C0;
-  --color-badge-new: #E85A2C;
-  --color-badge-signature: #F5B94A;
-  --color-success: #2E7D32;
-  --color-cart-bg: #FFFAF0;
-  --color-cart-text: #1A1410;
-  --color-brand-red: #D42C2C;
-  --color-brand-red-dark: #B81C1C;
-  --color-brand-red-light: #E85A2C;
+/* --- Palette: 金都原味 (Kam Do Classic — V2 Storefront Window: honey-cream + gold + cinnabar) --- ACTIVE DEFAULT */
+[data-palette="kamdo-classic"] {
+  /* V2 direction: warm honey cream + gold frames + bright cinnabar from logo */
+
+  /* KD tokens (source of truth) */
+  --kd-red:         #C8312D;   /* logo cinnabar */
+  --kd-red-dark:    #9E2521;   /* hover / deep accents */
+  --kd-red-soft:    #E06662;   /* softer red for highlights */
+  --kd-gold:        #D9A548;   /* logo gold */
+  --kd-gold-light:  #EEBD5E;   /* highlights */
+  --kd-gold-dark:   #A67A2E;   /* deep gold */
+  --kd-cream:       #F0E8D5;   /* main honey-leaning cream */
+  --kd-cream-warm:  #E8DFC6;   /* secondary surface */
+  --kd-paper:       #F6EFDA;   /* card / surface paper */
+  --kd-white:       #FDFAF3;   /* near-white */
+  --kd-mist:        #E0DCD6;   /* cool grey drift */
+  --kd-ink:         #1A1610;   /* deep black */
+  --kd-charcoal:    #4A3F2E;   /* secondary text */
+  --kd-stone:       #8B7A5F;   /* tertiary text */
+  --kd-kraft:       #B08658;   /* kraft paper accent */
+  --kd-egg:         #F5C443;   /* egg yolk accent */
+  --kd-pink:        #E8B8B8;   /* soft pink accent */
+  --kd-green:       #2E7D32;   /* success / WhatsApp */
+
+  /* Legacy color-* token mappings */
+  --color-bg:              var(--kd-cream);
+  --color-surface:         var(--kd-paper);
+  --color-surface-alt:     var(--kd-cream-warm);
+  --color-surface-warm:    var(--kd-gold-light);
+  --color-surface-card:    var(--kd-paper);
+  --color-text:            var(--kd-ink);
+  --color-text-secondary:  var(--kd-charcoal);
+  --color-text-tertiary:   var(--kd-stone);
+  --color-text-on-yellow:  var(--kd-ink);
+  --color-accent:          var(--kd-red);
+  --color-accent-light:    var(--kd-gold);
+  --color-accent-bg:       rgba(200, 49, 45, 0.06);
+  --color-accent-cta:      var(--kd-red);
+  --color-divider:         rgba(26, 22, 16, 0.12);
+  --color-border:          rgba(217, 165, 72, 0.5);
+  --color-border-light:    rgba(217, 165, 72, 0.25);
+  --color-badge-new:       var(--kd-red-soft);
+  --color-badge-signature: var(--kd-gold);
+  --color-success:         var(--kd-green);
+  --color-cart-bg:         var(--kd-paper);
+  --color-cart-text:       var(--kd-ink);
+  --color-brand-red:       var(--kd-red);
+  --color-brand-red-dark:  var(--kd-red-dark);
+  --color-brand-red-light: var(--kd-red-soft);
   --color-pink-check: transparent;
-  --color-shadow-rgb: 26, 20, 16;
+  --color-shadow-rgb: 26, 22, 16;
   --color-overlay-rgb: 20, 15, 10;
+  --cta-shadow-rgb: 200, 49, 45;
+  --color-on-accent: var(--kd-paper);
 
-  /* Extra tokens unique to Mong Kok palette */
-  --mk-yellow: #F5B94A;
-  --mk-red: #D42C2C;
-  --mk-chop: #B81C1C;
-  --mk-ink: #1A1410;
-  --mk-green: #2E7D32;
-  --mk-orange: #E85A2C;
-  --mk-cream: #FBF4E6;
+  /* Legacy mk-* aliases (kept so existing CSS selectors still work) */
+  --mk-red:         var(--kd-red);
+  --mk-red-bright:  var(--kd-red-soft);
+  --mk-chop:        var(--kd-red-dark);
+  --mk-gold:        var(--kd-gold);
+  --mk-gold-light:  var(--kd-gold-light);
+  --mk-yellow:      var(--kd-gold-light);
+  --mk-ink:         var(--kd-ink);
+  --mk-green:       var(--kd-green);
+  --mk-orange:      #B8563C;
+  --mk-cream:       var(--kd-cream);
 
-  /* Typography overrides */
+  /* Typography overrides — V2 introduces Playfair Display for editorial serif */
   --font-display: 'Noto Serif TC', 'Kaiti SC', 'STKaiti', serif;
+  --font-display-en: 'Playfair Display', 'Noto Serif TC', serif;
   --font-body: 'Noto Sans TC', 'DM Sans', -apple-system, sans-serif;
-  --font-handwritten: 'Ma Shan Zheng', 'Noto Serif TC', cursive;
+  --font-handwritten: 'Playfair Display', 'Noto Serif TC', serif; /* handwritten retired — fallback to serif italic */
   --font-price: 'Archivo Black', 'Oswald', sans-serif;
   --font-english-display: 'Oswald', 'Bebas Neue', sans-serif;
 }
@@ -765,11 +808,11 @@ button {
 
 /* Classic layout shown by default, hidden in mongkok palette */
 .hero__classic { display: contents; }
-[data-palette="mongkok"] .hero__classic { display: none; }
+[data-palette="kamdo-classic"] .hero__classic { display: none; }
 
 /* Mong Kok layout hidden by default */
 .hero-mk { display: none; }
-[data-palette="mongkok"] .hero-mk {
+[data-palette="kamdo-classic"] .hero-mk {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -779,7 +822,7 @@ button {
 }
 
 /* Mong Kok: flatten the hero container and use cream paper */
-[data-palette="mongkok"] .hero {
+[data-palette="kamdo-classic"] .hero {
   background: var(--mk-cream, #FBF4E6);
   background-image: radial-gradient(circle at 1px 1px, rgba(184, 28, 28, 0.06) 1px, transparent 0);
   background-size: 16px 16px;
@@ -788,19 +831,20 @@ button {
   display: block;
 }
 
-[data-palette="mongkok"] .hero-mk__inner {
+[data-palette="kamdo-classic"] .hero-mk__inner {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: 1.5rem;
-  max-width: 1440px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 2.5rem;
+  max-width: 1680px;
   margin: 0 auto;
-  padding: 1.5rem 2rem 2rem;
-  align-items: start;
+  padding: 2rem 3rem 2.5rem;
+  align-items: center;
   position: relative;
   flex: 1;
+  min-height: calc(100vh - var(--nav-height) - 60px);
 }
 
-[data-palette="mongkok"] .hero-mk__left {
+[data-palette="kamdo-classic"] .hero-mk__left {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -808,17 +852,42 @@ button {
   padding-top: 0.5rem;
 }
 
-[data-palette="mongkok"] .hero-mk__big-name {
-  font-size: clamp(3rem, 5.5vw, 5rem);
-  margin-bottom: 1rem;
+/* Hero watermark — faint No.3 Road Richmond rainy dusk (requires assets/hero/hero-kamdo-bg.jpg) */
+[data-palette="kamdo-classic"] .hero-mk__left::before {
+  content: '';
+  position: absolute;
+  inset: -1.5rem -1rem;
+  background-image: url('assets/hero/hero-kamdo-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  /* Graceful fallback: if image 404s, nothing shows (no colored box) */
+  background-color: transparent;
+}
+[data-palette="kamdo-classic"] .hero-mk__left > * {
+  position: relative;
+  z-index: 1;
+}
+
+[data-palette="kamdo-classic"] .hero-mk__big-name {
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  margin-bottom: 1.2rem;
   text-align: left;
   line-height: 1;
   height: auto;
   white-space: nowrap;
   overflow: visible;
+  color: var(--mk-chop);
+  text-shadow:
+    3px 3px 0 var(--mk-gold),
+    4px 4px 0 rgba(26, 20, 16, 0.5);
 }
 
-[data-palette="mongkok"] .hero-mk__signboard {
+[data-palette="kamdo-classic"] .hero-mk__signboard {
   background: var(--mk-yellow, #F5B94A);
   border: 3px solid var(--mk-red, #D42C2C);
   padding: 8px 16px;
@@ -834,12 +903,12 @@ button {
   box-shadow: 3px 3px 0 var(--mk-chop, #B81C1C);
 }
 
-[data-palette="mongkok"] .hero-mk__dot {
+[data-palette="kamdo-classic"] .hero-mk__dot {
   color: var(--mk-red, #D42C2C);
   font-weight: 900;
 }
 
-[data-palette="mongkok"] .hero-mk__status {
+[data-palette="kamdo-classic"] .hero-mk__status {
   background: var(--mk-green, #2E7D32);
   color: #fff;
   padding: 8px 14px;
@@ -852,7 +921,7 @@ button {
   box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
 }
 
-[data-palette="mongkok"] .hero-mk__cta {
+[data-palette="kamdo-classic"] .hero-mk__cta {
   display: inline-block;
   background: var(--mk-red, #D42C2C);
   color: var(--mk-yellow, #F5B94A);
@@ -865,69 +934,76 @@ button {
   box-shadow: 4px 4px 0 var(--mk-ink, #1A1410);
   transition: transform 0.15s;
 }
-[data-palette="mongkok"] .hero-mk__cta:hover {
+[data-palette="kamdo-classic"] .hero-mk__cta:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--mk-ink, #1A1410);
 }
 
-[data-palette="mongkok"] .hero-mk__right {
+[data-palette="kamdo-classic"] .hero-mk__right {
   position: relative;
-  min-height: 440px;
-  padding: 1rem 1rem 2rem;
+  min-height: 520px;
+  padding: 1rem 1.5rem 2rem;
 }
 
-[data-palette="mongkok"] .hero-mk__chop {
+[data-palette="kamdo-classic"] .hero-mk__chop {
   position: absolute;
   top: -10px;
-  right: 0;
+  right: 10px;
   z-index: 4;
 }
 
-[data-palette="mongkok"] .hero-mk__collage {
+[data-palette="kamdo-classic"] .hero-mk__collage {
   position: relative;
   width: 100%;
-  height: 420px;
+  height: 540px;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
-[data-palette="mongkok"] .hero-mk__dish {
+[data-palette="kamdo-classic"] .hero-mk__dish {
   position: absolute;
-  width: 180px;
+  width: 240px;
   background: var(--mk-cream, #FBF4E6);
-  border: 3px solid var(--mk-red, #D42C2C);
-  padding: 5px 5px 8px;
-  box-shadow: 5px 5px 0 rgba(26, 20, 16, 0.12);
-  transition: transform 0.25s;
+  border: 3px solid var(--mk-red);
+  padding: 6px 6px 10px;
+  box-shadow:
+    5px 5px 0 var(--mk-gold),
+    5px 5px 0 1px var(--mk-ink);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-[data-palette="mongkok"] .hero-mk__dish:hover {
+[data-palette="kamdo-classic"] .hero-mk__dish:hover {
   transform: translateY(-4px) rotate(0) !important;
   z-index: 10;
+  box-shadow:
+    7px 7px 0 var(--mk-gold),
+    7px 7px 0 1px var(--mk-ink);
 }
 
-[data-palette="mongkok"] .hero-mk__dish--1 {
-  top: 0; left: 10px;
+[data-palette="kamdo-classic"] .hero-mk__dish--1 {
+  top: 10px; left: 0;
   transform: rotate(-5deg);
   z-index: 3;
 }
-[data-palette="mongkok"] .hero-mk__dish--2 {
-  top: 80px; left: 210px;
+[data-palette="kamdo-classic"] .hero-mk__dish--2 {
+  top: 80px; right: 0; left: auto;
   transform: rotate(4deg);
   z-index: 2;
 }
-[data-palette="mongkok"] .hero-mk__dish--3 {
-  top: 210px; left: 70px;
+[data-palette="kamdo-classic"] .hero-mk__dish--3 {
+  top: 290px; left: 28%;
   transform: rotate(-2deg);
-  z-index: 1;
+  z-index: 4;
 }
 
-[data-palette="mongkok"] .hero-mk__dish-img,
-[data-palette="mongkok"] .hero-mk__dish-ph {
+[data-palette="kamdo-classic"] .hero-mk__dish-img,
+[data-palette="kamdo-classic"] .hero-mk__dish-ph {
   display: block;
   width: 100%;
-  height: 130px;
+  height: 160px;
   object-fit: cover;
-  background: var(--mk-yellow, #F5B94A);
+  background: var(--mk-yellow);
 }
-[data-palette="mongkok"] .hero-mk__dish-ph {
+[data-palette="kamdo-classic"] .hero-mk__dish-ph {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -937,7 +1013,7 @@ button {
   color: var(--mk-ink, #1A1410);
 }
 
-[data-palette="mongkok"] .hero-mk__dish-name {
+[data-palette="kamdo-classic"] .hero-mk__dish-name {
   text-align: center;
   padding: 8px 4px 0;
   font-family: var(--font-display, 'Noto Serif TC'), serif;
@@ -947,28 +1023,32 @@ button {
   letter-spacing: 0.02em;
 }
 
-[data-palette="mongkok"] .hero-mk__dish-price {
+[data-palette="kamdo-classic"] .hero-mk__dish-price {
   position: absolute;
-  right: -14px;
-  bottom: -12px;
-  background: var(--mk-red, #D42C2C);
-  color: #fff;
+  right: -10px;
+  top: 8px;
+  background: var(--mk-red);
+  color: var(--mk-gold-light);
   font-family: var(--font-price, 'Archivo Black'), sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   padding: 6px 10px;
-  border: 2px solid var(--mk-chop, #B81C1C);
+  border: 2px solid var(--mk-gold);
   transform: rotate(6deg);
-  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+  box-shadow:
+    2px 2px 0 var(--mk-chop),
+    3px 3px 0 rgba(26, 20, 16, 0.18);
+  z-index: 3;
+  letter-spacing: 0.02em;
 }
 
-[data-palette="mongkok"] .hero-mk__dish-burst {
+[data-palette="kamdo-classic"] .hero-mk__dish-burst {
   position: absolute;
   top: -26px;
   left: -20px;
   z-index: 5;
 }
 
-[data-palette="mongkok"] .hero-mk__note {
+[data-palette="kamdo-classic"] .hero-mk__note {
   position: absolute;
   bottom: 12px;
   right: 30px;
@@ -978,18 +1058,18 @@ button {
   color: var(--mk-chop, #B81C1C);
 }
 
-[data-palette="mongkok"] .hero-mk__marquee {
+[data-palette="kamdo-classic"] .hero-mk__marquee {
   margin-top: auto;
 }
 
 /* Mobile hero layout */
 @media (max-width: 820px) {
-  [data-palette="mongkok"] .hero-mk__inner {
+  [data-palette="kamdo-classic"] .hero-mk__inner {
     grid-template-columns: 1fr;
     gap: 0;
     padding: 1.5rem 1rem 2rem;
   }
-  [data-palette="mongkok"] .hero-mk__big-name {
+  [data-palette="kamdo-classic"] .hero-mk__big-name {
     font-size: clamp(2.5rem, 14vw, 5rem);
     writing-mode: horizontal-tb;
     margin-bottom: 0.75rem;
@@ -997,35 +1077,35 @@ button {
     text-align: center;
     width: 100%;
   }
-  [data-palette="mongkok"] .hero-mk__left {
+  [data-palette="kamdo-classic"] .hero-mk__left {
     text-align: center;
     align-items: center;
   }
-  [data-palette="mongkok"] .hero-mk__signboard {
+  [data-palette="kamdo-classic"] .hero-mk__signboard {
     font-size: 0.72rem;
     padding: 6px 10px;
     gap: 6px;
   }
-  [data-palette="mongkok"] .hero-mk__right {
+  [data-palette="kamdo-classic"] .hero-mk__right {
     min-height: 460px;
     margin-top: 1rem;
   }
-  [data-palette="mongkok"] .hero-mk__collage {
+  [data-palette="kamdo-classic"] .hero-mk__collage {
     height: 460px;
   }
-  [data-palette="mongkok"] .hero-mk__dish {
+  [data-palette="kamdo-classic"] .hero-mk__dish {
     width: 46%;
   }
-  [data-palette="mongkok"] .hero-mk__dish--1 {
+  [data-palette="kamdo-classic"] .hero-mk__dish--1 {
     top: 10px; left: 4%;
   }
-  [data-palette="mongkok"] .hero-mk__dish--2 {
+  [data-palette="kamdo-classic"] .hero-mk__dish--2 {
     top: 130px; left: 50%;
   }
-  [data-palette="mongkok"] .hero-mk__dish--3 {
+  [data-palette="kamdo-classic"] .hero-mk__dish--3 {
     top: 270px; left: 25%;
   }
-  [data-palette="mongkok"] .hero-mk__chop {
+  [data-palette="kamdo-classic"] .hero-mk__chop {
     top: -6px;
     right: 6px;
     transform: rotate(-8deg) scale(0.7);
@@ -1162,12 +1242,12 @@ button {
   padding: 16px 40px;
   font-size: 16px;
   border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(216, 125, 74, 0.4);
+  box-shadow: 0 4px 20px rgba(var(--cta-shadow-rgb), 0.4);
 }
 
 .hero .btn--primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(216, 125, 74, 0.5);
+  box-shadow: 0 8px 32px rgba(var(--cta-shadow-rgb), 0.5);
 }
 
 .btn {
@@ -1185,12 +1265,12 @@ button {
   background: var(--color-accent-cta);
   color: #FFFFFF;
   font-weight: 700;
-  box-shadow: 0 3px 12px rgba(216, 125, 74, 0.25);
+  box-shadow: 0 3px 12px rgba(var(--cta-shadow-rgb), 0.25);
 }
 
 .btn--primary:hover {
   background: var(--color-accent-light);
-  box-shadow: 0 6px 24px rgba(216, 125, 74, 0.35);
+  box-shadow: 0 6px 24px rgba(var(--cta-shadow-rgb), 0.35);
   transform: translateY(-2px);
 }
 
@@ -1597,12 +1677,12 @@ button {
   transition: transform 0.2s, box-shadow 0.2s;
   flex-shrink: 0;
   border: none;
-  box-shadow: 0 2px 8px rgba(216, 125, 74, 0.3);
+  box-shadow: 0 2px 8px rgba(var(--cta-shadow-rgb), 0.3);
 }
 
 .menu-item__add-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 16px rgba(216, 125, 74, 0.4);
+  box-shadow: 0 4px 16px rgba(var(--cta-shadow-rgb), 0.4);
 }
 
 .menu-item__add-btn.added {
@@ -2005,12 +2085,12 @@ button {
   font-weight: 700;
   font-size: 15px;
   transition: all 0.2s;
-  box-shadow: 0 3px 12px rgba(216, 125, 74, 0.25);
+  box-shadow: 0 3px 12px rgba(var(--cta-shadow-rgb), 0.25);
 }
 
 .cart-drawer__checkout:hover {
   background: var(--color-accent-light);
-  box-shadow: 0 5px 20px rgba(216, 125, 74, 0.35);
+  box-shadow: 0 5px 20px rgba(var(--cta-shadow-rgb), 0.35);
 }
 
 .cart-drawer__checkout:disabled {
@@ -2217,7 +2297,7 @@ button {
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
   white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(216, 125, 74, 0.3);
+  box-shadow: 0 4px 16px rgba(var(--cta-shadow-rgb), 0.3);
 }
 
 .toast.show {
@@ -2865,8 +2945,8 @@ button {
    ============================================ */
 
 /* Paper texture background — subtle dotted cream */
-[data-palette="mongkok"] .mk-paper-bg,
-[data-palette="mongkok"] body {
+[data-palette="kamdo-classic"] .mk-paper-bg,
+[data-palette="kamdo-classic"] body {
   background-color: var(--mk-cream, #FBF4E6);
   background-image:
     radial-gradient(circle at 1px 1px, rgba(184, 28, 28, 0.07) 1px, transparent 0);
@@ -2977,12 +3057,60 @@ button {
   line-height: 1.02;
 }
 
-/* Handwritten note */
+/* Handwritten note — only use at >=18px for legibility */
 .mk-handwritten {
   font-family: var(--font-handwritten, 'Ma Shan Zheng'), cursive;
   color: var(--mk-ink, #1A1410);
   font-weight: 400;
   letter-spacing: 0.02em;
+}
+
+/* Cream halo for text placed on colored / busy backgrounds */
+.mk-text-halo {
+  text-shadow:
+    0 1px 0 rgba(255, 253, 245, 0.9),
+    0 0 2px rgba(255, 253, 245, 0.7);
+}
+
+/* 金都 circular seal motif — reusable brand mark */
+.mk-kamdo-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--mk-red, #9B1B30);
+  color: var(--mk-gold-light, #D4A94E);
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  border: 2px solid var(--mk-gold, #B08D3E);
+  box-shadow:
+    inset 0 0 0 3px var(--mk-red, #9B1B30),
+    inset 0 0 0 4px var(--mk-gold, #B08D3E),
+    0 2px 6px rgba(26, 20, 16, 0.3);
+  text-align: center;
+  flex-direction: column;
+}
+.mk-kamdo-seal::before {
+  content: '金都';
+  display: block;
+  letter-spacing: 0;
+  font-size: 1em;
+}
+.mk-kamdo-seal--sm { width: 42px; height: 42px; font-size: 1rem; }
+.mk-kamdo-seal--lg { width: 96px; height: 96px; font-size: 2.2rem; }
+.mk-kamdo-seal--ghost {
+  background: transparent;
+  color: var(--mk-red, #9B1B30);
+  box-shadow:
+    inset 0 0 0 3px transparent,
+    inset 0 0 0 4px var(--mk-red, #9B1B30),
+    0 1px 3px rgba(26, 20, 16, 0.12);
+  opacity: 0.55;
 }
 
 /* Marquee — scrolling red banner */
@@ -3109,7 +3237,7 @@ button {
 .mk-abs-br { position: absolute; bottom: -8px; right: -8px; z-index: 3; }
 
 /* Thick red section divider */
-[data-palette="mongkok"] .mk-section-divider {
+[data-palette="kamdo-classic"] .mk-section-divider {
   height: 6px;
   background:
     linear-gradient(var(--mk-red, #D42C2C), var(--mk-red, #D42C2C)) 0 0/100% 2px no-repeat,
@@ -3126,16 +3254,16 @@ button {
 .menu-item__mk-tag,
 .menu-item__mk-good { display: none; }
 
-[data-palette="mongkok"] .menu-item__mk { display: block; }
-[data-palette="mongkok"] .menu-item__mk-tag { display: inline-block; }
-[data-palette="mongkok"] .menu-item__mk-good { display: inline-flex; }
+[data-palette="kamdo-classic"] .menu-item__mk { display: block; }
+[data-palette="kamdo-classic"] .menu-item__mk-tag { display: inline-block; }
+[data-palette="kamdo-classic"] .menu-item__mk-good { display: inline-flex; }
 
 /* Hide decorations that are superseded by Mong Kok equivalents */
-[data-palette="mongkok"] .menu-item__code-inline { display: none; }
-[data-palette="mongkok"] .menu-item__badge { display: none; }
+[data-palette="kamdo-classic"] .menu-item__code-inline { display: none; }
+[data-palette="kamdo-classic"] .menu-item__badge { display: none; }
 
 /* Menu item container — paper card with red border + alternating fill */
-[data-palette="mongkok"] .menu-item {
+[data-palette="kamdo-classic"] .menu-item {
   position: relative;
   background: var(--mk-cream, #FBF4E6);
   border: 3px solid var(--mk-red, #D42C2C);
@@ -3145,18 +3273,18 @@ button {
   margin-bottom: 1.25rem;
   padding: 0;
 }
-[data-palette="mongkok"] .menu-item:hover {
+[data-palette="kamdo-classic"] .menu-item:hover {
   box-shadow: 6px 6px 0 rgba(26, 20, 16, 0.12);
   transform: translateY(-2px);
 }
 
 /* Alternating yellow / cream cards */
-[data-palette="mongkok"] .menu-list > .menu-item:nth-child(even) {
+[data-palette="kamdo-classic"] .menu-list > .menu-item:nth-child(even) {
   background: var(--mk-yellow, #F5B94A);
 }
 
 /* Decoration wrapper scoped to card */
-[data-palette="mongkok"] .menu-item__mk-code {
+[data-palette="kamdo-classic"] .menu-item__mk-code {
   position: absolute;
   top: -14px;
   left: 12px;
@@ -3164,7 +3292,7 @@ button {
   transform: rotate(-4deg);
 }
 
-[data-palette="mongkok"] .menu-item__mk-chop {
+[data-palette="kamdo-classic"] .menu-item__mk-chop {
   position: absolute;
   top: -18px;
   right: 16px;
@@ -3174,7 +3302,7 @@ button {
   font-size: 1.5rem;
 }
 
-[data-palette="mongkok"] .menu-item__mk-burst {
+[data-palette="kamdo-classic"] .menu-item__mk-burst {
   position: absolute;
   top: -22px;
   right: 74px;
@@ -3185,18 +3313,18 @@ button {
 }
 
 /* Left image — keep size but add red border */
-[data-palette="mongkok"] .menu-item__image {
+[data-palette="kamdo-classic"] .menu-item__image {
   width: 140px;
   min-height: 140px;
   border-right: 3px solid var(--mk-red, #D42C2C);
 }
-[data-palette="mongkok"] .menu-item__image-placeholder {
+[data-palette="kamdo-classic"] .menu-item__image-placeholder {
   width: 140px;
   min-height: 140px;
   background: linear-gradient(135deg, var(--mk-yellow, #F5B94A), var(--mk-orange, #E85A2C));
   border-right: 3px solid var(--mk-red, #D42C2C);
 }
-[data-palette="mongkok"] .menu-item__image-placeholder .placeholder__text {
+[data-palette="kamdo-classic"] .menu-item__image-placeholder .placeholder__text {
   font-family: var(--font-display), serif;
   font-weight: 900;
   color: var(--mk-ink, #1A1410);
@@ -3205,11 +3333,11 @@ button {
 }
 
 /* Right content area — tighter, bold */
-[data-palette="mongkok"] .menu-item__info {
+[data-palette="kamdo-classic"] .menu-item__info {
   padding: 14px 16px 12px;
 }
 
-[data-palette="mongkok"] .menu-item__name-zh {
+[data-palette="kamdo-classic"] .menu-item__name-zh {
   font-family: var(--font-display, 'Noto Serif TC'), serif;
   font-size: 1.25rem;
   font-weight: 900;
@@ -3219,37 +3347,38 @@ button {
   letter-spacing: 0.01em;
 }
 
-[data-palette="mongkok"] .menu-item__name-en {
+[data-palette="kamdo-classic"] .menu-item__name-en {
   font-family: var(--font-english-display, 'Oswald'), sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.875rem; /* 14px — up from 12.8px */
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--mk-ink, #1A1410);
-  opacity: 0.75;
+  opacity: 0.85; /* up from 0.75 */
 }
 
-[data-palette="mongkok"] .menu-item__note {
-  font-family: var(--font-handwritten, 'Ma Shan Zheng'), cursive;
+[data-palette="kamdo-classic"] .menu-item__note {
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
   color: var(--mk-chop, #B81C1C);
-  font-size: 0.95rem;
-  font-weight: 400;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-style: italic;
   margin-top: 6px;
 }
 
-[data-palette="mongkok"] .menu-item__mk-tag {
+[data-palette="kamdo-classic"] .menu-item__mk-tag {
   margin-top: 8px;
 }
 
 /* Price row — oversized red price + GOOD sticker + add button */
-[data-palette="mongkok"] .menu-item__right {
+[data-palette="kamdo-classic"] .menu-item__right {
   align-items: center;
   gap: 10px;
   margin-top: 10px;
   position: relative;
 }
 
-[data-palette="mongkok"] .menu-item__price {
+[data-palette="kamdo-classic"] .menu-item__price {
   font-family: var(--font-price, 'Archivo Black'), sans-serif;
   font-size: 1.85rem;
   color: var(--mk-red, #D42C2C);
@@ -3258,14 +3387,14 @@ button {
   text-shadow: 2px 2px 0 rgba(184, 28, 28, 0.15);
 }
 
-[data-palette="mongkok"] .menu-item__mk-good {
+[data-palette="kamdo-classic"] .menu-item__mk-good {
   width: 32px;
   height: 32px;
   font-size: 0.58rem;
 }
 
 /* Add button — yellow on red instead of pill */
-[data-palette="mongkok"] .menu-item__add-btn {
+[data-palette="kamdo-classic"] .menu-item__add-btn {
   background: var(--mk-ink, #1A1410);
   color: var(--mk-yellow, #F5B94A);
   border: 2px solid var(--mk-red, #D42C2C);
@@ -3278,23 +3407,23 @@ button {
   box-shadow: 2px 2px 0 var(--mk-red, #D42C2C);
   margin-left: auto;
 }
-[data-palette="mongkok"] .menu-item__add-btn:hover {
+[data-palette="kamdo-classic"] .menu-item__add-btn:hover {
   transform: translate(-1px, -1px);
   box-shadow: 3px 3px 0 var(--mk-red, #D42C2C);
 }
 
 /* Mobile tweaks */
 @media (max-width: 560px) {
-  [data-palette="mongkok"] .menu-item__mk-chop { width: 40px; height: 40px; font-size: 1.25rem; top: -14px; right: 12px; }
-  [data-palette="mongkok"] .menu-item__mk-burst { width: 48px; height: 48px; font-size: 0.68rem; top: -16px; right: 58px; }
-  [data-palette="mongkok"] .menu-item__mk-code { top: -12px; left: 8px; }
-  [data-palette="mongkok"] .menu-item__image,
-  [data-palette="mongkok"] .menu-item__image-placeholder {
+  [data-palette="kamdo-classic"] .menu-item__mk-chop { width: 40px; height: 40px; font-size: 1.25rem; top: -14px; right: 12px; }
+  [data-palette="kamdo-classic"] .menu-item__mk-burst { width: 48px; height: 48px; font-size: 0.68rem; top: -16px; right: 58px; }
+  [data-palette="kamdo-classic"] .menu-item__mk-code { top: -12px; left: 8px; }
+  [data-palette="kamdo-classic"] .menu-item__image,
+  [data-palette="kamdo-classic"] .menu-item__image-placeholder {
     width: 110px;
     min-height: 110px;
   }
-  [data-palette="mongkok"] .menu-item__price { font-size: 1.5rem; }
-  [data-palette="mongkok"] .menu-item__name-zh { font-size: 1.1rem; }
+  [data-palette="kamdo-classic"] .menu-item__price { font-size: 1.5rem; }
+  [data-palette="kamdo-classic"] .menu-item__name-zh { font-size: 1.1rem; }
 }
 
 /* ============================================
@@ -3303,84 +3432,158 @@ button {
 
 .section__header-mk { display: none; }
 
-/* In mongkok palette: hide image header, show text banner */
-[data-palette="mongkok"] .section__header-img { display: none; }
-[data-palette="mongkok"] .section__header > * { display: none; }
-[data-palette="mongkok"] .section__header { margin-bottom: 0; padding: 0; }
+/* In mongkok palette: hide image-based header, show banner (which may have bg image) */
+[data-palette="kamdo-classic"] .section__header-img { display: none; }
+[data-palette="kamdo-classic"] .section__header > * { display: none; }
+[data-palette="kamdo-classic"] .section__header { margin-bottom: 0; padding: 0; }
 
-[data-palette="mongkok"] .section__header-mk {
-  display: block;
+/* Banner — image bg with cream fallback, cream-gradient overlay on left for text */
+[data-palette="kamdo-classic"] .section__header-mk {
+  display: flex;
   position: relative;
-  margin: 2rem 0 2rem;
-  padding: 18px 24px 18px;
-  background: var(--mk-cream, #FBF4E6);
-  border: 4px double var(--mk-red, #D42C2C);
+  min-height: 200px;
+  margin: 2.5rem 0 1.5rem;
+  padding: 0;
+  background-color: var(--mk-cream);
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  border: 4px double var(--mk-red);
+  border-left: none;
+  border-right: none;
+  overflow: hidden;
+  align-items: stretch;
   box-shadow:
-    inset 0 0 0 2px var(--mk-cream, #FBF4E6),
-    5px 5px 0 rgba(26, 20, 16, 0.08);
+    inset 0 0 0 2px var(--mk-cream),
+    inset 0 0 0 3px var(--mk-gold);
 }
 
-[data-palette="mongkok"] .section__header-mk-tape {
+/* Cream → transparent gradient on left for text readability */
+[data-palette="kamdo-classic"] .section__header-mk::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 244, 230, 0.96) 0%,
+    rgba(251, 244, 230, 0.92) 35%,
+    rgba(251, 244, 230, 0.6) 55%,
+    rgba(251, 244, 230, 0) 75%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-palette="kamdo-classic"] .section__header-mk-tape {
   position: absolute;
   width: 80px;
   height: 22px;
-  opacity: 0.8;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  opacity: 0.85;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  z-index: 3;
+  top: -8px;
 }
-[data-palette="mongkok"] .section__header-mk-tape--tl {
-  top: -10px; left: -18px; transform: rotate(-16deg);
-  background: #E8823C;
+[data-palette="kamdo-classic"] .section__header-mk-tape--tl {
+  left: -18px;
+  transform: rotate(-16deg);
+  background: var(--mk-orange);
   background-image: linear-gradient(90deg, transparent 0 2px, rgba(255,255,255,0.25) 2px 4px, transparent 4px 10px);
 }
-[data-palette="mongkok"] .section__header-mk-tape--tr {
-  top: -10px; right: -18px; transform: rotate(14deg);
-  background: #5A9B3E;
+[data-palette="kamdo-classic"] .section__header-mk-tape--tr {
+  right: -18px;
+  transform: rotate(14deg);
+  background: var(--mk-green);
   background-image: linear-gradient(90deg, transparent 0 2px, rgba(255,255,255,0.25) 2px 4px, transparent 4px 10px);
 }
 
-[data-palette="mongkok"] .section__header-mk-inner {
+/* Inner content — pinned to left-center, above gradient overlay */
+[data-palette="kamdo-classic"] .section__header-mk-inner {
+  position: relative;
+  z-index: 2;
+  padding: 1.75rem 2rem;
+  max-width: 55%;
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.35rem;
 }
 
-[data-palette="mongkok"] .section__header-mk-zh {
-  font-family: var(--font-display, 'Noto Serif TC'), serif;
+/* title_zh — dominant, gold 3D shadow for readability on any bg */
+[data-palette="kamdo-classic"] .section__header-mk-zh {
+  font-family: var(--font-display), serif;
   font-weight: 900;
-  font-size: clamp(2rem, 5vw, 3rem);
-  color: var(--mk-ink, #1A1410);
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  color: var(--mk-ink);
   letter-spacing: 0.02em;
-  text-shadow: 3px 3px 0 var(--mk-red, #D42C2C), 4px 4px 0 rgba(184, 28, 28, 0.4);
-  line-height: 1;
+  line-height: 1.05;
+  text-shadow:
+    2px 2px 0 var(--mk-gold),
+    3px 3px 0 rgba(26, 20, 16, 0.35);
   margin: 0;
 }
 
-[data-palette="mongkok"] .section__header-mk-en {
-  font-family: var(--font-english-display, 'Oswald'), sans-serif;
+/* title_en — supporting caps */
+[data-palette="kamdo-classic"] .section__header-mk-en {
+  font-family: var(--font-english-display), sans-serif;
   font-weight: 700;
-  font-size: clamp(0.95rem, 2vw, 1.5rem);
-  color: var(--mk-chop, #B81C1C);
-  letter-spacing: 0.12em;
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  color: var(--mk-chop);
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   line-height: 1.1;
-  margin: 0;
+  margin: 2px 0 0;
+  text-shadow: 0 1px 0 rgba(255, 253, 245, 0.7);
 }
 
-[data-palette="mongkok"] .section__header-mk-sub {
-  margin-top: 14px;
-  padding-top: 10px;
-  border-top: 1px dashed var(--mk-red, #D42C2C);
-  font-family: var(--font-handwritten, 'Ma Shan Zheng'), cursive;
-  color: var(--mk-chop, #B81C1C);
-  font-size: 1.1rem;
-  line-height: 1.5;
-  font-weight: 400;
+/* description_zh — handwritten tag pinned bottom-left */
+[data-palette="kamdo-classic"] .section__header-mk-sub {
+  position: absolute;
+  bottom: 12px;
+  left: 2rem;
+  z-index: 2;
+  max-width: 60%;
+  font-family: var(--font-handwritten), cursive;
+  font-size: 1rem;
+  color: var(--mk-chop);
+  padding: 4px 10px;
+  background: rgba(251, 244, 230, 0.88);
+  border-left: 3px solid var(--mk-red);
+  transform: rotate(-1deg);
+  margin: 0;
+  line-height: 1.3;
+  box-shadow: 2px 2px 0 rgba(26, 20, 16, 0.08);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  [data-palette="kamdo-classic"] .section__header-mk {
+    min-height: 160px;
+  }
+  [data-palette="kamdo-classic"] .section__header-mk::before {
+    background: linear-gradient(
+      90deg,
+      rgba(251, 244, 230, 0.94) 0%,
+      rgba(251, 244, 230, 0.85) 55%,
+      rgba(251, 244, 230, 0.5) 85%,
+      rgba(251, 244, 230, 0) 100%
+    );
+  }
+  [data-palette="kamdo-classic"] .section__header-mk-inner {
+    max-width: 72%;
+    padding: 1.1rem 1.25rem;
+  }
+  [data-palette="kamdo-classic"] .section__header-mk-sub {
+    position: static;
+    max-width: 100%;
+    margin: 0 1.25rem 1rem;
+    transform: none;
+    align-self: flex-start;
+  }
 }
 
 /* Subsection titles in Mong Kok */
-[data-palette="mongkok"] .subsection__title {
+[data-palette="kamdo-classic"] .subsection__title {
   font-family: var(--font-english-display, 'Oswald'), sans-serif;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -3389,7 +3592,7 @@ button {
   font-size: 0.9rem;
   margin-bottom: 2px;
 }
-[data-palette="mongkok"] .subsection__title-zh {
+[data-palette="kamdo-classic"] .subsection__title-zh {
   font-family: var(--font-display, 'Noto Serif TC'), serif;
   font-weight: 900;
   color: var(--mk-ink, #1A1410);
@@ -3398,7 +3601,7 @@ button {
   position: relative;
   padding-left: 14px;
 }
-[data-palette="mongkok"] .subsection__title-zh::before {
+[data-palette="kamdo-classic"] .subsection__title-zh::before {
   content: '';
   position: absolute;
   left: 0;
@@ -3407,16 +3610,18 @@ button {
   width: 5px;
   background: var(--mk-red, #D42C2C);
 }
-[data-palette="mongkok"] .subsection__description {
-  font-family: var(--font-handwritten, 'Ma Shan Zheng'), cursive;
-  color: var(--mk-chop, #B81C1C);
+[data-palette="kamdo-classic"] .subsection__description {
+  font-family: var(--font-display, 'Noto Serif TC'), serif;
+  color: var(--color-text-on-yellow, #1A1410);
   font-size: 0.95rem;
   margin-bottom: 14px;
-  font-weight: 400;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
 }
 
 /* Section bottom divider */
-[data-palette="mongkok"] .section + .section::before {
+[data-palette="kamdo-classic"] .section + .section::before {
   content: '';
   display: block;
   height: 6px;
@@ -3428,16 +3633,16 @@ button {
 }
 
 @media (max-width: 560px) {
-  [data-palette="mongkok"] .section__header-mk {
+  [data-palette="kamdo-classic"] .section__header-mk {
     padding: 14px 16px;
     margin: 1rem 0 1.25rem;
   }
-  [data-palette="mongkok"] .section__header-mk-inner {
+  [data-palette="kamdo-classic"] .section__header-mk-inner {
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
   }
-  [data-palette="mongkok"] .section__header-mk-sub {
+  [data-palette="kamdo-classic"] .section__header-mk-sub {
     font-size: 0.95rem;
   }
 }
@@ -3446,12 +3651,12 @@ button {
    旺角街市 — Combo Modal (receipt / order slip style)
    ============================================ */
 
-[data-palette="mongkok"] .combo-modal-overlay.open {
+[data-palette="kamdo-classic"] .combo-modal-overlay.open {
   background: rgba(26, 20, 16, 0.7);
   backdrop-filter: blur(2px);
 }
 
-[data-palette="mongkok"] .combo-modal {
+[data-palette="kamdo-classic"] .combo-modal {
   background: #FFFDF5;
   border-radius: 0;
   border: 2px solid var(--mk-ink, #1A1410);
@@ -3464,8 +3669,8 @@ button {
 }
 
 /* Sawtooth top & bottom edges — receipt-paper feel */
-[data-palette="mongkok"] .combo-modal::before,
-[data-palette="mongkok"] .combo-modal::after {
+[data-palette="kamdo-classic"] .combo-modal::before,
+[data-palette="kamdo-classic"] .combo-modal::after {
   content: '';
   position: absolute;
   left: -2px;
@@ -3477,18 +3682,18 @@ button {
   z-index: 2;
   pointer-events: none;
 }
-[data-palette="mongkok"] .combo-modal::before {
+[data-palette="kamdo-classic"] .combo-modal::before {
   top: -1px;
   background-position: 0 -5px;
 }
-[data-palette="mongkok"] .combo-modal::after {
+[data-palette="kamdo-classic"] .combo-modal::after {
   bottom: -1px;
   background-position: 0 5px;
   transform: scaleY(-1);
 }
 
 /* Top "落單 ORDER" strip */
-[data-palette="mongkok"] .combo-modal__header {
+[data-palette="kamdo-classic"] .combo-modal__header {
   position: relative;
   background: var(--mk-red, #D42C2C);
   color: var(--mk-yellow, #F5B94A);
@@ -3498,7 +3703,7 @@ button {
   align-items: stretch;
 }
 
-[data-palette="mongkok"] .combo-modal__header::before {
+[data-palette="kamdo-classic"] .combo-modal__header::before {
   content: '落單 · ORDER';
   display: block;
   font-family: var(--font-english-display, 'Oswald'), sans-serif;
@@ -3512,7 +3717,7 @@ button {
   text-transform: uppercase;
 }
 
-[data-palette="mongkok"] .combo-modal__title {
+[data-palette="kamdo-classic"] .combo-modal__title {
   font-family: var(--font-display, 'Noto Serif TC'), serif;
   font-weight: 900;
   color: var(--mk-yellow, #F5B94A);
@@ -3521,7 +3726,7 @@ button {
   letter-spacing: 0.02em;
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
 }
-[data-palette="mongkok"] .combo-modal__title .menu-item__code-inline {
+[data-palette="kamdo-classic"] .combo-modal__title .menu-item__code-inline {
   display: inline-block !important;
   background: var(--mk-ink, #1A1410);
   color: var(--mk-yellow, #F5B94A);
@@ -3534,7 +3739,7 @@ button {
   letter-spacing: 0.08em;
 }
 
-[data-palette="mongkok"] .combo-modal__close {
+[data-palette="kamdo-classic"] .combo-modal__close {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -3551,13 +3756,13 @@ button {
   cursor: pointer;
   box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
-[data-palette="mongkok"] .combo-modal__close:hover {
+[data-palette="kamdo-classic"] .combo-modal__close:hover {
   transform: translate(-1px, -1px);
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Body — dashed-cut option groups */
-[data-palette="mongkok"] .combo-modal__body {
+[data-palette="kamdo-classic"] .combo-modal__body {
   background: #FFFDF5;
   padding: 16px 20px 12px;
   background-image:
@@ -3566,16 +3771,16 @@ button {
   background-size: 100% 100%, 12px 12px;
 }
 
-[data-palette="mongkok"] .combo-modal__group {
+[data-palette="kamdo-classic"] .combo-modal__group {
   padding: 14px 0;
   border-bottom: 1px dashed var(--mk-red, #D42C2C);
   position: relative;
 }
-[data-palette="mongkok"] .combo-modal__group:last-child {
+[data-palette="kamdo-classic"] .combo-modal__group:last-child {
   border-bottom: none;
 }
 
-[data-palette="mongkok"] .combo-modal__group-label {
+[data-palette="kamdo-classic"] .combo-modal__group-label {
   font-family: var(--font-display, 'Noto Serif TC'), serif;
   font-weight: 900;
   color: var(--mk-ink, #1A1410);
@@ -3585,7 +3790,7 @@ button {
   border-left: 4px solid var(--mk-red, #D42C2C);
   line-height: 1.2;
 }
-[data-palette="mongkok"] .combo-modal__group-label span {
+[data-palette="kamdo-classic"] .combo-modal__group-label span {
   font-family: var(--font-english-display, 'Oswald'), sans-serif;
   font-weight: 400;
   color: var(--mk-chop, #B81C1C);
@@ -3596,14 +3801,14 @@ button {
 }
 
 /* Options — hand-drawn radio / checkbox style */
-[data-palette="mongkok"] .combo-modal__options {
+[data-palette="kamdo-classic"] .combo-modal__options {
   display: flex;
   flex-direction: column;
   gap: 6px;
   padding: 0 4px;
 }
 
-[data-palette="mongkok"] .combo-modal__option {
+[data-palette="kamdo-classic"] .combo-modal__option {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -3620,12 +3825,12 @@ button {
   position: relative;
   transition: background 0.15s;
 }
-[data-palette="mongkok"] .combo-modal__option:hover {
+[data-palette="kamdo-classic"] .combo-modal__option:hover {
   background: rgba(245, 185, 74, 0.25);
 }
 
 /* Radio-style marker (circle) */
-[data-palette="mongkok"] .combo-modal__group[data-type="radio"] .combo-modal__option::before {
+[data-palette="kamdo-classic"] .combo-modal__group[data-type="radio"] .combo-modal__option::before {
   content: '';
   display: inline-block;
   width: 20px;
@@ -3636,7 +3841,7 @@ button {
   flex-shrink: 0;
   transform: rotate(-4deg);
 }
-[data-palette="mongkok"] .combo-modal__group[data-type="radio"] .combo-modal__option.selected::before {
+[data-palette="kamdo-classic"] .combo-modal__group[data-type="radio"] .combo-modal__option.selected::before {
   background:
     radial-gradient(circle at 45% 45%, var(--mk-chop, #B81C1C) 0 35%, transparent 38%),
     radial-gradient(circle at 55% 55%, var(--mk-red, #D42C2C) 0 30%, transparent 33%);
@@ -3644,7 +3849,7 @@ button {
 }
 
 /* Checkbox-style marker (square) */
-[data-palette="mongkok"] .combo-modal__group[data-type="checkbox"] .combo-modal__option::before {
+[data-palette="kamdo-classic"] .combo-modal__group[data-type="checkbox"] .combo-modal__option::before {
   content: '';
   display: inline-block;
   width: 20px;
@@ -3655,14 +3860,14 @@ button {
   flex-shrink: 0;
   transform: rotate(-3deg);
 }
-[data-palette="mongkok"] .combo-modal__group[data-type="checkbox"] .combo-modal__option.selected::before {
+[data-palette="kamdo-classic"] .combo-modal__group[data-type="checkbox"] .combo-modal__option.selected::before {
   background:
     linear-gradient(135deg, transparent 30%, var(--mk-chop, #B81C1C) 30% 55%, transparent 55%) no-repeat,
     linear-gradient(225deg, transparent 45%, var(--mk-chop, #B81C1C) 45% 70%, transparent 70%) no-repeat;
   background-size: 100% 100%;
   border-color: var(--mk-chop, #B81C1C);
 }
-[data-palette="mongkok"] .combo-modal__group[data-type="checkbox"] .combo-modal__option.selected::after {
+[data-palette="kamdo-classic"] .combo-modal__group[data-type="checkbox"] .combo-modal__option.selected::after {
   content: '✓';
   position: absolute;
   left: 14px;
@@ -3676,12 +3881,12 @@ button {
   line-height: 1;
 }
 
-[data-palette="mongkok"] .combo-modal__option.selected {
+[data-palette="kamdo-classic"] .combo-modal__option.selected {
   background: rgba(245, 185, 74, 0.35);
   font-weight: 700;
 }
 
-[data-palette="mongkok"] .combo-modal__option-price {
+[data-palette="kamdo-classic"] .combo-modal__option-price {
   margin-left: auto;
   font-family: var(--font-english-display, 'Oswald'), sans-serif;
   font-weight: 700;
@@ -3691,7 +3896,7 @@ button {
 }
 
 /* Footer — receipt total + CTA */
-[data-palette="mongkok"] .combo-modal__footer {
+[data-palette="kamdo-classic"] .combo-modal__footer {
   position: relative;
   background: #FFFDF5;
   border-top: 2px dashed var(--mk-ink, #1A1410);
@@ -3701,7 +3906,7 @@ button {
   gap: 10px;
 }
 
-[data-palette="mongkok"] .combo-modal__footer::before {
+[data-palette="kamdo-classic"] .combo-modal__footer::before {
   content: '合共 · TOTAL';
   position: absolute;
   top: 16px;
@@ -3714,7 +3919,7 @@ button {
   text-transform: uppercase;
 }
 
-[data-palette="mongkok"] .combo-modal__price {
+[data-palette="kamdo-classic"] .combo-modal__price {
   font-family: var(--font-price, 'Archivo Black'), sans-serif;
   color: var(--mk-red, #D42C2C);
   font-size: 2rem;
@@ -3724,7 +3929,7 @@ button {
   letter-spacing: -0.02em;
 }
 
-[data-palette="mongkok"] .combo-modal__add-btn {
+[data-palette="kamdo-classic"] .combo-modal__add-btn {
   background: var(--mk-red, #D42C2C);
   color: var(--mk-yellow, #F5B94A);
   font-family: var(--font-display, 'Noto Serif TC'), serif;
@@ -3739,17 +3944,17 @@ button {
   transition: transform 0.15s, box-shadow 0.15s;
   width: 100%;
 }
-[data-palette="mongkok"] .combo-modal__add-btn:not(:disabled):hover {
+[data-palette="kamdo-classic"] .combo-modal__add-btn:not(:disabled):hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--mk-ink, #1A1410);
 }
-[data-palette="mongkok"] .combo-modal__add-btn::before {
+[data-palette="kamdo-classic"] .combo-modal__add-btn::before {
   content: '加入訂單 · ';
 }
-[data-palette="mongkok"] .combo-modal__add-btn::after {
+[data-palette="kamdo-classic"] .combo-modal__add-btn::after {
   content: '';
 }
-[data-palette="mongkok"] .combo-modal__add-btn:disabled {
+[data-palette="kamdo-classic"] .combo-modal__add-btn:disabled {
   background: rgba(26, 20, 16, 0.25);
   color: var(--mk-cream, #FBF4E6);
   box-shadow: 4px 4px 0 rgba(26, 20, 16, 0.15);
@@ -3757,7 +3962,7 @@ button {
 }
 
 /* Corner decorations — date stamp (top-left of body) + chop (bottom-right) */
-[data-palette="mongkok"] .combo-modal__body::before {
+[data-palette="kamdo-classic"] .combo-modal__body::before {
   content: '16/04/2026 · KAM DO';
   display: block;
   font-family: var(--font-english-display, 'Oswald'), sans-serif;
@@ -3774,10 +3979,10 @@ button {
   transform: rotate(-2deg);
 }
 
-[data-palette="mongkok"] .combo-modal::before {
+[data-palette="kamdo-classic"] .combo-modal::before {
   /* restored sawtooth, handled above */
 }
-[data-palette="mongkok"] .combo-modal__footer::after {
+[data-palette="kamdo-classic"] .combo-modal__footer::after {
   content: '落單';
   position: absolute;
   bottom: 12px;
@@ -3799,4 +4004,1848 @@ button {
   pointer-events: none;
   z-index: 0;
   opacity: 0.75;
+}
+
+/* ============================================
+   Mongkok Overrides — Featured / Cart / Buttons
+   ============================================ */
+
+/* Featured title — bracketed with ink dots */
+[data-palette="kamdo-classic"] .featured__header {
+  position: relative;
+}
+[data-palette="kamdo-classic"] .featured__title {
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  color: var(--mk-ink);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  letter-spacing: 0.04em;
+  display: inline-block;
+  padding: 0 10px;
+  position: relative;
+}
+[data-palette="kamdo-classic"] .featured__title::before,
+[data-palette="kamdo-classic"] .featured__title::after {
+  content: '';
+  display: inline-block;
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: var(--mk-red);
+  vertical-align: 0.25em;
+  margin: 0 0.6em;
+  box-shadow: 0 0 0 3px rgba(212, 44, 44, 0.18);
+}
+[data-palette="kamdo-classic"] .featured__subtitle {
+  font-family: var(--font-handwritten), cursive;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--mk-chop);
+  letter-spacing: 0.08em;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+  margin-top: 6px;
+}
+
+/* Featured cards — pinned-to-board feel */
+[data-palette="kamdo-classic"] .featured__grid {
+  gap: 28px 24px;
+  padding-top: 12px;
+}
+[data-palette="kamdo-classic"] .featured__card {
+  background: #FFFDF5;
+  border: 2px solid var(--mk-ink);
+  border-radius: 2px;
+  box-shadow:
+    4px 4px 0 var(--mk-red),
+    4px 4px 0 1px var(--mk-ink);
+  transition: transform 0.25s, box-shadow 0.25s;
+  overflow: visible;
+  position: relative;
+}
+[data-palette="kamdo-classic"] .featured__card:nth-child(odd) {
+  transform: rotate(-0.4deg);
+  margin-top: 2rem;
+}
+[data-palette="kamdo-classic"] .featured__card:nth-child(even) {
+  transform: rotate(0.4deg);
+}
+[data-palette="kamdo-classic"] .featured__card:hover {
+  transform: translate(-2px, -2px) rotate(0);
+  box-shadow:
+    6px 6px 0 var(--mk-red),
+    6px 6px 0 1px var(--mk-ink);
+}
+[data-palette="kamdo-classic"] .featured__card::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ED5A5A 0%, var(--mk-chop) 60%, #7A0F0F 100%);
+  box-shadow:
+    0 2px 2px rgba(26, 20, 16, 0.3),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.35);
+  z-index: 2;
+}
+[data-palette="kamdo-classic"] .featured__card-body {
+  padding: 14px 18px 18px;
+  background: linear-gradient(180deg, transparent 0, rgba(212, 44, 44, 0.02) 100%);
+  border-top: 1px dashed rgba(26, 20, 16, 0.2);
+}
+[data-palette="kamdo-classic"] .featured__card-name {
+  font-family: var(--font-display), serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--mk-ink);
+  letter-spacing: 0.03em;
+  margin-bottom: 2px;
+}
+[data-palette="kamdo-classic"] .featured__card-name-en {
+  font-family: var(--font-english-display), sans-serif;
+  font-size: 12px; /* up from 10px */
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mk-ink); /* ink (high contrast) instead of chop red */
+  font-weight: 700;
+  /* opacity removed — was 0.8 */
+  margin-top: 4px;
+}
+[data-palette="kamdo-classic"] .featured__card-image {
+  background: var(--mk-cream);
+  border-bottom: 1px dashed rgba(212, 44, 44, 0.25);
+}
+
+/* =============================
+   Cart Drawer — order receipt
+   ============================= */
+[data-palette="kamdo-classic"] .cart-drawer {
+  background: #FFFDF5;
+  background-image:
+    repeating-linear-gradient(
+      transparent 0,
+      transparent 28px,
+      rgba(26, 20, 16, 0.04) 29px
+    );
+  border-left: 3px double var(--mk-red);
+}
+
+[data-palette="kamdo-classic"] .cart-drawer__header {
+  background: var(--mk-red);
+  border-bottom: 3px dashed var(--mk-chop);
+  padding: 18px 24px 20px;
+  position: relative;
+}
+[data-palette="kamdo-classic"] .cart-drawer__header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 8px;
+  background-image:
+    linear-gradient(-45deg, var(--mk-red) 25%, transparent 25%),
+    linear-gradient(45deg, var(--mk-red) 25%, transparent 25%);
+  background-size: 14px 14px;
+  background-position: 0 -7px, 7px -7px;
+}
+[data-palette="kamdo-classic"] .cart-drawer__title {
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--mk-yellow);
+  letter-spacing: 0.08em;
+  margin: 0;
+  line-height: 1.1;
+}
+[data-palette="kamdo-classic"] .cart-drawer__title::after {
+  content: '今日落單 · ORDER';
+  display: block;
+  font-family: var(--font-english-display), sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--mk-yellow);
+  opacity: 0.75;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+[data-palette="kamdo-classic"] .cart-drawer__close {
+  color: var(--mk-yellow);
+  opacity: 0.85;
+  font-size: 1.6rem;
+}
+[data-palette="kamdo-classic"] .cart-drawer__close:hover {
+  color: var(--mk-cream);
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+[data-palette="kamdo-classic"] .cart-drawer__empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--mk-ink);
+}
+[data-palette="kamdo-classic"] .cart-drawer__empty-icon {
+  font-size: 52px;
+  opacity: 0.3;
+  filter: grayscale(0.4) sepia(0.2);
+  margin-bottom: 12px;
+}
+[data-palette="kamdo-classic"] .cart-drawer__empty p:first-of-type {
+  font-family: var(--font-handwritten), cursive;
+  font-size: 1.4rem;
+  color: var(--mk-chop);
+  transform: rotate(-2deg);
+  display: inline-block;
+  margin: 0;
+}
+[data-palette="kamdo-classic"] .cart-drawer__empty p:last-of-type {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--mk-ink);
+  opacity: 0.55;
+  margin-top: 10px !important;
+}
+
+/* Cart items — receipt line feel */
+[data-palette="kamdo-classic"] .cart-drawer__items {
+  padding: 12px 20px;
+}
+[data-palette="kamdo-classic"] .cart-item {
+  border-bottom: 1px dashed rgba(26, 20, 16, 0.22);
+  padding: 10px 0 10px 12px;
+  border-left: 3px solid var(--mk-red);
+  margin-bottom: 4px;
+  background: rgba(245, 185, 74, 0.05);
+}
+[data-palette="kamdo-classic"] .cart-item__name {
+  font-family: var(--font-display), serif;
+  font-weight: 700;
+  color: var(--mk-ink);
+}
+[data-palette="kamdo-classic"] .cart-item__price {
+  font-family: var(--font-price), sans-serif;
+  color: var(--mk-red);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+[data-palette="kamdo-classic"] .cart-drawer__footer {
+  background: #FFFDF5;
+  border-top: 3px dashed var(--mk-ink);
+  padding: 16px 20px 18px;
+  position: relative;
+}
+[data-palette="kamdo-classic"] .cart-drawer__footer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9px;
+  height: 8px;
+  background-image:
+    linear-gradient(-45deg, #FFFDF5 25%, transparent 25%),
+    linear-gradient(45deg, #FFFDF5 25%, transparent 25%);
+  background-size: 14px 14px;
+  background-position: 0 0, 7px 0;
+}
+
+[data-palette="kamdo-classic"] .cart-drawer__total-label {
+  font-family: var(--font-english-display), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mk-ink);
+  font-size: 0.75rem;
+}
+[data-palette="kamdo-classic"] .cart-drawer__total-label::after {
+  content: ' · 合共';
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: var(--mk-chop);
+}
+[data-palette="kamdo-classic"] .cart-drawer__total-amount {
+  font-family: var(--font-price), sans-serif;
+  color: var(--mk-red);
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+[data-palette="kamdo-classic"] .cart-drawer__tax-note {
+  font-family: var(--font-display), serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--mk-ink);
+  opacity: 0.78;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+[data-palette="kamdo-classic"] .cart-drawer__checkout {
+  background: var(--mk-red);
+  color: var(--mk-yellow);
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  border: 3px solid var(--mk-chop);
+  border-radius: 0;
+  box-shadow: 3px 3px 0 var(--mk-ink);
+  transition: transform 0.15s, box-shadow 0.15s;
+  padding: 14px 18px;
+}
+[data-palette="kamdo-classic"] .cart-drawer__checkout:hover:not(:disabled) {
+  background: var(--mk-red);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--mk-ink);
+}
+[data-palette="kamdo-classic"] .cart-drawer__checkout:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--mk-ink);
+}
+[data-palette="kamdo-classic"] .cart-drawer__checkout:disabled {
+  opacity: 0.35;
+  box-shadow: 2px 2px 0 var(--mk-ink);
+}
+
+[data-palette="kamdo-classic"] .cart-drawer__whatsapp {
+  background: var(--mk-green);
+  color: var(--mk-cream);
+  border: 2px solid var(--mk-ink);
+  border-radius: 0;
+  box-shadow: 3px 3px 0 var(--mk-ink);
+  font-family: var(--font-english-display), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+[data-palette="kamdo-classic"] .cart-drawer__whatsapp:hover {
+  background: var(--mk-green);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--mk-ink);
+}
+
+/* =============================
+   Generic buttons under Mongkok
+   ============================= */
+[data-palette="kamdo-classic"] .btn--primary {
+  background: var(--mk-red);
+  color: var(--mk-yellow);
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  border: 2px solid var(--mk-chop);
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 var(--mk-chop), 3px 3px 0 1px var(--mk-ink);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+[data-palette="kamdo-classic"] .btn--primary:hover {
+  background: var(--mk-chop);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--mk-chop), 4px 4px 0 1px var(--mk-ink);
+}
+[data-palette="kamdo-classic"] .btn--primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--mk-chop);
+}
+[data-palette="kamdo-classic"] .btn--secondary {
+  border: 2px dashed var(--mk-ink);
+  color: var(--mk-ink);
+  font-family: var(--font-english-display), sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 0;
+  background: transparent;
+}
+[data-palette="kamdo-classic"] .btn--secondary:hover {
+  background: var(--mk-ink);
+  color: var(--mk-yellow);
+}
+
+/* Nav cart button — sign-painted feel */
+/* Nav brand + logo — gold ring on cream halo for strong contrast */
+[data-palette="kamdo-classic"] .nav {
+  background: var(--mk-red);
+  border-bottom: 3px solid var(--mk-gold);
+  box-shadow: 0 2px 0 var(--mk-chop), 0 4px 16px rgba(26, 20, 16, 0.25);
+}
+[data-palette="kamdo-classic"] .nav__logo {
+  background: var(--mk-cream);
+  border: 2.5px solid var(--mk-gold);
+  box-shadow:
+    0 0 0 1px var(--mk-chop),
+    0 2px 8px rgba(26, 20, 16, 0.35);
+  padding: 2px;
+  width: 44px;
+  height: 44px;
+}
+[data-palette="kamdo-classic"] .nav__name {
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--mk-gold-light);
+  text-shadow: 1px 1px 0 var(--mk-chop);
+}
+[data-palette="kamdo-classic"] .nav__subtitle {
+  color: var(--mk-gold);
+  font-family: var(--font-english-display), sans-serif;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  opacity: 0.85;
+}
+[data-palette="kamdo-classic"] .nav__link {
+  font-family: var(--font-display), serif;
+  font-weight: 700;
+  color: rgba(255, 248, 237, 0.82);
+  letter-spacing: 0.02em;
+  font-size: 14px;
+}
+[data-palette="kamdo-classic"] .nav__link:hover,
+[data-palette="kamdo-classic"] .nav__link.active {
+  color: var(--mk-gold-light);
+  background: rgba(176, 141, 62, 0.15);
+}
+
+[data-palette="kamdo-classic"] .nav__cart-btn {
+  background: transparent;
+  color: var(--mk-gold-light);
+  border: 2px solid var(--mk-gold);
+  border-radius: 2px;
+  font-family: var(--font-english-display), sans-serif;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0 var(--mk-chop);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s, color 0.15s;
+}
+[data-palette="kamdo-classic"] .nav__cart-btn:hover {
+  background: var(--mk-gold);
+  color: var(--mk-chop);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--mk-chop);
+}
+[data-palette="kamdo-classic"] .nav__cart-count {
+  background: var(--mk-chop);
+  color: var(--mk-gold-light);
+  border: 1px solid var(--mk-gold-light);
+}
+
+/* Section indicator — handwritten note feel */
+[data-palette="kamdo-classic"] .section-indicator {
+  font-family: var(--font-handwritten), cursive;
+}
+[data-palette="kamdo-classic"] .section-indicator__name-zh {
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+}
+[data-palette="kamdo-classic"] .section-indicator__name-en {
+  font-family: var(--font-english-display), sans-serif;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+/* Footer */
+[data-palette="kamdo-classic"] .footer {
+  background: var(--mk-ink);
+  color: var(--mk-cream);
+  border-top: 4px solid var(--mk-red);
+  position: relative;
+}
+[data-palette="kamdo-classic"] .footer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 4px;
+  height: 8px;
+  background-image:
+    linear-gradient(-45deg, var(--mk-red) 25%, transparent 25%),
+    linear-gradient(45deg, var(--mk-red) 25%, transparent 25%);
+  background-size: 14px 14px;
+  background-position: 0 0, 7px 0;
+}
+[data-palette="kamdo-classic"] .footer__bottom {
+  font-family: var(--font-display), serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: rgba(255, 248, 237, 0.75);
+  opacity: 1;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* =====================================================
+   金都 Seal Motif Placements — brand mark everywhere
+   ===================================================== */
+
+/* Hero LEFT column — large gold seal decorating the signboard */
+[data-palette="kamdo-classic"] .hero-mk__left::after {
+  content: '金都';
+  position: absolute;
+  top: 1rem;
+  right: -10px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--mk-red);
+  color: var(--mk-gold-light);
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  font-size: 1.7rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px double var(--mk-gold);
+  box-shadow:
+    inset 0 0 0 6px var(--mk-red),
+    inset 0 0 0 7px var(--mk-gold-light),
+    0 3px 8px rgba(26, 20, 16, 0.3);
+  transform: rotate(-10deg);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Cart empty state — faded seal watermark behind the handwritten phrase */
+[data-palette="kamdo-classic"] .cart-drawer__empty {
+  position: relative;
+  overflow: hidden;
+}
+[data-palette="kamdo-classic"] .cart-drawer__empty::after {
+  content: '金都';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid var(--mk-chop);
+  color: var(--mk-chop);
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 10px transparent, inset 0 0 0 12px var(--mk-chop);
+  letter-spacing: -0.02em;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+[data-palette="kamdo-classic"] .cart-drawer__empty > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Footer bottom row — left-side small seal badge */
+[data-palette="kamdo-classic"] .footer__bottom::before {
+  content: '金都';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--mk-red);
+  color: var(--mk-gold-light);
+  border: 2px solid var(--mk-gold);
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: -0.03em;
+  margin-right: 14px;
+  vertical-align: middle;
+  box-shadow: 0 0 0 1px var(--mk-chop), 0 2px 6px rgba(0, 0, 0, 0.35);
+  transform: rotate(-6deg);
+  flex-shrink: 0;
+}
+[data-palette="kamdo-classic"] .footer__bottom {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+/* Combo modal top-right corner — small gold seal */
+[data-palette="kamdo-classic"] .combo-modal__title::after {
+  content: '金都';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--mk-red);
+  color: var(--mk-gold-light);
+  border: 1.5px solid var(--mk-gold);
+  font-family: var(--font-display), serif;
+  font-weight: 900;
+  font-size: 0.7rem;
+  letter-spacing: -0.04em;
+  margin-left: 10px;
+  vertical-align: middle;
+  transform: rotate(-5deg);
+}
+
+/* ============================================================
+   V2 STOREFRONT WINDOW RESET
+   ============================================================
+   This block supersedes the earlier "vintage Mongkok street market"
+   treatment. It kills washi tape, stamp shadows, big seal pseudo-
+   elements, vintage rotations, and newsprint textures — then paints
+   the Hero/Nav in the bright bakery family DNA aesthetic.
+
+   Scope: [data-palette="kamdo-classic"] only. Other palettes
+   (default golden signage) untouched.
+   ============================================================ */
+
+/* --- 0. Strip vintage elements --- */
+
+/* Kill washi tape decorations */
+[data-palette="kamdo-classic"] .section__header-mk-tape {
+  display: none !important;
+}
+
+/* Kill old Mongkok hero internals (rebuilt via new hero-v2__* classes) */
+[data-palette="kamdo-classic"] .hero-mk__big-name,
+[data-palette="kamdo-classic"] .hero-mk__signboard,
+[data-palette="kamdo-classic"] .hero-mk__status,
+[data-palette="kamdo-classic"] .hero-mk__cta,
+[data-palette="kamdo-classic"] .hero-mk__chop,
+[data-palette="kamdo-classic"] .hero-mk__collage,
+[data-palette="kamdo-classic"] .hero-mk__dish,
+[data-palette="kamdo-classic"] .hero-mk__note,
+[data-palette="kamdo-classic"] .hero-mk__marquee,
+[data-palette="kamdo-classic"] .mk-marquee {
+  display: none !important;
+}
+
+/* Kill pseudo-element seals (hero-left big seal, cart empty watermark, combo chop) */
+[data-palette="kamdo-classic"] .hero-mk__left::before,
+[data-palette="kamdo-classic"] .hero-mk__left::after,
+[data-palette="kamdo-classic"] .cart-drawer__empty::after,
+[data-palette="kamdo-classic"] .combo-modal__title::after,
+[data-palette="kamdo-classic"] .featured__card::before,
+[data-palette="kamdo-classic"] .footer__bottom::before {
+  content: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Strip body dotted newsprint texture */
+[data-palette="kamdo-classic"] body {
+  background-image: none;
+  background-color: var(--kd-cream);
+}
+
+/* Strip section-header-mk gradient overlay newsprint */
+[data-palette="kamdo-classic"] .section + .section::before {
+  display: none;
+}
+
+/* --- 1. Nav — cream bg + gold accent --- */
+[data-palette="kamdo-classic"] .nav {
+  background: var(--kd-cream);
+  border-bottom: 1px solid rgba(217, 165, 72, 0.35);
+  box-shadow: none;
+}
+[data-palette="kamdo-classic"] .nav__logo {
+  /* New logo has its own gold ring + red background — keep mount minimal */
+  background: transparent;
+  border: none;
+  box-shadow: 0 2px 8px rgba(200, 49, 45, 0.18);
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+[data-palette="kamdo-classic"] .nav__name {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  color: var(--kd-ink);
+  text-shadow: none;
+}
+[data-palette="kamdo-classic"] .nav__subtitle {
+  font-family: 'Playfair Display', 'Noto Serif TC', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--kd-kraft);
+  text-transform: none;
+  opacity: 1;
+}
+[data-palette="kamdo-classic"] .nav__link {
+  font-family: var(--font-display), serif;
+  font-weight: 500;
+  color: var(--kd-charcoal);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  background: transparent;
+  position: relative;
+  padding: 4px 0;
+  margin: 0 14px;
+}
+[data-palette="kamdo-classic"] .nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: -3px;
+  height: 1px;
+  background: var(--kd-gold);
+  transition: right 0.3s ease;
+}
+[data-palette="kamdo-classic"] .nav__link:hover,
+[data-palette="kamdo-classic"] .nav__link.active {
+  color: var(--kd-red);
+  background: transparent;
+}
+[data-palette="kamdo-classic"] .nav__link:hover::after,
+[data-palette="kamdo-classic"] .nav__link.active::after {
+  right: 0;
+}
+[data-palette="kamdo-classic"] .nav__cart-btn {
+  background: transparent;
+  color: var(--kd-ink);
+  border: 1px solid var(--kd-gold);
+  border-radius: 2px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  box-shadow: none;
+  padding: 8px 18px;
+  transition: all 0.25s;
+}
+[data-palette="kamdo-classic"] .nav__cart-btn:hover {
+  background: var(--kd-gold);
+  color: var(--kd-ink);
+  transform: none;
+  box-shadow: none;
+}
+[data-palette="kamdo-classic"] .nav__cart-count {
+  background: var(--kd-red);
+  color: var(--kd-paper);
+  border: none;
+}
+[data-palette="kamdo-classic"] .nav__mobile-toggle {
+  color: var(--kd-ink);
+}
+
+/* --- 2. Hero V2 — Storefront Window layout --- */
+[data-palette="kamdo-classic"] .hero {
+  background: var(--kd-cream);
+  background-image: none;
+  background-size: auto;
+  padding: 0;
+  min-height: calc(100vh - var(--nav-height));
+  display: block;
+  overflow: hidden;
+}
+[data-palette="kamdo-classic"] .hero-mk {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: calc(100vh - var(--nav-height));
+  padding: 64px 56px 80px;
+}
+[data-palette="kamdo-classic"] .hero-mk__inner {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 72px;
+  align-items: center;
+  padding: 0;
+  min-height: auto;
+}
+[data-palette="kamdo-classic"] .hero-mk__left {
+  position: relative;
+  display: block;
+  padding: 0;
+  align-items: flex-start;
+}
+[data-palette="kamdo-classic"] .hero-mk__right {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  min-height: auto;
+}
+
+/* Decorative gold bracket — restrained ornament */
+[data-palette="kamdo-classic"] .hero-v2__bracket {
+  position: absolute;
+  left: -40px;
+  top: -28px;
+  width: 80px;
+  height: 80px;
+  border-top: 2px solid var(--kd-gold);
+  border-left: 2px solid var(--kd-gold);
+  opacity: 0.65;
+}
+
+[data-palette="kamdo-classic"] .hero-v2__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  font-family: var(--font-english-display), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--kd-kraft);
+  font-weight: 500;
+}
+[data-palette="kamdo-classic"] .hero-v2__eyebrow-dot {
+  width: 5px; height: 5px;
+  background: var(--kd-gold);
+  border-radius: 50%;
+}
+
+[data-palette="kamdo-classic"] .hero-v2__title-zh {
+  font-family: var(--font-display), serif;
+  font-weight: 700;
+  font-size: clamp(56px, 7vw, 104px);
+  line-height: 1.02;
+  letter-spacing: 0.04em;
+  color: var(--kd-ink);
+  margin: 0 0 16px;
+  text-shadow: none;
+}
+
+[data-palette="kamdo-classic"] .hero-v2__title-en {
+  font-family: 'Playfair Display', 'Noto Serif TC', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 48px);
+  color: var(--kd-red);
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+
+[data-palette="kamdo-classic"] .hero-v2__flourish {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+[data-palette="kamdo-classic"] .hero-v2__flourish-rule {
+  flex: 1;
+  height: 1px;
+  max-width: 120px;
+  background: var(--kd-gold);
+}
+[data-palette="kamdo-classic"] .hero-v2__flourish-ornament {
+  color: var(--kd-gold);
+  font-size: 20px;
+  line-height: 1;
+}
+
+[data-palette="kamdo-classic"] .hero-v2__story {
+  font-family: var(--font-display), serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--kd-charcoal);
+  max-width: 540px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+[data-palette="kamdo-classic"] .hero-v2__story::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 72px;
+  float: left;
+  line-height: 0.85;
+  padding: 6px 12px 0 0;
+  color: var(--kd-red);
+}
+[data-palette="kamdo-classic"] .hero-v2__story-en {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--kd-stone);
+  max-width: 540px;
+  margin-bottom: 40px;
+}
+
+[data-palette="kamdo-classic"] .hero-v2__features {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 44px;
+  font-family: var(--font-display), serif;
+  font-size: 14px;
+  color: var(--kd-charcoal);
+  letter-spacing: 0.02em;
+}
+[data-palette="kamdo-classic"] .hero-v2__features-dot {
+  color: var(--kd-gold);
+}
+
+[data-palette="kamdo-classic"] .hero-v2__ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+[data-palette="kamdo-classic"] .hero-v2__cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 30px;
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--kd-red);
+  color: var(--kd-paper);
+  border: 1px solid var(--kd-red);
+  box-shadow: 0 0 0 4px transparent, 0 0 0 5px var(--kd-gold);
+  transition: all 0.25s ease;
+}
+[data-palette="kamdo-classic"] .hero-v2__cta-primary:hover {
+  background: var(--kd-red-dark);
+  border-color: var(--kd-red-dark);
+  box-shadow: 0 0 0 3px var(--kd-paper), 0 0 0 4px var(--kd-gold);
+  transform: translateY(-2px);
+}
+[data-palette="kamdo-classic"] .hero-v2__cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 30px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  background: transparent;
+  color: var(--kd-ink);
+  border: 1px solid var(--kd-ink);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+[data-palette="kamdo-classic"] .hero-v2__cta-ghost:hover {
+  background: var(--kd-ink);
+  color: var(--kd-paper);
+}
+
+[data-palette="kamdo-classic"] .hero-v2__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--kd-charcoal);
+}
+[data-palette="kamdo-classic"] .hero-v2__status-dot {
+  width: 8px; height: 8px;
+  background: var(--kd-green);
+  border-radius: 50%;
+  animation: hero-v2-breathe 2.2s ease-in-out infinite;
+}
+@keyframes hero-v2-breathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(0.85); }
+}
+
+/* --- 3. Frame (right column) --- */
+[data-palette="kamdo-classic"] .hero-v2__frame {
+  position: relative;
+  padding: 14px;
+  background: var(--kd-paper);
+  border: 1px solid var(--kd-gold);
+  box-shadow:
+    0 0 0 12px var(--kd-paper),
+    0 0 0 13px var(--kd-gold),
+    0 22px 60px rgba(112, 70, 20, 0.18);
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 3 / 4;
+}
+[data-palette="kamdo-classic"] .hero-v2__frame::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--kd-gold-light);
+  pointer-events: none;
+}
+[data-palette="kamdo-classic"] .hero-v2__picture {
+  position: relative;
+  width: 100%; height: 100%;
+  background: var(--kd-cream-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+[data-palette="kamdo-classic"] .hero-v2__picture-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Subtle zoom-on-hover for editorial feel */
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-palette="kamdo-classic"] .hero-v2__frame:hover .hero-v2__picture-img {
+  transform: scale(1.03);
+}
+
+[data-palette="kamdo-classic"] .hero-v2__ribbon {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 72px;
+  height: 72px;
+  background: var(--kd-red);
+  color: var(--kd-paper);
+  border: 2px solid var(--kd-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform: rotate(10deg);
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  line-height: 1;
+  z-index: 3;
+}
+[data-palette="kamdo-classic"] .hero-v2__ribbon-est {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  font-style: italic;
+}
+[data-palette="kamdo-classic"] .hero-v2__ribbon-year {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+[data-palette="kamdo-classic"] .hero-v2__plaque {
+  position: absolute;
+  bottom: -56px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 340px;
+  max-width: 90%;
+  padding: 14px 20px;
+  background: var(--kd-paper);
+  border: 1px solid var(--kd-gold);
+}
+[data-palette="kamdo-classic"] .hero-v2__plaque-no {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--kd-gold-dark);
+  margin-bottom: 3px;
+}
+[data-palette="kamdo-classic"] .hero-v2__plaque-name {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--kd-ink);
+  letter-spacing: 0.08em;
+}
+[data-palette="kamdo-classic"] .hero-v2__plaque-name-en {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--kd-kraft);
+  margin-top: 2px;
+}
+
+/* --- 4. CSS-art Pineapple Bun (placeholder until real photo) --- */
+[data-palette="kamdo-classic"] .bun-art {
+  position: relative;
+  width: 88%;
+  aspect-ratio: 1;
+  max-width: 360px;
+}
+[data-palette="kamdo-classic"] .bun-art__plate {
+  position: absolute; inset: 14%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 30% 28%, #FDFAF3 0%, #E8DFC6 70%, #C8B894 100%);
+  box-shadow: inset 0 -8px 22px rgba(26, 22, 16, 0.07);
+}
+[data-palette="kamdo-classic"] .bun-art__bun-bottom {
+  position: absolute;
+  left: 22%; right: 22%; top: 50%;
+  height: 20%;
+  background: linear-gradient(180deg, #F5E4C5 0%, #E0C99A 100%);
+  border-radius: 50% 50% 22% 22% / 40% 40% 22% 22%;
+}
+[data-palette="kamdo-classic"] .bun-art__egg {
+  position: absolute;
+  left: 20%; right: 20%; top: 46%;
+  height: 17%;
+  background: linear-gradient(180deg, #F5C443 0%, #E0A020 100%);
+  border-radius: 50% 50% 30% 30% / 60% 60% 30% 30%;
+  filter: drop-shadow(0 2px 4px rgba(224, 160, 32, 0.2));
+}
+[data-palette="kamdo-classic"] .bun-art__ham {
+  position: absolute;
+  left: 25%; right: 25%; top: 52%;
+  height: 7%;
+  background: linear-gradient(180deg, #D88878 0%, #BE6058 100%);
+}
+[data-palette="kamdo-classic"] .bun-art__bun-top {
+  position: absolute;
+  left: 14%; right: 14%; top: 22%;
+  height: 40%;
+  background:
+    radial-gradient(circle at 35% 40%, rgba(112, 60, 10, 0.35) 0%, transparent 15%),
+    radial-gradient(circle at 62% 52%, rgba(112, 60, 10, 0.35) 0%, transparent 14%),
+    radial-gradient(circle at 45% 64%, rgba(112, 60, 10, 0.3) 0%, transparent 13%),
+    linear-gradient(180deg, #E0A033 0%, #B87010 100%);
+  border-radius: 52% 52% 35% 35% / 65% 65% 35% 35%;
+  box-shadow:
+    inset -10px -8px 22px rgba(95, 50, 8, 0.3),
+    inset 10px 8px 24px rgba(255, 220, 155, 0.4),
+    0 8px 18px rgba(120, 70, 15, 0.25);
+}
+[data-palette="kamdo-classic"] .bun-art__bun-top::before {
+  content: '';
+  position: absolute; inset: 8%;
+  background:
+    linear-gradient(60deg, transparent 48%, rgba(95, 50, 8, 0.3) 49%, rgba(95, 50, 8, 0.3) 51%, transparent 52%),
+    linear-gradient(-60deg, transparent 48%, rgba(95, 50, 8, 0.3) 49%, rgba(95, 50, 8, 0.3) 51%, transparent 52%);
+  background-size: 46px 46px;
+  border-radius: 52% 52% 35% 35% / 65% 65% 35% 35%;
+  mix-blend-mode: multiply;
+  opacity: 0.75;
+}
+
+/* --- 5. Global button refresh under V2 palette --- */
+[data-palette="kamdo-classic"] .btn--primary {
+  background: var(--kd-red);
+  color: var(--kd-paper);
+  border: 1px solid var(--kd-red);
+  border-radius: 2px;
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  box-shadow: 0 4px 12px rgba(200, 49, 45, 0.18);
+  transition: all 0.25s ease;
+  transform: none;
+}
+[data-palette="kamdo-classic"] .btn--primary:hover {
+  background: var(--kd-red-dark);
+  border-color: var(--kd-red-dark);
+  box-shadow: 0 6px 20px rgba(158, 37, 33, 0.28);
+  transform: translateY(-2px);
+}
+[data-palette="kamdo-classic"] .btn--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(158, 37, 33, 0.2);
+}
+[data-palette="kamdo-classic"] .btn--secondary {
+  background: transparent;
+  color: var(--kd-ink);
+  border: 1px solid var(--kd-ink);
+  border-radius: 2px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+[data-palette="kamdo-classic"] .btn--secondary:hover {
+  background: var(--kd-ink);
+  color: var(--kd-paper);
+}
+
+/* --- 6. RESPONSIVE --- */
+@media (max-width: 960px) {
+  [data-palette="kamdo-classic"] .hero-mk__inner {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  [data-palette="kamdo-classic"] .hero-mk__right {
+    order: -1;
+  }
+  [data-palette="kamdo-classic"] .hero-v2__bracket { display: none; }
+  [data-palette="kamdo-classic"] .hero-v2__plaque {
+    position: static;
+    transform: none;
+    margin: 24px auto 0;
+  }
+}
+@media (max-width: 640px) {
+  [data-palette="kamdo-classic"] .hero-mk {
+    padding: 40px 20px 80px;
+  }
+  [data-palette="kamdo-classic"] .hero-v2__title-zh {
+    font-size: 56px;
+  }
+  [data-palette="kamdo-classic"] .hero-v2__title-en {
+    font-size: 26px;
+  }
+  [data-palette="kamdo-classic"] .hero-v2__story {
+    font-size: 15px;
+  }
+  [data-palette="kamdo-classic"] .hero-v2__story::first-letter {
+    font-size: 56px;
+  }
+  [data-palette="kamdo-classic"] .hero-v2__ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  [data-palette="kamdo-classic"] .hero-v2__cta-primary,
+  [data-palette="kamdo-classic"] .hero-v2__cta-ghost {
+    justify-content: center;
+  }
+  /* Keep ribbon fully inside viewport on mobile (rotation expands bounds) */
+  [data-palette="kamdo-classic"] .hero-v2__ribbon {
+    top: 8px;
+    right: 8px;
+    width: 56px;
+    height: 56px;
+    transform: rotate(8deg);
+  }
+  [data-palette="kamdo-classic"] .hero-v2__ribbon-year {
+    font-size: 15px;
+  }
+  [data-palette="kamdo-classic"] .hero-v2__ribbon-est {
+    font-size: 8px;
+  }
+  [data-palette="kamdo-classic"] .hero-v2__frame {
+    max-width: calc(100% - 16px);
+  }
+}
+
+/* ============================================================
+   V2 PHASE B — Featured / Menu / Cart / Combo cleanup
+   Strip remaining stamp-shadow, rotation, newsprint styles
+   applied by earlier vintage overrides so everything matches
+   the clean storefront aesthetic.
+   ============================================================ */
+
+/* --- Featured cards: clean soft drop shadow, no rotation --- */
+[data-palette="kamdo-classic"] .featured {
+  background: transparent;
+  padding-top: var(--space-2xl);
+}
+[data-palette="kamdo-classic"] .featured__header {
+  margin-bottom: var(--space-xl);
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  position: relative;
+  text-align: center;
+}
+[data-palette="kamdo-classic"] .featured__card {
+  background: var(--kd-paper);
+  border: 1px solid rgba(217, 165, 72, 0.25);
+  border-radius: 2px;
+  box-shadow:
+    0 2px 8px rgba(26, 22, 16, 0.06),
+    0 12px 32px rgba(26, 22, 16, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  padding: 0;
+}
+[data-palette="kamdo-classic"] .featured__card:nth-child(odd),
+[data-palette="kamdo-classic"] .featured__card:nth-child(even) {
+  transform: none;
+  margin-top: 0;
+}
+[data-palette="kamdo-classic"] .featured__card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 4px 12px rgba(26, 22, 16, 0.08),
+    0 20px 48px rgba(26, 22, 16, 0.12);
+}
+[data-palette="kamdo-classic"] .featured__card-body {
+  padding: 16px 20px 20px;
+  background: transparent;
+  border-top: none;
+}
+[data-palette="kamdo-classic"] .featured__card-name {
+  font-family: var(--font-display), serif;
+  font-weight: 700;
+  color: var(--kd-ink);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+[data-palette="kamdo-classic"] .featured__card-name-en {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--kd-kraft);
+  letter-spacing: 0.01em;
+  text-transform: none;
+  opacity: 1;
+}
+[data-palette="kamdo-classic"] .featured__card-image {
+  background: var(--kd-cream-warm);
+  border-bottom: 1px solid rgba(217, 165, 72, 0.2);
+}
+
+/* --- Menu items: clean card with soft shadow --- */
+[data-palette="kamdo-classic"] .menu-item {
+  background: var(--kd-paper);
+  border: 1px solid rgba(217, 165, 72, 0.2);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(26, 22, 16, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transform: none;
+}
+[data-palette="kamdo-classic"] .menu-item:hover {
+  box-shadow: 0 4px 16px rgba(26, 22, 16, 0.1);
+  transform: translateY(-2px);
+}
+[data-palette="kamdo-classic"] .menu-list > .menu-item:nth-child(even),
+[data-palette="kamdo-classic"] .menu-list > .menu-item:nth-child(odd) {
+  transform: none;
+}
+[data-palette="kamdo-classic"] .menu-item--signature {
+  transform: none !important;
+}
+[data-palette="kamdo-classic"] .menu-item__image-placeholder {
+  background: var(--kd-cream-warm);
+}
+[data-palette="kamdo-classic"] .menu-item__name-zh {
+  font-family: var(--font-display), serif;
+  font-weight: 700;
+  color: var(--kd-ink);
+}
+
+/* Menu item add-to-cart button — clean soft */
+[data-palette="kamdo-classic"] .menu-item__add-btn {
+  background: var(--kd-red);
+  color: var(--kd-paper);
+  border: none;
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  box-shadow: 0 2px 8px rgba(200, 49, 45, 0.25);
+  transition: all 0.2s;
+  font-family: var(--font-english-display), sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+[data-palette="kamdo-classic"] .menu-item__add-btn:hover {
+  background: var(--kd-red-dark);
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgba(200, 49, 45, 0.35);
+}
+[data-palette="kamdo-classic"] .menu-item__add-btn.added {
+  background: var(--kd-green);
+}
+
+/* Menu decorations unused in V2 */
+[data-palette="kamdo-classic"] .menu-item__mk-chop,
+[data-palette="kamdo-classic"] .menu-item__mk-burst,
+[data-palette="kamdo-classic"] .menu-item__mk-code,
+[data-palette="kamdo-classic"] .menu-item__mk-tag,
+[data-palette="kamdo-classic"] .menu-item__mk-good {
+  display: none !important;
+}
+
+/* Bring back basic badges (we hid them earlier) in clean form */
+[data-palette="kamdo-classic"] .menu-item__badge {
+  display: inline-flex !important;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-family: var(--font-english-display), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 6px;
+  border: none;
+  transform: none;
+  outline: none;
+  box-shadow: none;
+}
+[data-palette="kamdo-classic"] .menu-item__badge--signature {
+  background: var(--kd-gold);
+  color: var(--kd-ink);
+}
+[data-palette="kamdo-classic"] .menu-item__badge--new {
+  background: var(--kd-red);
+  color: var(--kd-paper);
+}
+[data-palette="kamdo-classic"] .menu-item__badge--award {
+  background: linear-gradient(135deg, var(--kd-gold-light), var(--kd-gold));
+  color: var(--kd-ink);
+}
+
+/* --- Cart drawer: clean bakery receipt --- */
+[data-palette="kamdo-classic"] .cart-drawer {
+  background: var(--kd-paper);
+  background-image: none;
+  border-left: 1px solid rgba(217, 165, 72, 0.4);
+}
+[data-palette="kamdo-classic"] .cart-drawer__header {
+  background: var(--kd-cream);
+  border-bottom: 1px solid rgba(217, 165, 72, 0.4);
+  padding: 24px;
+  position: relative;
+}
+[data-palette="kamdo-classic"] .cart-drawer__header::after {
+  display: none;
+}
+[data-palette="kamdo-classic"] .cart-drawer__title {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--kd-ink);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+[data-palette="kamdo-classic"] .cart-drawer__title::after {
+  content: 'Your Order · 訂單';
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--kd-kraft);
+  letter-spacing: 0.02em;
+  margin-top: 3px;
+  text-transform: none;
+  opacity: 1;
+}
+[data-palette="kamdo-classic"] .cart-drawer__close {
+  color: var(--kd-stone);
+}
+[data-palette="kamdo-classic"] .cart-drawer__close:hover {
+  color: var(--kd-red);
+  transform: none;
+}
+
+[data-palette="kamdo-classic"] .cart-drawer__footer {
+  background: var(--kd-cream);
+  border-top: 1px solid rgba(217, 165, 72, 0.4);
+  padding: 20px 24px;
+}
+[data-palette="kamdo-classic"] .cart-drawer__footer::before {
+  display: none;
+}
+[data-palette="kamdo-classic"] .cart-drawer__total-label {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--kd-charcoal);
+  font-size: 14px;
+}
+[data-palette="kamdo-classic"] .cart-drawer__total-label::after {
+  display: none;
+}
+[data-palette="kamdo-classic"] .cart-drawer__total-amount {
+  font-family: var(--font-price), sans-serif;
+  color: var(--kd-red);
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+[data-palette="kamdo-classic"] .cart-drawer__tax-note {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--kd-stone);
+  opacity: 1;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+[data-palette="kamdo-classic"] .cart-drawer__checkout {
+  background: var(--kd-red);
+  color: var(--kd-paper);
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--kd-red);
+  border-radius: 2px;
+  box-shadow: 0 0 0 4px transparent, 0 0 0 5px var(--kd-gold);
+  transition: all 0.25s;
+  padding: 14px;
+}
+[data-palette="kamdo-classic"] .cart-drawer__checkout:hover:not(:disabled) {
+  background: var(--kd-red-dark);
+  border-color: var(--kd-red-dark);
+  box-shadow: 0 0 0 3px var(--kd-paper), 0 0 0 4px var(--kd-gold);
+  transform: translateY(-1px);
+}
+[data-palette="kamdo-classic"] .cart-drawer__checkout:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 0 0 4px transparent, 0 0 0 5px var(--kd-gold);
+}
+[data-palette="kamdo-classic"] .cart-drawer__checkout:disabled {
+  opacity: 0.35;
+  box-shadow: none;
+}
+[data-palette="kamdo-classic"] .cart-drawer__whatsapp {
+  background: var(--kd-green);
+  color: var(--kd-paper);
+  border: 1px solid var(--kd-green);
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.25);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+[data-palette="kamdo-classic"] .cart-drawer__whatsapp:hover {
+  background: #1f5a23;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.35);
+}
+
+/* Cart items — remove left-red-border, use dashed hairline */
+[data-palette="kamdo-classic"] .cart-item {
+  border-left: none;
+  background: transparent;
+  border-bottom: 1px solid rgba(26, 22, 16, 0.08);
+  padding: 14px 0;
+  margin: 0;
+}
+[data-palette="kamdo-classic"] .cart-item__name {
+  font-family: var(--font-display), serif;
+  color: var(--kd-ink);
+  font-weight: 600;
+}
+[data-palette="kamdo-classic"] .cart-item__price {
+  font-family: var(--font-price), sans-serif;
+  color: var(--kd-red);
+}
+
+/* Cart empty state — clean, no watermark seal */
+[data-palette="kamdo-classic"] .cart-drawer__empty {
+  text-align: center;
+  padding: 64px 24px;
+  position: relative;
+  overflow: visible;
+}
+[data-palette="kamdo-classic"] .cart-drawer__empty-icon {
+  font-size: 44px;
+  opacity: 0.5;
+  filter: none;
+  margin-bottom: 16px;
+}
+[data-palette="kamdo-classic"] .cart-drawer__empty p:first-of-type {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--kd-charcoal);
+  transform: none;
+  margin: 0;
+}
+[data-palette="kamdo-classic"] .cart-drawer__empty p:last-of-type {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--kd-stone);
+  margin-top: 8px !important;
+  opacity: 1;
+}
+
+/* --- Combo modal: clean --- */
+[data-palette="kamdo-classic"] .combo-modal {
+  background: var(--kd-paper);
+  border: 1px solid rgba(217, 165, 72, 0.4);
+  box-shadow: 0 20px 60px rgba(26, 22, 16, 0.2);
+}
+[data-palette="kamdo-classic"] .combo-modal::before,
+[data-palette="kamdo-classic"] .combo-modal::after {
+  display: none !important;
+}
+[data-palette="kamdo-classic"] .combo-modal__header {
+  background: var(--kd-cream);
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(217, 165, 72, 0.4);
+  border-radius: 0;
+}
+[data-palette="kamdo-classic"] .combo-modal__header::before {
+  display: none;
+}
+[data-palette="kamdo-classic"] .combo-modal__title {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--kd-ink);
+  letter-spacing: 0.03em;
+  text-shadow: none;
+}
+[data-palette="kamdo-classic"] .combo-modal__body {
+  background: var(--kd-paper);
+  padding: 24px;
+}
+[data-palette="kamdo-classic"] .combo-modal__body::before {
+  display: none !important;
+}
+[data-palette="kamdo-classic"] .combo-modal__option {
+  background: var(--kd-white);
+  border: 1px solid rgba(217, 165, 72, 0.35);
+  border-radius: 3px;
+  color: var(--kd-ink);
+  font-family: var(--font-body);
+  transform: none;
+  box-shadow: none;
+}
+[data-palette="kamdo-classic"] .combo-modal__option:hover {
+  border-color: var(--kd-gold);
+  background: var(--kd-cream);
+}
+[data-palette="kamdo-classic"] .combo-modal__option.selected {
+  background: var(--kd-red);
+  color: var(--kd-paper);
+  border-color: var(--kd-red);
+}
+[data-palette="kamdo-classic"] .combo-modal__group[data-type="radio"] .combo-modal__option::before,
+[data-palette="kamdo-classic"] .combo-modal__group[data-type="checkbox"] .combo-modal__option::before,
+[data-palette="kamdo-classic"] .combo-modal__group[data-type="checkbox"] .combo-modal__option.selected::after {
+  /* Keep existing radio/check markers logic, just update color */
+  border-color: currentColor;
+}
+[data-palette="kamdo-classic"] .combo-modal__footer {
+  background: var(--kd-cream);
+  border-top: 1px solid rgba(217, 165, 72, 0.4);
+  padding: 16px 24px 20px;
+}
+[data-palette="kamdo-classic"] .combo-modal__footer::before,
+[data-palette="kamdo-classic"] .combo-modal__footer::after {
+  display: none !important;
+}
+[data-palette="kamdo-classic"] .combo-modal__price {
+  font-family: var(--font-price), sans-serif;
+  color: var(--kd-red);
+  font-size: 1.75rem;
+  font-weight: 900;
+  text-align: right;
+  letter-spacing: -0.02em;
+}
+[data-palette="kamdo-classic"] .combo-modal__add-btn {
+  background: var(--kd-red);
+  color: var(--kd-paper);
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  padding: 12px 18px;
+  border: 1px solid var(--kd-red);
+  border-radius: 2px;
+  box-shadow: 0 0 0 3px transparent, 0 0 0 4px var(--kd-gold);
+  transition: all 0.25s;
+  width: 100%;
+}
+[data-palette="kamdo-classic"] .combo-modal__add-btn::before,
+[data-palette="kamdo-classic"] .combo-modal__add-btn::after {
+  content: none;
+}
+[data-palette="kamdo-classic"] .combo-modal__add-btn:not(:disabled):hover {
+  background: var(--kd-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px var(--kd-paper), 0 0 0 3px var(--kd-gold);
+}
+[data-palette="kamdo-classic"] .combo-modal__add-btn:disabled {
+  background: rgba(26, 22, 16, 0.2);
+  color: var(--kd-paper);
+  border-color: transparent;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* --- Section banner: cleaner, bakery-studio vibe --- */
+[data-palette="kamdo-classic"] .section__header-mk {
+  border: none;
+  border-top: 1px solid rgba(217, 165, 72, 0.4);
+  border-bottom: 1px solid rgba(217, 165, 72, 0.4);
+  box-shadow: none;
+}
+[data-palette="kamdo-classic"] .section__header-mk::before {
+  background: linear-gradient(
+    90deg,
+    rgba(240, 232, 213, 0.98) 0%,
+    rgba(240, 232, 213, 0.9) 30%,
+    rgba(240, 232, 213, 0.55) 55%,
+    rgba(240, 232, 213, 0) 80%
+  );
+}
+[data-palette="kamdo-classic"] .section__header-mk-zh {
+  font-family: var(--font-display), serif;
+  font-weight: 700;
+  color: var(--kd-ink);
+  text-shadow: none;
+}
+[data-palette="kamdo-classic"] .section__header-mk-en {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--kd-red);
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+[data-palette="kamdo-classic"] .section__header-mk-sub {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--kd-charcoal);
+  background: rgba(246, 239, 218, 0.92);
+  border-left: 2px solid var(--kd-gold);
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- Subsection titles cleaned --- */
+[data-palette="kamdo-classic"] .subsection__title {
+  font-family: var(--font-english-display), sans-serif;
+  font-weight: 600;
+  color: var(--kd-kraft);
+  letter-spacing: 0.12em;
+}
+[data-palette="kamdo-classic"] .subsection__title-zh {
+  font-family: var(--font-display), serif;
+  font-weight: 700;
+  color: var(--kd-ink);
+  padding-left: 14px;
+  position: relative;
+}
+[data-palette="kamdo-classic"] .subsection__title-zh::before {
+  background: var(--kd-gold);
+  width: 3px;
+}
+[data-palette="kamdo-classic"] .subsection__description {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  color: var(--kd-ink);
+  font-weight: 500;
+  background: rgba(238, 189, 94, 0.3);
+  border: 1px solid rgba(217, 165, 72, 0.4);
+}
+
+/* Section-between divider — subtle cream-to-gold */
+[data-palette="kamdo-classic"] .section + .section::before {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--kd-gold);
+  margin: 60px auto;
+}
+
+/* --- Footer clean --- */
+[data-palette="kamdo-classic"] .footer {
+  background: var(--kd-ink);
+  color: var(--kd-cream);
+  border-top: 1px solid var(--kd-gold);
+}
+[data-palette="kamdo-classic"] .footer::before {
+  display: none;
+}
+[data-palette="kamdo-classic"] .footer__bottom {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(240, 232, 213, 0.7);
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+  text-align: center;
+  display: block;
+}
+
+/* ============================================================
+   V2 Kam Do Pattern — brand texture asset integrations
+   Uses assets/logo/kam-do-pattern.jpg (pure coral-fortune pattern,
+   no text). CSS fails gracefully if file is absent (just shows
+   nothing where pattern would be — no broken-image icons since
+   these are background-image, not <img>).
+   ============================================================ */
+
+/* 1. Cart empty-state pattern watermark */
+[data-palette="kamdo-classic"] .cart-drawer__empty {
+  position: relative;
+  overflow: hidden;
+}
+[data-palette="kamdo-classic"] .cart-drawer__empty::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background-image: url('assets/logo/kam-do-pattern.jpg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+}
+[data-palette="kamdo-classic"] .cart-drawer__empty > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 2. Section divider — small pattern seal between sections */
+/* Override the plain gold line added earlier in Phase B */
+[data-palette="kamdo-classic"] .section + .section::before {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 56px;
+  background-image: url('assets/logo/kam-do-pattern.jpg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  margin: 72px auto 56px;
+  opacity: 0.55;
+  /* Flanked by hairlines for elegance */
+  position: relative;
+  background-color: transparent;
+}
+/* Horizontal gold hairline on either side of the seal */
+[data-palette="kamdo-classic"] .section {
+  position: relative;
+}
+[data-palette="kamdo-classic"] .section + .section {
+  padding-top: 8px;
+}
+
+/* 3. Hero ribbon — pattern showing through red wash */
+[data-palette="kamdo-classic"] .hero-v2__ribbon {
+  background:
+    linear-gradient(rgba(200, 49, 45, 0.82), rgba(200, 49, 45, 0.82)),
+    url('assets/logo/kam-do-pattern.jpg') center/cover;
 }

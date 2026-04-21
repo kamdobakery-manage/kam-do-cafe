@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-palette="mongkok">
+<html lang="en" data-palette="kamdo-classic">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kam Do Cafe · 金都茶餐廳 — Authentic Hong Kong Cha Chaan Teng</title>
-  <meta name="description" content="Authentic Hong Kong cha chaan teng in Richmond, BC. Classic comfort food made fresh daily — from satay beef noodles to golden pineapple buns.">
+  <meta name="description" content="Authentic Hong Kong cha chaan teng on Richmond's No.3 Road. Silky milk tea, pineapple buns warm from the oven, satay beef noodles — honest comforts, made by hand every morning.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Kam Do Cafe · 金都茶餐廳">
-  <meta property="og:description" content="Authentic Hong Kong cha chaan teng in Richmond, BC. Classic comfort food made fresh daily.">
-  <meta property="og:image" content="assets/logo/kam-do-logo.jpg">
+  <meta property="og:description" content="Authentic Hong Kong cha chaan teng on Richmond's No.3 Road. Silky milk tea, pineapple buns warm from the oven, satay beef noodles — honest comforts, made by hand every morning.">
+  <meta property="og:image" content="assets/logo/kam-do-cafe-logo.jpg">
   <meta property="og:type" content="restaurant">
 
   <!-- Fonts -->
@@ -18,15 +18,11 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+TC:wght@400;500;600;700;900&family=Noto+Serif+TC:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600;700&family=Ma+Shan+Zheng&family=Oswald:wght@400;500;600;700&family=Archivo+Black&family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=21">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="assets/logo/kam-do-logo.jpg">
+  <link rel="icon" type="image/jpeg" href="assets/logo/kam-do-cafe-logo.jpg">
 
-  <!-- Apply saved palette before paint to avoid flash -->
-  <script>
-    (function(){var p=localStorage.getItem('kamdo_palette');if(p)document.documentElement.setAttribute('data-palette',p)})();
-  </script>
 </head>
 <body>
 
@@ -34,7 +30,7 @@
   <nav class="nav">
     <div class="nav__inner">
       <a href="#" class="nav__brand">
-        <img src="assets/logo/kam-do-logo.jpg" alt="金都 Kam Do Cafe" class="nav__logo" width="40" height="40">
+        <img src="assets/logo/kam-do-cafe-logo.jpg" alt="金都 Kam Do Cafe" class="nav__logo" width="40" height="40">
         <div>
           <div class="nav__name">Kam Do Cafe</div>
           <div class="nav__subtitle">Hong Kong Style</div>
@@ -53,11 +49,6 @@
         <!-- Populated by JS -->
       </ul>
 
-
-      <button class="palette-toggle" id="palette-toggle" aria-label="Switch color palette" title="切換配色">
-        <span class="palette-toggle__half palette-toggle__half--left"></span>
-        <span class="palette-toggle__half palette-toggle__half--right"></span>
-      </button>
 
       <button class="nav__cart-btn" id="cart-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -149,9 +140,9 @@
     </div>
     <div class="cart-drawer__items" id="cart-items">
       <div class="cart-drawer__empty">
-        <div class="cart-drawer__empty-icon">🛒</div>
-        <p>Your cart is empty</p>
-        <p style="font-size:12px;margin-top:8px;">Browse the menu and add items</p>
+        <div class="cart-drawer__empty-icon">🥢</div>
+        <p>仲未落單呀？</p>
+        <p style="font-size:12px;margin-top:8px;">Browse the menu and add your favourites</p>
       </div>
     </div>
     <div class="cart-drawer__footer">
@@ -193,7 +184,7 @@
   <div class="toast" id="toast"></div>
 
   <!-- App Script -->
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=13"></script>
 
 </body>
 </html>

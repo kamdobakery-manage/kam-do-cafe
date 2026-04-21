@@ -14,15 +14,15 @@
 
   // --- Header Image Config ---
   const HEADER_IMAGES = {
-    'breakfast':    { src: 'assets/headers/01-all-day-breakfast.png',       alt: '01 All-Day Breakfast 全日早·常餐' },
-    'noodles':      { src: 'assets/headers/02-stirred-nissin-noodles.png',  alt: '02 Stirred Nissin Noodles 出前撈丁' },
-    'plates':       { src: 'assets/headers/03-rice-spaghetti-plates.png',   alt: '03 Rice & Spaghetti Plates 碟頭（飯或意粉）' },
-    'baked':        { src: 'assets/headers/04-200c-baked.png',              alt: '04 200°C Baked 200°C 真焗' },
-    'hk-authentic': { src: 'assets/headers/05-hk-authentic.png',            alt: '05 HK Authentic 經典港味' },
-    'snacks':       { src: 'assets/headers/06-hk-snacks-pineapple-buns.png',alt: '06 HK Snacks & Pineapple Buns 香港情懷 & 菠蘿包' },
-    'drinks':       { src: 'assets/headers/07-drinks.png',                  alt: '07 Drinks 冷熱飲品' },
-    'party-tray':   { src: 'assets/headers/08-party-tray-catering.png',     alt: '08 Party Tray & Catering 派對到會' },
-    'featured':     { src: 'assets/headers/00-signature-dishes.png',       alt: 'Signature Dishes 招牌推介' },
+    'breakfast':    { src: 'assets/headers/01-all-day-breakfast.jpg',       alt: '01 All-Day Breakfast 全日早·常餐' },
+    'noodles':      { src: 'assets/headers/02-stirred-nissin-noodles.jpg',  alt: '02 Stirred Nissin Noodles 出前撈丁' },
+    'plates':       { src: 'assets/headers/03-rice-spaghetti-plates.jpg',   alt: '03 Rice & Spaghetti Plates 碟頭（飯或意粉）' },
+    'baked':        { src: 'assets/headers/04-200c-baked.jpg',              alt: '04 200°C Baked 200°C 真焗' },
+    'hk-authentic': { src: 'assets/headers/05-hk-authentic.jpg',            alt: '05 HK Authentic 經典港味' },
+    'snacks':       { src: 'assets/headers/06-hk-snacks-pineapple-buns.jpg',alt: '06 HK Snacks & Pineapple Buns 香港情懷 & 菠蘿包' },
+    'drinks':       { src: 'assets/headers/07-drinks.jpg',                  alt: '07 Drinks 冷熱飲品' },
+    'party-tray':   { src: 'assets/headers/08-party-tray-catering.jpg',     alt: '08 Party Tray & Catering 派對到會' },
+    'featured':     { src: 'assets/headers/00-signature-dishes.jpg',       alt: 'Signature Dishes 招牌推介' },
   };
 
   // --- DOM Cache ---
@@ -77,37 +77,11 @@
     initImageFallbacks();
     initLightbox();
 
-    initPaletteToggle();
-
     // Auto-open cart if returning from cancelled payment
     if (window.location.hash === '#open-cart') {
       openCart();
       history.replaceState(null, '', window.location.pathname);
     }
-  }
-
-  // --- Palette Toggle ---
-  function initPaletteToggle() {
-    const saved = localStorage.getItem('kamdo_palette');
-    if (saved) document.documentElement.setAttribute('data-palette', saved);
-
-    const btn = document.getElementById('palette-toggle');
-    if (!btn) return;
-
-    var palettes = ['mongkok', ''];
-
-    btn.addEventListener('click', function () {
-      var current = document.documentElement.getAttribute('data-palette') || '';
-      var idx = palettes.indexOf(current);
-      var next = palettes[(idx + 1) % palettes.length];
-      if (next) {
-        document.documentElement.setAttribute('data-palette', next);
-        localStorage.setItem('kamdo_palette', next);
-      } else {
-        document.documentElement.removeAttribute('data-palette');
-        localStorage.removeItem('kamdo_palette');
-      }
-    });
   }
 
   // --- Scroll Spy ---
@@ -308,7 +282,7 @@
   // --- Data ---
   async function loadMenu() {
     try {
-      const res = await fetch('menu.json');
+      const res = await fetch('menu.json', { cache: 'no-cache' });
       menuData = await res.json();
     } catch (e) {
       console.error('Failed to load menu:', e);
@@ -366,22 +340,6 @@
     const r = menuData.restaurant;
     const hero = document.getElementById('hero');
 
-    // Check if hero image exists (classic palette only)
-    const heroImagePath = 'assets/hero/hero-main.jpg';
-    const img = new Image();
-    img.onload = function () {
-      hero.classList.remove('hero--no-image');
-      const bg = hero.querySelector('.hero__bg');
-      if (bg) bg.style.backgroundImage = `url('${heroImagePath}')`;
-    };
-    img.onerror = function () {
-      hero.classList.add('hero--no-image');
-    };
-    img.src = heroImagePath;
-
-    // Default to no-image state
-    hero.classList.add('hero--no-image');
-
     // Build Mong Kok food collage: prefer featured items with images, fall back to any item
     const collageItems = [];
     for (const feat of (menuData.featured || [])) {
@@ -416,49 +374,64 @@
     }).join('');
 
     hero.innerHTML = `
-      <!-- Classic hero layout (shown when palette is not mongkok) -->
-      <div class="hero__classic">
-        <div class="hero__bg"></div>
-        <div class="hero__watermark">${r.name_zh.substring(0, 2)}</div>
-        <div class="hero__content">
-          <p class="hero__tagline">Authentic Hong Kong Caf\u00e9</p>
-          <h1 class="hero__title-zh">${r.name_zh}</h1>
-          <p class="hero__title">${r.name_en}</p>
-          <p class="hero__description">${r.tagline_en}. Classic comfort food made fresh daily.</p>
-          <div class="hero__cta-row">
-            <a href="#breakfast" class="btn btn--primary">Browse Menu</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mong Kok hero layout (shown when palette is mongkok) -->
       <div class="hero-mk">
         <div class="hero-mk__inner">
           <div class="hero-mk__left">
-            <div class="mk-vertical-cal hero-mk__big-name">金都茶餐廳</div>
-            <div class="hero-mk__signboard">
-              <span>KAM DO CAFE</span><span class="hero-mk__dot">·</span>
-              <span>RICHMOND BC</span><span class="hero-mk__dot">·</span>
-              <span>SINCE 1988</span>
+            <div class="hero-v2__bracket"></div>
+
+            <div class="hero-v2__eyebrow">
+              <span>Richmond British Columbia</span>
+              <span class="hero-v2__eyebrow-dot"></span>
+              <span>Est. 1988</span>
             </div>
-            <div class="hero-mk__status">營業中 · 8AM–7PM</div>
-            <a href="#breakfast" class="hero-mk__cta">落單 睇餐牌 →</a>
+
+            <h1 class="hero-v2__title-zh">${r.name_zh}</h1>
+            <div class="hero-v2__title-en">${r.name_en}</div>
+
+            <div class="hero-v2__flourish">
+              <span class="hero-v2__flourish-rule"></span>
+              <span class="hero-v2__flourish-ornament">❦</span>
+              <span class="hero-v2__flourish-rule"></span>
+            </div>
+
+            <p class="hero-v2__story">一杯絲滑奶茶、剛出爐的菠蘿包、熱騰騰的沙爹牛肉麵——港式茶餐廳的樸實滋味，每朝在列治文三號路親手現做。街坊行過，日子慢一點，熟悉的味道變得格外珍貴。</p>
+            <p class="hero-v2__story-en">A cup of silky milk tea, a pineapple bun still warm from the oven, a steaming bowl of satay beef noodles — the honest comforts of a Hong Kong cha chaan teng, made by hand each morning on No.3 Road. Neighbours drift in, time moves a little slower, and the familiar quietly becomes something to look forward to.</p>
+
+            <div class="hero-v2__features">
+              <span>明火煲湯</span><span class="hero-v2__features-dot">·</span>
+              <span>手工包點</span><span class="hero-v2__features-dot">·</span>
+              <span>現烤蛋撻</span><span class="hero-v2__features-dot">·</span>
+              <span>到會外送</span>
+            </div>
+
+            <div class="hero-v2__ctas">
+              <a href="#breakfast" class="hero-v2__cta-primary">落單睇餐牌 →</a>
+              <a href="#whatsapp" class="hero-v2__cta-ghost">WhatsApp</a>
+            </div>
+
+            <div class="hero-v2__status">
+              <span class="hero-v2__status-dot"></span>
+              <span>Open now · 營業中 · 7AM — 9PM</span>
+            </div>
           </div>
+
           <div class="hero-mk__right">
-            <div class="mk-chop mk-chop--ring mk-chop--lg hero-mk__chop">
-              <span>正宗港式</span>
-              <small>AUTHENTIC HK</small>
+            <div class="hero-v2__frame">
+              <div class="hero-v2__ribbon">
+                <div class="hero-v2__ribbon-est">Est.</div>
+                <div class="hero-v2__ribbon-year">1988</div>
+              </div>
+              <div class="hero-v2__picture">
+                <img class="hero-v2__picture-img"
+                     src="assets/hero/signature-bun.jpg"
+                     alt="招牌菠蘿包蛋腿 — Signature Pineapple Bun with Egg and Luncheon">
+              </div>
+              <div class="hero-v2__plaque">
+                <div class="hero-v2__plaque-no">No. 01 · Signature</div>
+                <div class="hero-v2__plaque-name">招牌菠蘿包蛋腿</div>
+                <div class="hero-v2__plaque-name-en">Pineapple Bun · Egg · Luncheon</div>
+              </div>
             </div>
-            <div class="hero-mk__collage">
-              ${collage}
-            </div>
-            <div class="mk-handwritten hero-mk__note">今日人氣之選 →</div>
-          </div>
-        </div>
-        <div class="mk-marquee hero-mk__marquee">
-          <div class="mk-marquee__track">
-            <span class="mk-marquee__item">🔥 全日早餐 · 奉送咖啡/茶 · 出前一丁任選 · 外賣 WhatsApp ☎ 604-000-0000 · 開業 1988 · 正宗港式 🔥</span>
-            <span class="mk-marquee__item">🔥 全日早餐 · 奉送咖啡/茶 · 出前一丁任選 · 外賣 WhatsApp ☎ 604-000-0000 · 開業 1988 · 正宗港式 🔥</span>
           </div>
         </div>
       </div>
@@ -588,9 +561,10 @@
          <h2 class="section__title">${section.title_en}</h2>
          <p class="section__title-zh">${section.title_zh}</p>`;
 
-    // Mong Kok text-based section header (hidden in classic palette)
+    // Mong Kok section header — image banner in Mongkok palette, cream fallback otherwise
+    const mkBgStyle = headerImg ? ` style="background-image:url('${headerImg.src}')"` : '';
     const mkHeader = `
-      <div class="section__header-mk">
+      <div class="section__header-mk"${mkBgStyle}>
         <span class="section__header-mk-tape section__header-mk-tape--tl"></span>
         <span class="section__header-mk-tape section__header-mk-tape--tr"></span>
         <div class="section__header-mk-inner">
@@ -824,8 +798,8 @@
       </div>
       <div class="footer__col footer__col--story">
         <div class="footer__story-title">Our Story</div>
-        <p class="footer__story">From our first cup of silky milk tea to today\u2019s signature satay beef noodles \u2014 Kam Do Cafe has been serving authentic Hong Kong comfort food to Richmond families. Every dish carries the warmth of a cha chaan teng, where the food is honest and the welcome is genuine.</p>
-        <p class="footer__story footer__story--zh">\u5f9e\u7b2c\u4e00\u676f\u7d72\u896a\u5976\u8336\u958b\u59cb\uff0c\u91d1\u90fd\u8336\u9910\u5ef3\u4e00\u76f4\u70ba\u5217\u6cbb\u6587\u8857\u574a\u5e36\u4f86\u6700\u6b63\u5b97\u7684\u6e2f\u5f0f\u98a8\u5473\u3002\u6bcf\u4e00\u789f\u90fd\u627f\u8f09\u8457\u8336\u9910\u5ef3\u7684\u4eba\u60c5\u6eab\u6696\u2014\u2014\u98df\u7269\u8e0f\u5be6\uff0c\u7b11\u5bb9\u771f\u646f\u3002</p>
+        <p class="footer__story">Kam Do Cafe keeps time at the unhurried rhythm of a Hong Kong cha chaan teng — just off No.3 Road, a short stroll from the bus stop, woven into the daily choreography of Richmond. Behind the open kitchen, woks hiss and steam curls up from bowls of satay beef noodles; at the counter, pineapple buns and egg tarts arrive warm through the day. Ingredients show up honestly — no shortcuts, no flourish — just generous portions, a silky cup of milk tea, and the quiet pulse of neighbours stopping in for a breakfast set, a midday bowl, or a takeout box for the road home. Nostalgic and invitingly fresh, the flavours of home find a familiar corner here in Richmond.</p>
+        <p class="footer__story footer__story--zh">金都茶餐廳保留著港式茶記那份慢而細的節奏——就在三號路一帶，幾步之遙的巴士站旁，融入列治文每一日的生活節拍。開放式廚房裡，鑊氣鼎盛，一碗碗沙爹牛肉麵熱辣上枱；餅櫃前，菠蘿包、蛋撻成日新鮮出爐。用料實在——冇花臣、冇捷徑——份量夠抵食，一杯奶茶夠滑，街坊來食個早餐、嘆碗麵，又或者打包一盒帶返屋企。熟悉的味道，帶著一點新鮮氣息，在列治文這個角落，為你留一個停靠的地方。</p>
       </div>
       <div class="footer__col">
         <div class="footer__right-title">Hours</div>

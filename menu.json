@@ -4,16 +4,16 @@
     "name_zh": "金都茶餐廳",
     "tagline_en": "Authentic Hong Kong Cha Chaan Teng",
     "tagline_zh": "正宗港式茶餐廳",
-    "address": "Kam Do Plaza, 4328 No. 3 Road, Richmond, BC",
-    "phone": "(604) 000-0000",
-    "logo": "assets/logo/kam-do-logo.jpg",
+    "address": "Unit 130 · 6211 No. 3 Road, Richmond, BC V6Y 0A2",
+    "phone": "(604) 284-5611",
+    "logo": "assets/logo/kam-do-cafe-logo.jpg",
     "social": {
-      "facebook": "https://facebook.com/kamdocafe",
-      "instagram": "https://instagram.com/kamdocafe"
+      "facebook": "https://www.facebook.com/KamDoBakeryOffical/",
+      "instagram": "https://www.instagram.com/kamdobakery/"
     },
     "hours": {
-      "general": "Daily 8:00 AM – 7:00 PM",
-      "last_order": "6:45 PM",
+      "general": "Daily 7:00 AM – 9:00 PM",
+      "last_order": "8:45 PM",
       "breakfast_note_en": "Breakfast served all day",
       "breakfast_note_zh": "全日供應早餐",
       "lunch_note_en": "Lunch items from 11:00 AM",
